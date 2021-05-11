@@ -6,7 +6,6 @@ import javax.swing.text.Element;
 import java.util.*;
 
 public class EntryPoint {
-    int elements;
     private static final int MIN_ELEMENTS = 3;
     private static final int MAX_LOW_LEVEL = 5;
     private static final int MIN_MEDIUM_LEVEL = 6;
@@ -20,6 +19,7 @@ public class EntryPoint {
 
     ArrayList<Tamagolem> tamagolems = new ArrayList<>();
 
+    // This list contains the elements defined in Enum.
     private static final List<Element> ELEMENTS = new List<Element>() {
         @Override
         public int size() {
@@ -135,8 +135,10 @@ public class EntryPoint {
         public List<Element> subList(int fromIndex, int toIndex) {
             return null;
         }
-    }
+    };
+
     private static final int SIZE = ELEMENTS.size();
+
 
     public void Menu () {
         int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.getHowManyElements(), LOW_LEVEL, DIFFICULT_LEVEL);
@@ -147,7 +149,8 @@ public class EntryPoint {
                 /*
                  * If the user's choice is low, the match level will be 3 ≤ ml ≤ 5.
                  */
-                int stones = howManyStones(matchLevel);
+                int elements = howManyElements(LOW_LEVEL);
+                int stones = howManyStones(LOW_LEVEL);
                 int commonStones = howManyCommonStones(tamagolems, elements, stones);
                 int stonesForEachElement = howManyStonesForEachElement(tamagolems, elements, stones);
                 Fight fight = new Fight();
@@ -181,13 +184,48 @@ public class EntryPoint {
 
     }
 
-    private Element howManyElements (int level) {
-        if (level == LOW_LEVEL)
-            return ELEMENTS.get((int)Math.random() * (MAX_LOW_LEVEL - MIN_ELEMENTS + 1) + MIN_ELEMENTS);
-        else if (level == MEDIUM_LEVEL)
-            return ELEMENTS.get((int)Math.random() * (MAX_MEDIUM_LEVEL - MIN_MEDIUM_LEVEL + 1) + MIN_MEDIUM_LEVEL);
-        else if (level == DIFFICULT_LEVEL)
-            return ELEMENTS.get((int)Math.random() * (MAX_ELEMENTS - MIN_DIFFICULT_LEVEL + 1) + MIN_DIFFICULT_LEVEL);
+    private int howManyElements (int level) {
+        Random random = new Random();
+        int elementsToEstract;
+        ArrayList<Element> usedElements = new ArrayList<>();
+        int addedElement;
+        int elements = 0;
+
+        if (level == LOW_LEVEL) {
+            elementsToEstract = (int)Math.random() * (MAX_LOW_LEVEL - MIN_ELEMENTS + 1) + MIN_ELEMENTS;
+
+            for (int i = 0; i<elementsToEstract; i++) {
+                addedElement = random.nextInt(SIZE);
+                ELEMENTS.remove(addedElement);
+                usedElements.add(ELEMENTS.get(addedElement));
+            }
+
+            return elementsToEstract;
+
+            elements = elementsToEstract;
+        }  else if (level == MEDIUM_LEVEL) {
+            elementsToEstract = (int)Math.random() * (MAX_MEDIUM_LEVEL - MIN_MEDIUM_LEVEL + 1) + MIN_MEDIUM_LEVEL;
+
+            for (int i = 0; i<elementsToEstract; i++) {
+                addedElement = random.nextInt(SIZE);
+                ELEMENTS.remove(addedElement);
+                usedElements.add(ELEMENTS.get(addedElement));
+            }
+
+            elements = elementsToEstract;
+        }  else if (level == DIFFICULT_LEVEL) {
+            elementsToEstract = (int)Math.random() * (MAX_ELEMENTS - MIN_DIFFICULT_LEVEL + 1) + MIN_DIFFICULT_LEVEL;
+
+            for (int i = 0; i<elementsToEstract; i++) {
+                addedElement = random.nextInt(SIZE);
+                ELEMENTS.remove(addedElement);
+                usedElements.add(ELEMENTS.get(addedElement));
+            }
+
+            elements = elementsToEstract;
+        }
+
+        return elements;
     }
 
     /**
@@ -219,7 +257,7 @@ public class EntryPoint {
      * @param stones how many stones are involved in the match.
      * @return the common stones.
      */
-    private int howManyCommonStones(int tamagolems, int elements, int stones) {
+    private int howManyCommonStones(Tamagolem tamagolems, int elements, int stones) {
         int commonStones = ((2 * tamagolems * stones) / elements) * elements;
         return commonStones;
     }
