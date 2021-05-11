@@ -1,7 +1,5 @@
 package it.unibs.fp.TamaGolem;
 
-
-import it.unibs.fp.Graph.*;
 import it.unibs.fp.Utilities.*;
 import java.util.*;
 
@@ -28,23 +26,24 @@ import java.util.*;
  *      If we have x(n) elements, we make iterations of algebraic sums
  *      and random values until we finish.
  */
+
 public class Equilibrium {
    // Graph graph;
     static int elements;
 
     private static final int MAX_STRENGH = 5;
 
+    /*
     public Equilibrium (int elements, Graph graph) {
         this.elements = elements;
         //this.graph = graph;
     }
 
-    /*
+
     private Graph equilibriumGraph() {
         //Return temporaneo per silenziare compilatore.
         return graph;
     }
-     */
 
     private static Node generateRandomNode() {
         Random rand = new Random();
@@ -54,11 +53,12 @@ public class Equilibrium {
 
         return new Node(Elements.values()[randomStone].toString(),elementsStrength);
     }
-/*
+
     private static int generateRandomStronger () {
         Random rand = new Random();
 
         //int randomStronger = rand.nextInt(); getting the random elements
     }
-*/
+
+     */
 }

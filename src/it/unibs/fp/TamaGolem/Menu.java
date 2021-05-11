@@ -159,7 +159,10 @@ public class Menu {
                 if (player1.getName().equalsIgnoreCase(player2.getName())) {
                     homonymyAnswer = DataInput.readChar(UsefulStrings.HOMONYMY_MESSAGE);
                     if (homonymyAnswer == 'S' || homonymyAnswer == 's') {
-                        player2.homonymyFix();
+                        String tmp = player2.getName();
+                        do {
+                            player2.homonymyFix();
+                        } while (player2.getName() == tmp);
                         System.out.println(UsefulStrings.HOMONYMY_FIXED_MESSAGE + player2.getName() + "\".");
                     } else nameFix = false;
                 }
@@ -409,7 +412,8 @@ public class Menu {
     private void pause() {
         try {
             Thread.sleep(MILLIS_PAUSE);
-        } catch (InterruptedException ignored) { }
+        } catch (InterruptedException ignored) {
+        }
     }
 
 }
