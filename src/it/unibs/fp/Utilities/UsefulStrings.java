@@ -4,22 +4,35 @@ public class UsefulStrings {
     private static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
     private static final String HOW_MANY_ELEMENTS = "Qual è il livello della partita? Scegli fra le seguenti opzioni:\n» Basso (1).\n» Intermedio (2).\n» Difficile (3).";
 
-    public static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore\n";
-    public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore\n";
-    public static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori, vuoi che per il Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
+    public static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
+    public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
+    public static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori, vuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
     public static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! Il tuo nuovo nome ora è ";
 
     public static final String WELCOME_MESSAGE =
                     /*"  _____                         _          _       \n" +
                     " | __  |___ ___ _ _ ___ ___ _ _| |_ ___   |_|___   \n" +
                     " | __ -| -_|   | | | -_|   | | |  _| . |  | |   |  \n" +
-                    " |_____|___|_|_|\\_/|___|_|_|___|_| |___|  |_|_|_|";*/
+                    " |_____|___|_|_|\\_/|___|_|_|___|_| |___|  |_|_|_|";
 
      "  ▄▄▄▄· ▄▄▄ . ▐ ▄  ▌ ▐·▄▄▄ . ▐ ▄ ▄• ▄▌▄▄▄▄▄          ▪   ▐ ▄ \n" +
      " ▐█ ▀█▪▀▄.▀·•█▌▐█▪█·█▌▀▄.▀·•█▌▐██▪██▌•██  ▪         ██ •█▌▐█ \n" +
      " ▐█▀▀█▄▐▀▀▪▄▐█▐▐▌▐█▐█•▐▀▀▪▄▐█▐▐▌█▌▐█▌ ▐█.▪ ▄█▀▄     ▐█·▐█▐▐▌ \n" +
      " ██▄▪▐█▐█▄▄▌██▐█▌ ███ ▐█▄▄▌██▐█▌▐█▄█▌ ▐█▌·▐█▌.▐▌    ▐█▌██▐█▌ \n" +
      " ·▀▀▀▀  ▀▀▀ ▀▀ █▪. ▀   ▀▀▀ ▀▀ █▪ ▀▀▀  ▀▀▀  ▀█▄▀▪    ▀▀▀▀▀ █▪";
+
+
+
+        ██████╗░███████╗███╗░░██╗██╗░░░██╗███████╗███╗░░██╗██╗░░░██╗████████╗░█████╗░       ██╗███╗░░██╗
+        ██╔══██╗██╔════╝████╗░██║██║░░░██║██╔════╝████╗░██║██║░░░██║╚══██╔══╝██╔══██╗       ██║████╗░██║
+        ██████╦╝█████╗░░██╔██╗██║╚██╗░██╔╝█████╗░░██╔██╗██║██║░░░██║░░░██║░░░██║░░██║       ██║██╔██╗██║
+        ██╔══██╗██╔══╝░░██║╚████║░╚████╔╝░██╔══╝░░██║╚████║██║░░░██║░░░██║░░░██║░░██║       ██║██║╚████║
+        ██████╦╝███████╗██║░╚███║░░╚██╔╝░░███████╗██║░╚███║╚██████╔╝░░░██║░░░╚█████╔╝       ██║██║░╚███║
+        ╚═════╝░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░░╚════╝░       ╚═╝╚═╝░░╚══╝*/
+
+
+              "\n  █▄▄ █▀▀ █▄ █ █ █ █▀▀ █▄ █ █ █ ▀█▀ █▀█   █ █▄ █\n" +
+                "  █▄█ ██▄ █ ▀█ ▀▄▀ ██▄ █ ▀█ █▄█  █  █▄█   █ █ ▀█\n";
 
 
     public static final String TITLE =
@@ -84,6 +97,7 @@ public class UsefulStrings {
             "Papa Bergoglio II",
             "La Winx che non si caga nessuno",
             "Paolo Brosio",
+            "Terry A. Davis",
             "THE_REAL_JOSH"
     };
 

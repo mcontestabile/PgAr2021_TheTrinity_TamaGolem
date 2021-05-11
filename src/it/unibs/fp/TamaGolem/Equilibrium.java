@@ -7,7 +7,7 @@ import java.util.*;
 
 /**
  * With generateRandomNode we get the nodes (elements) that will
- * fight in the Tamagolems' mathc. Then, we calculate the equilibrium
+ * fight in the Tamagolems' match. Then, we calculate the equilibrium
  * with the method equilibriumGraph, so that we have the match's
  * equilibrium. This method works following this steps:
  * 1st: As we get the stones, which contains the elements,

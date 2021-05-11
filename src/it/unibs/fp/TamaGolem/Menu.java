@@ -2,7 +2,6 @@ package it.unibs.fp.TamaGolem;
 
 import it.unibs.fp.Utilities.*;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Menu {
@@ -16,6 +15,8 @@ public class Menu {
     private static final int LOW_LEVEL = 1;
     private static final int MEDIUM_LEVEL = 2;
     private static final int DIFFICULT_LEVEL = 3;
+
+    private static final long MILLIS_PAUSE = 1200;
 
     private boolean start = true;
     private char homonymyAnswer;
@@ -140,6 +141,7 @@ public class Menu {
             return null;
         }
     };
+
     ArrayList<Elements> usedElements = new ArrayList<>();
 
     private static final int SIZE = ELEMENTS.size();
@@ -148,6 +150,7 @@ public class Menu {
     public void Menu() {
         System.out.println(UsefulStrings.WELCOME_MESSAGE);
         System.out.println(UsefulStrings.TITLE);
+        pause();
 
         while (start) {
             do {
@@ -400,4 +403,11 @@ public class Menu {
     public static int getSIZE() {
         return SIZE;
     }
+
+    private void pause() {
+        try {
+            Thread.sleep(MILLIS_PAUSE);
+        } catch (InterruptedException ignored) { }
+    }
+
 }
