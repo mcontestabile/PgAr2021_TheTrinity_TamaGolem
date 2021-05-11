@@ -2,12 +2,12 @@ package it.unibs.fp.Utilities;
 
 public class UsefulStrings {
     private static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
-    private static final String HOW_MANY_ELEMENTS = "Qual è il livello della partita? Scegli fra le seguenti opzioni:\n» Basso (1).\n» Intermedio (2).\n» Difficile (3).";
+    private static final String HOW_MANY_ELEMENTS = "\nQual è il livello della partita? Scegli fra le seguenti opzioni:\n» Basso (1).\n» Intermedio (2).\n» Difficile (3).";
 
     public static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
     public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
-    public static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori, vuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
-    public static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! Il tuo nuovo nome ora è ";
+    public static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
+    public static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
     public static final String WELCOME_MESSAGE =
                     /*"  _____                         _          _       \n" +

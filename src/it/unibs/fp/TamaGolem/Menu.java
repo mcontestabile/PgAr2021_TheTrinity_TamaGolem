@@ -154,16 +154,18 @@ public class Menu {
 
         while (start) {
             do {
-                Player player1 = new Player(DataInput.readString(UsefulStrings.PLAYER_1_NAME_REQUEST));
-                Player player2 = new Player(DataInput.readString(UsefulStrings.PLAYER_2_NAME_REQUEST));
-                if (player1.getName().equals(player2.getName())) {
+                Player player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.PLAYER_1_NAME_REQUEST));
+                Player player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.PLAYER_2_NAME_REQUEST));
+                if (player1.getName().equalsIgnoreCase(player2.getName())) {
                     homonymyAnswer = DataInput.readChar(UsefulStrings.HOMONYMY_MESSAGE);
                     if (homonymyAnswer == 'S' || homonymyAnswer == 's') {
                         player2.homonymyFix();
-                        System.out.println(UsefulStrings.HOMONYMY_FIXED_MESSAGE + player2.getName() + "\n");
+                        System.out.println(UsefulStrings.HOMONYMY_FIXED_MESSAGE + player2.getName() + "\".");
                     } else nameFix = false;
                 }
             } while (nameFix == false);
+
+            pause();
 
             int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.getHowManyElements(), LOW_LEVEL, DIFFICULT_LEVEL);
 
