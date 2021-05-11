@@ -1,8 +1,6 @@
 package it.unibs.fp.TamaGolem;
 
 import it.unibs.fp.Utilities.*;
-
-import javax.swing.text.Element;
 import java.util.*;
 
 public class EntryPoint {
@@ -20,7 +18,7 @@ public class EntryPoint {
     ArrayList<Tamagolem> tamagolems = new ArrayList<>();
 
     // This list contains the elements defined in Enum.
-    private static final List<Element> ELEMENTS = new List<Element>() {
+    private static final List<Elements> ELEMENTS = new List<Elements>() {
         @Override
         public int size() {
             return 0;
@@ -37,7 +35,7 @@ public class EntryPoint {
         }
 
         @Override
-        public Iterator<Element> iterator() {
+        public Iterator<Elements> iterator() {
             return null;
         }
 
@@ -52,7 +50,7 @@ public class EntryPoint {
         }
 
         @Override
-        public boolean add(Element element) {
+        public boolean add(Elements elements) {
             return false;
         }
 
@@ -67,12 +65,12 @@ public class EntryPoint {
         }
 
         @Override
-        public boolean addAll(Collection<? extends Element> c) {
+        public boolean addAll(Collection<? extends Elements> c) {
             return false;
         }
 
         @Override
-        public boolean addAll(int index, Collection<? extends Element> c) {
+        public boolean addAll(int index, Collection<? extends Elements> c) {
             return false;
         }
 
@@ -92,22 +90,22 @@ public class EntryPoint {
         }
 
         @Override
-        public Element get(int index) {
+        public Elements get(int index) {
             return null;
         }
 
         @Override
-        public Element set(int index, Element element) {
+        public Elements set(int index, Elements element) {
             return null;
         }
 
         @Override
-        public void add(int index, Element element) {
+        public void add(int index, Elements element) {
 
         }
 
         @Override
-        public Element remove(int index) {
+        public Elements remove(int index) {
             return null;
         }
 
@@ -122,20 +120,21 @@ public class EntryPoint {
         }
 
         @Override
-        public ListIterator<Element> listIterator() {
+        public ListIterator<Elements> listIterator() {
             return null;
         }
 
         @Override
-        public ListIterator<Element> listIterator(int index) {
+        public ListIterator<Elements> listIterator(int index) {
             return null;
         }
 
         @Override
-        public List<Element> subList(int fromIndex, int toIndex) {
+        public List<Elements> subList(int fromIndex, int toIndex) {
             return null;
         }
     };
+    ArrayList<Elements> usedElements = new ArrayList<>();
 
     private static final int SIZE = ELEMENTS.size();
 
@@ -151,10 +150,11 @@ public class EntryPoint {
                  */
                 int elements = howManyElements(LOW_LEVEL);
                 int stones = howManyStones(LOW_LEVEL);
-                int commonStones = howManyCommonStones(tamagolems, elements, stones);
-                int stonesForEachElement = howManyStonesForEachElement(tamagolems, elements, stones);
+                int tamas = howManyTamagolems(elements, stones);
+                int commonStones = howManyCommonStones(tamas, elements, stones);
+                int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
                 Fight fight = new Fight();
-                fight.LetThemFight(tamagolems, stones, commonStones, elements);
+                fight.LetThemFight(tamagolems, stones, commonStones, usedElements);
             }
 
             case MEDIUM_LEVEL -> {
@@ -163,10 +163,11 @@ public class EntryPoint {
                  */
                 int elements = howManyElements(MEDIUM_LEVEL);
                 int stones = howManyStones(elements);
-                int commonStones = howManyCommonStones(tamagolems, elements, stones);
-                int stonesForEachElement = howManyStonesForEachElement(tamagolems, elements, stones);
+                int tamas = howManyTamagolems(elements, stones);
+                int commonStones = howManyCommonStones(tamas, elements, stones);
+                int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
                 Fight fight = new Fight();
-                fight.LetThemFight(tamagolems, stones, commonStones, elements);
+                fight.LetThemFight(tamagolems, stones, commonStones, usedElements);
             }
 
             case DIFFICULT_LEVEL -> {
@@ -175,10 +176,11 @@ public class EntryPoint {
                  */
                 int elements = howManyElements(DIFFICULT_LEVEL);
                 int stones = howManyStones(elements);
-                int commonStones = howManyCommonStones(tamagolems, elements, stones);
-                int stonesForEachElement = howManyStonesForEachElement(tamagolems, elements, stones);
+                int tamas = howManyTamagolems(elements, stones);
+                int commonStones = howManyCommonStones(tamas, elements, stones);
+                int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
                 Fight fight = new Fight();
-                fight.LetThemFight(tamagolems, stones, commonStones, elements);
+                fight.LetThemFight(tamagolems, stones, commonStones, usedElements);
             }
         }
 
@@ -187,12 +189,11 @@ public class EntryPoint {
     private int howManyElements (int level) {
         Random random = new Random();
         int elementsToEstract;
-        ArrayList<Element> usedElements = new ArrayList<>();
         int addedElement;
         int elements = 0;
 
         if (level == LOW_LEVEL) {
-            elementsToEstract = (int)Math.random() * (MAX_LOW_LEVEL - MIN_ELEMENTS + 1) + MIN_ELEMENTS;
+            elementsToEstract = (int)(Math.random() * (MAX_LOW_LEVEL - MIN_ELEMENTS + 1) + MIN_ELEMENTS);
 
             for (int i = 0; i<elementsToEstract; i++) {
                 addedElement = random.nextInt(SIZE);
@@ -200,11 +201,9 @@ public class EntryPoint {
                 usedElements.add(ELEMENTS.get(addedElement));
             }
 
-            return elementsToEstract;
-
             elements = elementsToEstract;
         }  else if (level == MEDIUM_LEVEL) {
-            elementsToEstract = (int)Math.random() * (MAX_MEDIUM_LEVEL - MIN_MEDIUM_LEVEL + 1) + MIN_MEDIUM_LEVEL;
+            elementsToEstract = (int)(Math.random() * (MAX_MEDIUM_LEVEL - MIN_MEDIUM_LEVEL + 1) + MIN_MEDIUM_LEVEL);
 
             for (int i = 0; i<elementsToEstract; i++) {
                 addedElement = random.nextInt(SIZE);
@@ -214,7 +213,7 @@ public class EntryPoint {
 
             elements = elementsToEstract;
         }  else if (level == DIFFICULT_LEVEL) {
-            elementsToEstract = (int)Math.random() * (MAX_ELEMENTS - MIN_DIFFICULT_LEVEL + 1) + MIN_DIFFICULT_LEVEL;
+            elementsToEstract = (int)(Math.random() * (MAX_ELEMENTS - MIN_DIFFICULT_LEVEL + 1) + MIN_DIFFICULT_LEVEL);
 
             for (int i = 0; i<elementsToEstract; i++) {
                 addedElement = random.nextInt(SIZE);
@@ -257,7 +256,7 @@ public class EntryPoint {
      * @param stones how many stones are involved in the match.
      * @return the common stones.
      */
-    private int howManyCommonStones(Tamagolem tamagolems, int elements, int stones) {
+    private int howManyCommonStones(int tamagolems, int elements, int stones) {
         int commonStones = ((2 * tamagolems * stones) / elements) * elements;
         return commonStones;
     }
@@ -274,5 +273,95 @@ public class EntryPoint {
         return stonesForEachElement;
     }
 
+    /**
+     * This method returns the minimum  number of elements
+     * that can be involved in the match to consider
+     * it of low difficulty.
+     * @return MAX_ELEMENTS.
+     */
+    public static int getMinElements() {
+        return MIN_ELEMENTS;
+    }
 
+    /**
+     * This method returns the maximum  number of elements
+     * that can be involved in the match to consider
+     * it of low difficulty.
+     * @return MAX_ELEMENTS.
+     */
+    public static int getMaxLowLevel() {
+        return MAX_LOW_LEVEL;
+    }
+
+    /**
+     * This method returns the minimum  number of elements
+     * that can be involved in the match to consider
+     * it of medium difficulty.
+     * @return MAX_ELEMENTS.
+     */
+    public static int getMinMediumLevel() {
+        return MIN_MEDIUM_LEVEL;
+    }
+
+    /**
+     * This method returns the maximum  number of elements
+     * that can be involved in the match to consider
+     * it of medium difficulty.
+     * @return MAX_ELEMENTS.
+     */
+    public static int getMaxMediumLevel() {
+        return MAX_MEDIUM_LEVEL;
+    }
+
+    /**
+     * This method returns the minimum  number of elements
+     * that can be involved in the match to consider
+     * it fight difficult.
+     * @return MIN_DIFFICULT_LEVEL.
+     */
+    public static int getMinDifficultLevel() {
+        return MIN_DIFFICULT_LEVEL;
+    }
+
+    /**
+     * This method returns the maximum  number of elements
+     * that can be involved in the match.
+     * @return MAX_ELEMENTS.
+     */
+    public static int getMaxElements() {
+        return MAX_ELEMENTS;
+    }
+
+    /**
+     * This methods returns the golems that will
+     * fight in the match.
+     * @return tamagolems.
+     */
+    public ArrayList<Tamagolem> getTamagolems() {
+        return tamagolems;
+    }
+
+    /**
+     * This method returns the enum.
+     * @return ELEMENTS.
+     */
+    public static List<Elements> getELEMENTS() {
+        return ELEMENTS;
+    }
+
+    /**
+     * This method returns the elements used during the fight.
+     * @return usedElements.
+     */
+    public ArrayList<Elements> getUsedElements() {
+        return usedElements;
+    }
+
+    /**
+     * This method returns the enum's size.
+     * @return SIZE.
+     */
+    public static int getSIZE() {
+        return SIZE;
+    }
 }
