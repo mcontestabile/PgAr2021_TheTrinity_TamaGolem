@@ -54,11 +54,11 @@ public class Equilibrium {
 
         return new Node(Elements.values()[randomStone].toString(),elementsStrength);
     }
-
+/*
     private static int generateRandomStronger () {
         Random rand = new Random();
 
         //int randomStronger = rand.nextInt(); getting the random elements
     }
-
+*/
 }
