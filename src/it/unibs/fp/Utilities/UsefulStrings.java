@@ -9,6 +9,8 @@ public class UsefulStrings {
     public static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
     public static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
+    public static final String HOW_MANY_TAMAGOLEMS = "Quanti tamagolems si vuole schierare in campo?\nSi consideri che il minimo è 3 e il massimo 7.";
+
     public static final String WELCOME_MESSAGE =
 
             "\n  █▄▄ █▀▀ █▄ █ █ █ █▀▀ █▄ █ █ █ ▀█▀ █▀█   █ █▄ █\n" +

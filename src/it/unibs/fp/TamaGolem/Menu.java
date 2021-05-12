@@ -19,126 +19,11 @@ public class Menu {
     ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
 
     // This list contains the elements defined in Enum.
-    private static final List<Elements> ELEMENTS = new List<>() {
-        @Override
-        public int size() {
-            return 0;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return false;
-        }
-
-        @Override
-        public boolean contains(Object o) {
-            return false;
-        }
-
-        @Override
-        public Iterator<Elements> iterator() {
-            return null;
-        }
-
-        @Override
-        public Object[] toArray() {
-            return new Object[0];
-        }
-
-        @Override
-        public <T> T[] toArray(T[] a) {
-            return null;
-        }
-
-        @Override
-        public boolean add(Elements elements) {
-            return false;
-        }
-
-        @Override
-        public boolean remove(Object o) {
-            return false;
-        }
-
-        @Override
-        public boolean containsAll(Collection<?> c) {
-            return false;
-        }
-
-        @Override
-        public boolean addAll(Collection<? extends Elements> c) {
-            return false;
-        }
-
-        @Override
-        public boolean addAll(int index, Collection<? extends Elements> c) {
-            return false;
-        }
-
-        @Override
-        public boolean removeAll(Collection<?> c) {
-            return false;
-        }
-
-        @Override
-        public boolean retainAll(Collection<?> c) {
-            return false;
-        }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @Override
-        public Elements get(int index) {
-            return null;
-        }
-
-        @Override
-        public Elements set(int index, Elements element) {
-            return null;
-        }
-
-        @Override
-        public void add(int index, Elements element) {
-
-        }
-
-        @Override
-        public Elements remove(int index) {
-            return null;
-        }
-
-        @Override
-        public int indexOf(Object o) {
-            return 0;
-        }
-
-        @Override
-        public int lastIndexOf(Object o) {
-            return 0;
-        }
-
-        @Override
-        public ListIterator<Elements> listIterator() {
-            return null;
-        }
-
-        @Override
-        public ListIterator<Elements> listIterator(int index) {
-            return null;
-        }
-
-        @Override
-        public List<Elements> subList(int fromIndex, int toIndex) {
-            return null;
-        }
-    };
+    ArrayList<Elements> ELEMENTS = new ArrayList<>();
 
     ArrayList<Elements> usedElements = new ArrayList<>();
 
-    private static final int SIZE = ELEMENTS.size();
+    private final int SIZE = ELEMENTS.size();
 
     public void menu() {
         System.out.println(UsefulStrings.WELCOME_MESSAGE);
@@ -161,8 +46,9 @@ public class Menu {
                         } while (player2.getName().equals(tmp));
                         System.out.println(UsefulStrings.HOMONYMY_FIXED_MESSAGE + player2.getName() + "\".");
                     } else nameFix = false;
+                    start = false;
                 }
-            } while (nameFix == false);
+            } while (!nameFix);
 
             pause(800);
 
@@ -231,8 +117,8 @@ public class Menu {
 
             for (int i = 0; i < elementsToExtract; i++) {
                 addedElement = random.nextInt(SIZE);
-                ELEMENTS.remove(addedElement);
                 usedElements.add(ELEMENTS.get(addedElement));
+                ELEMENTS.remove(addedElement);
             }
 
             elements = elementsToExtract;
@@ -242,8 +128,8 @@ public class Menu {
 
             for (int i = 0; i < elementsToExtract; i++) {
                 addedElement = random.nextInt(SIZE);
-                ELEMENTS.remove(addedElement);
                 usedElements.add(ELEMENTS.get(addedElement));
+                ELEMENTS.remove(addedElement);
             }
 
             elements = elementsToExtract;
@@ -253,8 +139,8 @@ public class Menu {
 
             for (int i = 0; i < elementsToExtract; i++) {
                 addedElement = random.nextInt(SIZE);
-                ELEMENTS.remove(addedElement);
                 usedElements.add(ELEMENTS.get(addedElement));
+                ELEMENTS.remove(addedElement);
             }
 
             elements = elementsToExtract;
@@ -389,7 +275,7 @@ public class Menu {
      *
      * @return ELEMENTS.
      */
-    public static List<Elements> getELEMENTS() {
+    public List<Elements> getELEMENTS() {
         return ELEMENTS;
     }
 
@@ -407,7 +293,7 @@ public class Menu {
      *
      * @return SIZE.
      */
-    public static int getSIZE() {
+    public int getSIZE() {
         return SIZE;
     }
 
@@ -417,5 +303,4 @@ public class Menu {
         } catch (InterruptedException ignored) {
         }
     }
-
 }
