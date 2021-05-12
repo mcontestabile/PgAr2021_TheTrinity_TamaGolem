@@ -146,7 +146,6 @@ public class Menu {
         pause(1200);
 
         boolean start = true;
-
         while (start) {
             char homonymyAnswer;
             boolean nameFix = true;
@@ -163,7 +162,7 @@ public class Menu {
                         System.out.println(UsefulStrings.HOMONYMY_FIXED_MESSAGE + player2.getName() + "\".");
                     } else nameFix = false;
                 }
-            } while (!nameFix);
+            } while (nameFix == false);
 
             pause(800);
 
