@@ -16,14 +16,16 @@ public class Menu {
     private static final int NORMAL_LEVEL = 2;
     private static final int HARD_LEVEL = 3;
 
-    ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
+    private static final int MIN_TAMAS = 3;
+    private static final int MAX_TAMAS = 10;
 
-    // This list contains the elements defined in Enum.
-    ArrayList<Elements> ELEMENTS = new ArrayList<>();
+    private static final int ENERGY = 10;
+
+    ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
 
     ArrayList<Elements> usedElements = new ArrayList<>();
 
-    private final int SIZE = ELEMENTS.size();
+    RandomEnum randomEnum = new RandomEnum();
 
     public void menu() {
         System.out.println(UsefulStrings.WELCOME_MESSAGE);
@@ -73,6 +75,15 @@ public class Menu {
                     int stones = howManyStones(elements);
                     int tamas = howManyTamagolems(elements, stones);
                     int commonStones = howManyCommonStones(tamas, elements, stones);
+
+                    System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
+                    for (int i = 0; i<tamas; i++) {
+                        String tamaName = "Tamagolem" + i;
+                        TamaGolem t = new TamaGolem(ENERGY, stones, usedElements, tamaName);
+                        t.setName("Tamagolem" + i);
+                        tamaGolems.add(t);
+                    }
+
                     Fight fight = new Fight();
                     fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
                 }
@@ -86,6 +97,15 @@ public class Menu {
                     int tamas = howManyTamagolems(elements, stones);
                     int commonStones = howManyCommonStones(tamas, elements, stones);
                     int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
+
+                    System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
+                    for (int i = 0; i<tamas; i++) {
+                        String tamaName = "Tamagolem" + i;
+                        TamaGolem t = new TamaGolem(ENERGY, stones, usedElements, tamaName);
+                        t.setName("Tamagolem" + i);
+                        tamaGolems.add(t);
+                    }
+
                     Fight fight = new Fight();
                     fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
                 }
@@ -99,6 +119,15 @@ public class Menu {
                     int tamas = howManyTamagolems(elements, stones);
                     int commonStones = howManyCommonStones(tamas, elements, stones);
                     int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
+
+                    System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
+                    for (int i = 0; i<tamas; i++) {
+                        String tamaName = "Tamagolem" + i;
+                        TamaGolem t = new TamaGolem(ENERGY, stones, usedElements, tamaName);
+                        t.setName("Tamagolem" + i);
+                        tamaGolems.add(t);
+                    }
+
                     Fight fight = new Fight();
                     fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
                 }
@@ -116,9 +145,7 @@ public class Menu {
             elementsToExtract = (int) Math.floor(Math.random() * (MAX_EASY_LEVEL - MIN_ELEMENTS + 1) + MIN_ELEMENTS);
 
             for (int i = 0; i < elementsToExtract; i++) {
-                addedElement = random.nextInt(SIZE);
-                usedElements.add(ELEMENTS.get(addedElement));
-                ELEMENTS.remove(addedElement);
+                usedElements.add(randomEnum.random());
             }
 
             elements = elementsToExtract;
@@ -127,9 +154,7 @@ public class Menu {
             elementsToExtract = (int) Math.floor(Math.random() * (MAX_NORMAL_LEVEL - MIN_NORMAL_LEVEL + 1) + MIN_NORMAL_LEVEL);
 
             for (int i = 0; i < elementsToExtract; i++) {
-                addedElement = random.nextInt(SIZE);
-                usedElements.add(ELEMENTS.get(addedElement));
-                ELEMENTS.remove(addedElement);
+                usedElements.add(randomEnum.random());
             }
 
             elements = elementsToExtract;
@@ -138,9 +163,7 @@ public class Menu {
             elementsToExtract = (int) Math.floor(Math.random() * (MAX_ELEMENTS - MIN_HARD_LEVEL + 1) + MIN_HARD_LEVEL);
 
             for (int i = 0; i < elementsToExtract; i++) {
-                addedElement = random.nextInt(SIZE);
-                usedElements.add(ELEMENTS.get(addedElement));
-                ELEMENTS.remove(addedElement);
+                usedElements.add(randomEnum.random());
             }
 
             elements = elementsToExtract;
@@ -271,30 +294,12 @@ public class Menu {
     }
 
     /**
-     * This method returns the enum.
-     *
-     * @return ELEMENTS.
-     */
-    public List<Elements> getELEMENTS() {
-        return ELEMENTS;
-    }
-
-    /**
      * This method returns the elements used during the fight.
      *
      * @return usedElements.
      */
     public ArrayList<Elements> getUsedElements() {
         return usedElements;
-    }
-
-    /**
-     * This method returns the enum's size.
-     *
-     * @return SIZE.
-     */
-    public int getSIZE() {
-        return SIZE;
     }
 
     private void pause(int millisPause) {

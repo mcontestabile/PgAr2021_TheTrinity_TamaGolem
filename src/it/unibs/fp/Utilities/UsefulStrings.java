@@ -9,7 +9,7 @@ public class UsefulStrings {
     public static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
     public static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
-    public static final String HOW_MANY_TAMAGOLEMS = "Quanti tamagolems si vuole schierare in campo?\nSi consideri che il minimo è 3 e il massimo 7.";
+    public static final String HOW_MANY_TAMAGOLEMS = "I tamagolems schierati sono %d";
 
     public static final String WELCOME_MESSAGE =
 
@@ -120,4 +120,47 @@ public class UsefulStrings {
         return GOODBYE_STRINGS[(int) (Math.random() * GOODBYE_STRINGS.length)];
     }
 
+    public static String getStrongerElement() {
+        return STRONGER_ELEMENT;
+    }
+
+    public static String getHowManyElements() {
+        return HOW_MANY_ELEMENTS;
+    }
+
+    public static String getPlayer1NameRequest() {
+        return PLAYER_1_NAME_REQUEST;
+    }
+
+    public static String getPlayer2NameRequest() {
+        return PLAYER_2_NAME_REQUEST;
+    }
+
+    public static String getHomonymyMessage() {
+        return HOMONYMY_MESSAGE;
+    }
+
+    public static String getHomonymyFixedMessage() {
+        return HOMONYMY_FIXED_MESSAGE;
+    }
+
+    public static String getHowManyTamagolems() {
+        return HOW_MANY_TAMAGOLEMS;
+    }
+
+    public static String getWelcomeMessage() {
+        return WELCOME_MESSAGE;
+    }
+
+    public static String getTITLE() {
+        return TITLE;
+    }
+
+    public static String[] getErrorStrings() {
+        return ERROR_STRINGS;
+    }
+
+    public static String[] getGoodbyeStrings() {
+        return GOODBYE_STRINGS;
+    }
 }

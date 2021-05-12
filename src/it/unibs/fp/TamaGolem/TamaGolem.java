@@ -1,14 +1,18 @@
 package it.unibs.fp.TamaGolem;
 
+import java.util.ArrayList;
+
 public class TamaGolem {
     private int energy = 10;
     private int stones;
-    private int elementNumber;
+    private ArrayList<Elements> elements = new ArrayList<>();
+    private String name;
 
-    public TamaGolem(int energy, int stones, int elementNumber) {
+    public TamaGolem(int energy, int stones, ArrayList<Elements> elements, String name) {
         this.energy = energy;
         this.stones = stones;
-        this.elementNumber = elementNumber;
+        this.elements = elements;
+        this.name = name;
     }
 
     public int getEnergy() {
@@ -19,7 +23,15 @@ public class TamaGolem {
         return stones;
     }
 
-    public int getElementNumber() {
-        return elementNumber;
+    public ArrayList<Elements> getElements() {
+        return elements;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
