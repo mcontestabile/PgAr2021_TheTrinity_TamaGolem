@@ -271,7 +271,7 @@ public class Menu {
      * @return how many stones are involved in the match.
      */
     private int howManyStones(int elements) {
-        int stones = (int) (Math.ceil((elements + 1) / 3) + 1);
+        int stones = (int) (Math.ceil((elements + 1.0) / 3.0) + 1.0);
         return stones;
     }
 
@@ -284,7 +284,7 @@ public class Menu {
      * @return the tamagolems' number.
      */
     private int howManyTamagolems(int elements, int stones) {
-        int tamagolems = (int) (Math.ceil(((elements - 1) * (elements - 2)) / (2 * stones)));
+        int tamagolems = (int) (Math.ceil(((elements - 1.0) * (elements - 2.0)) / (2.0 * stones)));
         return tamagolems;
     }
 
@@ -297,7 +297,7 @@ public class Menu {
      * @return the common stones.
      */
     private int howManyCommonStones(int tamagolems, int elements, int stones) {
-        int commonStones = (int) (Math.ceil(((2 * tamagolems * stones) / elements)) * elements);
+        int commonStones = (int) (Math.ceil(((2.0 * tamagolems * stones) / elements)) * elements);
         return commonStones;
     }
 
@@ -310,7 +310,7 @@ public class Menu {
      * @return the stones for each element.
      */
     private int howManyStonesForEachElement(int tamagolems, int elements, int stones) {
-        int stonesForEachElement = (int) (Math.ceil((2 * tamagolems * stones) / elements));
+        int stonesForEachElement = (int) (Math.ceil((2.0 * tamagolems * stones) / elements));
         return stonesForEachElement;
     }
 
