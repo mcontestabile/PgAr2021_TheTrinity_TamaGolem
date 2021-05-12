@@ -29,4 +29,8 @@ public class Player {
     public TamaGolem getActiveGolem() {
         return activeGolem;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

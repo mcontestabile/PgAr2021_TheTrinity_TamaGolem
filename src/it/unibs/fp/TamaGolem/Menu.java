@@ -47,24 +47,27 @@ public class Menu {
                             player2.homonymyFix();
                         } while (player2.getName().equals(tmp));
                         System.out.println(UsefulStrings.HOMONYMY_FIXED_MESSAGE + player2.getName() + "\".");
-                    } else nameFix = false;
-                    start = false;
+                    } else { ;
+                        String p1Name = player1.getName();
+                        do {
+                            player2.setName(DataInput.readNotEmptyString(UsefulStrings.PLAYER_2_NAME_REQUEST));
+                        } while ((player2.getName().equalsIgnoreCase(p1Name)));
+                    }
                 }
-            } while (!nameFix);
+                nameFix = false;
+            } while (nameFix);
 
             pause(800);
 
-            int matchLevel;
-            //int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.HOW_MANY_ELEMENTS, EASY_LEVEL, HARD_LEVEL);
-            do {
+
+            int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.HOW_MANY_ELEMENTS, EASY_LEVEL, HARD_LEVEL);
+            /*do {
                 matchLevel = DataInput.readInt(UsefulStrings.HOW_MANY_ELEMENTS);
                 if (!(matchLevel > 0 && matchLevel < 4)) {
                     System.out.println(UsefulStrings.getErrorPhrase());
                     pause(600);
                 }
-            } while (!(matchLevel > 0 && matchLevel < 4));
-
-            //TODO risolvere l'amichetto tamagolem (classe) in un intero, per trovare quello che ci serve.
+            } while (!(matchLevel > 0 && matchLevel < 4));*/
 
             switch (matchLevel) {
                 case EASY_LEVEL -> {
@@ -78,7 +81,7 @@ public class Menu {
 
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
                     for (int i = 0; i<tamas; i++) {
-                        String tamaName = "Tamagolem" + i;
+                        String tamaName = "Tamagolem " + i;
                         TamaGolem t = new TamaGolem(ENERGY, stones, usedElements, tamaName);
                         t.setName("Tamagolem" + i);
                         tamaGolems.add(t);
@@ -86,6 +89,8 @@ public class Menu {
 
                     Fight fight = new Fight();
                     fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
+
+                    start = false;
                 }
 
                 case NORMAL_LEVEL -> {
@@ -108,6 +113,8 @@ public class Menu {
 
                     Fight fight = new Fight();
                     fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
+
+                    start = false;
                 }
 
                 case HARD_LEVEL -> {
@@ -130,6 +137,8 @@ public class Menu {
 
                     Fight fight = new Fight();
                     fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
+
+                    start = false;
                 }
             }
         }
