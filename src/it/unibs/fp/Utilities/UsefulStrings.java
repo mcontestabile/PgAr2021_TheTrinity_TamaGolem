@@ -1,17 +1,29 @@
 package it.unibs.fp.Utilities;
 
 public class UsefulStrings {
-    public static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
-    public static final String HOW_MANY_ELEMENTS = "\nScegli il livello di difficolta' della partita: \n» Facile (1).\n» Normale (2).\n» Difficile (3).\n";
+    private static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
+    private static final String HOW_MANY_ELEMENTS = "\nScegli il livello di difficolta' della partita: \n» Facile (1).\n» Normale (2).\n» Difficile (3).\n";
 
-    public static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
-    public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
-    public static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
-    public static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
+    private static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
+    private static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
+    private static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
+    private static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
-    public static final String HOW_MANY_TAMAGOLEMS = "I tamagolems schierati sono %d.\n";
+    private static final String HOW_MANY_TAMAGOLEMS = "I Tamagolem schierati sono %d.\n";
 
-    public static final String WELCOME_MESSAGE =
+    private static final int MIN_ELEMENTS = 3;
+    private static final int MAX_EASY_LEVEL = 5;
+    private static final int MIN_NORMAL_LEVEL = 6;
+    private static final int MAX_NORMAL_LEVEL = 8;
+    private static final int MIN_HARD_LEVEL = 9;
+    private static final int MAX_ELEMENTS = 10;
+
+    private static final int MIN_TAMAS = 3;
+    private static final int MAX_TAMAS = 10;
+
+    private static final int ENERGY = 10;
+
+    private static final String WELCOME_MESSAGE =
 
             "\n  █▄▄ █▀▀ █▄ █ █ █ █▀▀ █▄ █ █ █ ▀█▀ █▀█   █ █▄ █\n" +
               "  █▄█ ██▄ █ ▀█ ▀▄▀ ██▄ █ ▀█ █▄█  █  █▄█   █ █ ▀█\n";
@@ -35,7 +47,7 @@ public class UsefulStrings {
         ╚═════╝░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░░╚════╝░       ╚═╝╚═╝░░╚══╝*/
 
 
-    public static final String TITLE =
+    private static final String TITLE =
 
      "    ███        ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████    ▄██████▄   ▄██████▄   ▄█          ▄████████   ▄▄▄▄███▄▄▄▄   \n" +
      "▀█████████▄   ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███   ███    ███ ███    ███ ███         ███    ███ ▄██▀▀▀███▀▀▀██▄ \n" +
@@ -96,6 +108,7 @@ public class UsefulStrings {
             "Cadiamo solo per imparare a rialzarci.",
             "Il Conte Dracula Vlad diceva: \"Sbagliando si impala\""
     };
+
     private static final String[] GOODBYE_STRINGS = {
             "Torni presto da noi. Se stanno operando coercizione su di lei, faccia \"No\" con la testa. Non si preoccupi, la stiamo osservando dalla Webcam.",
             "Se hai rilevato qualche bug, inviaci una mail all'indirizzo movetotrash@tmpmail.com",
@@ -112,12 +125,16 @@ public class UsefulStrings {
         return HOMONYMY_NAMES[(int) (Math.random() * HOMONYMY_NAMES.length)];
     }
 
-    public static String getErrorPhrase() {
+    public static String getErrorString() {
         return ERROR_STRINGS[(int) (Math.random() * ERROR_STRINGS.length)];
     }
 
-    public static String getGoodbyePhrase() {
+    public static String getGoodbyeString() {
         return GOODBYE_STRINGS[(int) (Math.random() * GOODBYE_STRINGS.length)];
+    }
+
+    public static String player2SecondNameRequest(String player1Name) {
+        return "Inserire un nome (diverso da \"" + player1Name + "\") per il Secondo Giocatore:\n";
     }
 
     public static String getStrongerElement() {
@@ -152,15 +169,44 @@ public class UsefulStrings {
         return WELCOME_MESSAGE;
     }
 
-    public static String getTITLE() {
+    public static String getTitle() {
         return TITLE;
     }
 
-    public static String[] getErrorStrings() {
-        return ERROR_STRINGS;
+    public static int getMinElements() {
+        return MIN_ELEMENTS;
     }
 
-    public static String[] getGoodbyeStrings() {
-        return GOODBYE_STRINGS;
+    public static int getMaxEasyLevel() {
+        return MAX_EASY_LEVEL;
     }
+
+    public static int getMinNormalLevel() {
+        return MIN_NORMAL_LEVEL;
+    }
+
+    public static int getMaxNormalLevel() {
+        return MAX_NORMAL_LEVEL;
+    }
+
+    public static int getMinHardLevel() {
+        return MIN_HARD_LEVEL;
+    }
+
+    public static int getMaxElements() {
+        return MAX_ELEMENTS;
+    }
+
+    public static int getMinTamas() {
+        return MIN_TAMAS;
+    }
+
+    public static int getMaxTamas() {
+        return MAX_TAMAS;
+    }
+
+    public static int getEnergy() {
+        return ENERGY;
+    }
+
 }

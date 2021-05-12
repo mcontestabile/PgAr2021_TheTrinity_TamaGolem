@@ -5,31 +5,18 @@ import it.unibs.fp.Utilities.*;
 import java.util.*;
 
 public class Menu {
-    private static final int MIN_ELEMENTS = 3;
-    private static final int MAX_EASY_LEVEL = 5;
-    private static final int MIN_NORMAL_LEVEL = 6;
-    private static final int MAX_NORMAL_LEVEL = 8;
-    private static final int MIN_HARD_LEVEL = 9;
-    private static final int MAX_ELEMENTS = 10;
 
     private static final int EASY_LEVEL = 1;
     private static final int NORMAL_LEVEL = 2;
     private static final int HARD_LEVEL = 3;
 
-    private static final int MIN_TAMAS = 3;
-    private static final int MAX_TAMAS = 10;
-
-    private static final int ENERGY = 10;
-
     ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
-
     ArrayList<Elements> usedElements = new ArrayList<>();
-
     RandomEnum randomEnum = new RandomEnum();
 
     public void menu() {
-        System.out.println(UsefulStrings.WELCOME_MESSAGE);
-        System.out.println(UsefulStrings.TITLE);
+        System.out.println(UsefulStrings.getWelcomeMessage());
+        System.out.println(UsefulStrings.getTitle());
         pause(1200);
 
         boolean start = true;
@@ -37,20 +24,20 @@ public class Menu {
             char homonymyAnswer;
             boolean nameFix = true;
             do {
-                Player player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.PLAYER_1_NAME_REQUEST));
-                Player player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.PLAYER_2_NAME_REQUEST));
+                Player player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
+                Player player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
                 if (player1.getName().equalsIgnoreCase(player2.getName())) {
-                    homonymyAnswer = DataInput.readChar(UsefulStrings.HOMONYMY_MESSAGE);
+                    homonymyAnswer = DataInput.readChar(UsefulStrings.getHomonymyMessage());
                     if (homonymyAnswer == 'S' || homonymyAnswer == 's') {
                         String tmp = player2.getName();
                         do {
                             player2.homonymyFix();
                         } while (player2.getName().equals(tmp));
-                        System.out.println(UsefulStrings.HOMONYMY_FIXED_MESSAGE + player2.getName() + "\".");
+                        System.out.println(UsefulStrings.getHomonymyFixedMessage() + player2.getName() + "\".");
                     } else { ;
                         String p1Name = player1.getName();
                         do {
-                            player2.setName(DataInput.readNotEmptyString(UsefulStrings.PLAYER_2_NAME_REQUEST));
+                            player2.setName(DataInput.readNotEmptyString(UsefulStrings.player2SecondNameRequest(player1.getName())));
                         } while ((player2.getName().equalsIgnoreCase(p1Name)));
                     }
                 }
@@ -60,7 +47,7 @@ public class Menu {
             pause(800);
 
 
-            int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.HOW_MANY_ELEMENTS, EASY_LEVEL, HARD_LEVEL);
+            int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.getHowManyElements(), EASY_LEVEL, HARD_LEVEL);
             /*do {
                 matchLevel = DataInput.readInt(UsefulStrings.HOW_MANY_ELEMENTS);
                 if (!(matchLevel > 0 && matchLevel < 4)) {
@@ -82,7 +69,7 @@ public class Menu {
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
                     for (int i = 0; i<tamas; i++) {
                         String tamaName = "Tamagolem " + i;
-                        TamaGolem t = new TamaGolem(ENERGY, stones, usedElements, tamaName);
+                        TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
                         t.setName("Tamagolem" + i);
                         tamaGolems.add(t);
                     }
@@ -106,7 +93,7 @@ public class Menu {
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
                     for (int i = 0; i<tamas; i++) {
                         String tamaName = "Tamagolem" + i;
-                        TamaGolem t = new TamaGolem(ENERGY, stones, usedElements, tamaName);
+                        TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
                         t.setName("Tamagolem" + i);
                         tamaGolems.add(t);
                     }
@@ -130,7 +117,7 @@ public class Menu {
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
                     for (int i = 0; i<tamas; i++) {
                         String tamaName = "Tamagolem" + i;
-                        TamaGolem t = new TamaGolem(ENERGY, stones, usedElements, tamaName);
+                        TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
                         t.setName("Tamagolem" + i);
                         tamaGolems.add(t);
                     }
@@ -140,6 +127,7 @@ public class Menu {
 
                     start = false;
                 }
+                default -> throw new IllegalStateException("Unexpected value: " + matchLevel);
             }
         }
     }
@@ -151,7 +139,7 @@ public class Menu {
         int elements = 0;
 
         if (level == EASY_LEVEL) {
-            elementsToExtract = (int) Math.floor(Math.random() * (MAX_EASY_LEVEL - MIN_ELEMENTS + 1) + MIN_ELEMENTS);
+            elementsToExtract = (int) Math.floor(Math.random() * (UsefulStrings.getMaxEasyLevel() - UsefulStrings.getMinElements() + 1) + UsefulStrings.getMinElements());
 
             for (int i = 0; i < elementsToExtract; i++) {
                 usedElements.add(randomEnum.random());
@@ -160,7 +148,7 @@ public class Menu {
             elements = elementsToExtract;
 
         } else if (level == NORMAL_LEVEL) {
-            elementsToExtract = (int) Math.floor(Math.random() * (MAX_NORMAL_LEVEL - MIN_NORMAL_LEVEL + 1) + MIN_NORMAL_LEVEL);
+            elementsToExtract = (int) Math.floor(Math.random() * (UsefulStrings.getMaxNormalLevel() - UsefulStrings.getMinNormalLevel() + 1) + UsefulStrings.getMinNormalLevel());
 
             for (int i = 0; i < elementsToExtract; i++) {
                 usedElements.add(randomEnum.random());
@@ -169,7 +157,7 @@ public class Menu {
             elements = elementsToExtract;
 
         } else if (level == HARD_LEVEL) {
-            elementsToExtract = (int) Math.floor(Math.random() * (MAX_ELEMENTS - MIN_HARD_LEVEL + 1) + MIN_HARD_LEVEL);
+            elementsToExtract = (int) Math.floor(Math.random() * (UsefulStrings.getMaxElements() - UsefulStrings.getMinHardLevel() + 1) + UsefulStrings.getMinHardLevel());
 
             for (int i = 0; i < elementsToExtract; i++) {
                 usedElements.add(randomEnum.random());
@@ -225,71 +213,6 @@ public class Menu {
      */
     private int howManyStonesForEachElement(int tamagolems, int elements, int stones) {
         return (int) (Math.ceil((2.0 * tamagolems * stones) / elements));
-    }
-
-    /**
-     * This method returns the minimum  number of elements
-     * that can be involved in the match to consider
-     * it of low difficulty.
-     *
-     * @return MAX_ELEMENTS.
-     */
-    public static int getMinElements() {
-        return MIN_ELEMENTS;
-    }
-
-    /**
-     * This method returns the maximum  number of elements
-     * that can be involved in the match to consider
-     * it of low difficulty.
-     *
-     * @return MAX_ELEMENTS.
-     */
-    public static int getMaxEasyLevel() {
-        return MAX_EASY_LEVEL;
-    }
-
-    /**
-     * This method returns the minimum  number of elements
-     * that can be involved in the match to consider
-     * it of medium difficulty.
-     *
-     * @return MAX_ELEMENTS.
-     */
-    public static int getMinNormalLevel() {
-        return MIN_NORMAL_LEVEL;
-    }
-
-    /**
-     * This method returns the maximum  number of elements
-     * that can be involved in the match to consider
-     * it of medium difficulty.
-     *
-     * @return MAX_ELEMENTS.
-     */
-    public static int getMaxNormalLevel() {
-        return MAX_NORMAL_LEVEL;
-    }
-
-    /**
-     * This method returns the minimum  number of elements
-     * that can be involved in the match to consider
-     * it fight difficult.
-     *
-     * @return MIN_DIFFICULT_LEVEL.
-     */
-    public static int getMinHardLevel() {
-        return MIN_HARD_LEVEL;
-    }
-
-    /**
-     * This method returns the maximum  number of elements
-     * that can be involved in the match.
-     *
-     * @return MAX_ELEMENTS.
-     */
-    public static int getMaxElements() {
-        return MAX_ELEMENTS;
     }
 
     /**
