@@ -1,8 +1,8 @@
 package it.unibs.fp.Utilities;
 
 public class UsefulStrings {
-    private static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
-    private static final String HOW_MANY_ELEMENTS = "\nQual è il livello della partita? Scegli fra le seguenti opzioni:\n» Basso (1).\n» Intermedio (2).\n» Difficile (3).";
+    public static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
+    public static final String HOW_MANY_ELEMENTS = "\nScegli il livello di difficolta' della partita: \n» Facile (1).\n» Normale (2).\n» Difficile (3).\n";
 
     public static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
     public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
@@ -10,6 +10,9 @@ public class UsefulStrings {
     public static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
     public static final String WELCOME_MESSAGE =
+
+            "\n  █▄▄ █▀▀ █▄ █ █ █ █▀▀ █▄ █ █ █ ▀█▀ █▀█   █ █▄ █\n" +
+              "  █▄█ ██▄ █ ▀█ ▀▄▀ ██▄ █ ▀█ █▄█  █  █▄█   █ █ ▀█\n";
 
                     /*"  _____                         _          _       \n" +
                     " | __  |___ ___ _ _ ___ ___ _ _| |_ ___   |_|___   \n" +
@@ -28,10 +31,6 @@ public class UsefulStrings {
         ██╔══██╗██╔══╝░░██║╚████║░╚████╔╝░██╔══╝░░██║╚████║██║░░░██║░░░██║░░░██║░░██║       ██║██║╚████║
         ██████╦╝███████╗██║░╚███║░░╚██╔╝░░███████╗██║░╚███║╚██████╔╝░░░██║░░░╚█████╔╝       ██║██║░╚███║
         ╚═════╝░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░░╚════╝░       ╚═╝╚═╝░░╚══╝*/
-
-
-            "\n  █▄▄ █▀▀ █▄ █ █ █ █▀▀ █▄ █ █ █ ▀█▀ █▀█   █ █▄ █\n" +
-              "  █▄█ ██▄ █ ▀█ ▀▄▀ ██▄ █ ▀█ █▄█  █  █▄█   █ █ ▀█\n";
 
 
     public static final String TITLE =
@@ -56,14 +55,17 @@ public class UsefulStrings {
 
 
     private static final String[] HOMONYMY_NAMES = {
+            "Franco",
             "Vincenzo",
             "Lagrange",
             "Robber",
-            "TetoSfonda",
+            "TetoShfonda",
             "Keyshan",
             "Emilio Fede",
             "Palombaro Procopio",
+            "Barry Bee Benson",
             "Zeb99",
+            "Shaggy all'1%",
             "La testa di Art Attack",
             "Christian 'Ice'",
             "Papa Bergoglio II",
@@ -103,15 +105,6 @@ public class UsefulStrings {
             "E' stato un bell'esame, a prostata.",
             "ARI ARI ARI ARI ARI ARI Arrivederci!"
     };
-
-
-    public static String getStrongerElement() {
-        return STRONGER_ELEMENT;
-    }
-
-    public static String getHowManyElements() {
-        return HOW_MANY_ELEMENTS;
-    }
 
     public static String getHomonymyNames() {
         return HOMONYMY_NAMES[(int) (Math.random() * HOMONYMY_NAMES.length)];
