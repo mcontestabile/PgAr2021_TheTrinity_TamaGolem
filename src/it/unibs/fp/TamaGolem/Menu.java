@@ -16,12 +16,10 @@ public class Menu {
     private static final int NORMAL_LEVEL = 2;
     private static final int HARD_LEVEL = 3;
 
-    private boolean start = true;
-
     ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
 
     // This list contains the elements defined in Enum.
-    private static final List<Elements> ELEMENTS = new List<Elements>() {
+    private static final List<Elements> ELEMENTS = new List<>() {
         @Override
         public int size() {
             return 0;
@@ -142,10 +140,12 @@ public class Menu {
 
     private static final int SIZE = ELEMENTS.size();
 
-    public void Menu() {
+    public void menu() {
         System.out.println(UsefulStrings.WELCOME_MESSAGE);
         System.out.println(UsefulStrings.TITLE);
         pause(1200);
+
+        boolean start = true;
 
         while (start) {
             char homonymyAnswer;
@@ -159,11 +159,11 @@ public class Menu {
                         String tmp = player2.getName();
                         do {
                             player2.homonymyFix();
-                        } while (player2.getName() == tmp);
+                        } while (player2.getName().equals(tmp));
                         System.out.println(UsefulStrings.HOMONYMY_FIXED_MESSAGE + player2.getName() + "\".");
                     } else nameFix = false;
                 }
-            } while (nameFix == false);
+            } while (!nameFix);
 
             pause(800);
 
@@ -271,8 +271,7 @@ public class Menu {
      * @return how many stones are involved in the match.
      */
     private int howManyStones(int elements) {
-        int stones = (int) (Math.ceil((elements + 1.0) / 3.0) + 1.0);
-        return stones;
+        return (int) (Math.ceil((elements + 1.0) / 3.0) + 1.0);
     }
 
     /**
@@ -284,8 +283,7 @@ public class Menu {
      * @return the tamagolems' number.
      */
     private int howManyTamagolems(int elements, int stones) {
-        int tamagolems = (int) (Math.ceil(((elements - 1.0) * (elements - 2.0)) / (2.0 * stones)));
-        return tamagolems;
+        return (int) (Math.ceil(((elements - 1.0) * (elements - 2.0)) / (2.0 * stones)));
     }
 
     /**
@@ -297,8 +295,7 @@ public class Menu {
      * @return the common stones.
      */
     private int howManyCommonStones(int tamagolems, int elements, int stones) {
-        int commonStones = (int) (Math.ceil(((2.0 * tamagolems * stones) / elements)) * elements);
-        return commonStones;
+        return (int) (Math.ceil(((2.0 * tamagolems * stones) / elements)) * elements);
     }
 
     /**
@@ -310,8 +307,7 @@ public class Menu {
      * @return the stones for each element.
      */
     private int howManyStonesForEachElement(int tamagolems, int elements, int stones) {
-        int stonesForEachElement = (int) (Math.ceil((2.0 * tamagolems * stones) / elements));
-        return stonesForEachElement;
+        return (int) (Math.ceil((2.0 * tamagolems * stones) / elements));
     }
 
     /**
