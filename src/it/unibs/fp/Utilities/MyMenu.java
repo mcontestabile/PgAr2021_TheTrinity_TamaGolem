@@ -24,7 +24,7 @@ public class MyMenu
   public int choose ()
   {
 	printMenu();
-	return DataInput.readIntWIthMaxAndMin (INPUT_REQUEST, 0, voices.length);
+	return DataInput.readIntWithMaxAndMin(INPUT_REQUEST, 0, voices.length);
   }
 		
   public void printMenu ()

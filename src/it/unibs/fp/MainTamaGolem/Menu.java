@@ -52,7 +52,7 @@ public class Menu {
 
             pause(800);
 
-            int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.getHowManyElements(), EASY_LEVEL, HARD_LEVEL);
+            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.getHowManyElements(), EASY_LEVEL, HARD_LEVEL);
 
             switch (matchLevel) {
                 case EASY_LEVEL -> {

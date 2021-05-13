@@ -6,6 +6,7 @@ public class UsefulStrings {
 
     private static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
     private static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
+    private static final String PLAYER_2_SECOND_NAME_REQUEST = "Inserire un nome (diverso da \"%s\") per il Secondo Giocatore:\n";
     private static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
     private static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
@@ -122,10 +123,6 @@ public class UsefulStrings {
             "ARI ARI ARI ARI ARI ARI Arrivederci!"
     };
 
-    public static String player2SecondNameRequest(String player1Name) {
-        return "Inserire un nome (diverso da \"" + player1Name + "\") per il Secondo Giocatore:\n";
-    }
-
     public static String getHomonymyNames() {
         return HOMONYMY_NAMES[(int) (Math.random() * HOMONYMY_NAMES.length)];
     }
@@ -136,6 +133,10 @@ public class UsefulStrings {
 
     public static String getGoodbyeString() {
         return GOODBYE_STRINGS[(int) (Math.random() * GOODBYE_STRINGS.length)];
+    }
+
+    public static String player2SecondNameRequest(String player1Name) {
+        return String.format(PLAYER_2_SECOND_NAME_REQUEST, player1Name);
     }
 
     public static String getStrongerElement() {
