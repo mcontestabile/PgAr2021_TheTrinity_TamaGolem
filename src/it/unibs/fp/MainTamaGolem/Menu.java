@@ -13,6 +13,9 @@ public class Menu {
     ArrayList<Elements> usedElements = new ArrayList<>();
     RandomEnum randomEnum = new RandomEnum();
 
+    Player player1;
+    Player player2;
+
     public void menu() {
         System.out.println(UsefulStrings.getWelcomeMessage());
         System.out.println(UsefulStrings.getTitle());
@@ -23,8 +26,8 @@ public class Menu {
             char homonymyAnswer;
             boolean nameFix = true;
             do {
-                Player player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
-                Player player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
+                player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
+                player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
                 if (player1.getName().equalsIgnoreCase(player2.getName())) {
                     homonymyAnswer = DataInput.readChar(UsefulStrings.getHomonymyMessage());
                     if (homonymyAnswer == 'S' || homonymyAnswer == 's') {
@@ -46,13 +49,6 @@ public class Menu {
             pause(800);
 
             int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.getHowManyElements(), EASY_LEVEL, HARD_LEVEL);
-            /*do {
-                matchLevel = DataInput.readInt(UsefulStrings.HOW_MANY_ELEMENTS);
-                if (!(matchLevel > 0 && matchLevel < 4)) {
-                    System.out.println(UsefulStrings.getErrorPhrase());
-                    pause(600);
-                }
-            } while (!(matchLevel > 0 && matchLevel < 4));*/
 
             switch (matchLevel) {
                 case EASY_LEVEL -> {
@@ -72,8 +68,9 @@ public class Menu {
                         tamaGolems.add(t);
                     }
 
+                    //Metodo che genera l'equilibrio!!!
                     Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
+                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements, player1, player2);
 
                     start = false;
                 }
@@ -96,8 +93,9 @@ public class Menu {
                         tamaGolems.add(t);
                     }
 
+                    //Metodo che genera l'equilibrio!!!
                     Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
+                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements, player1, player2);
 
                     start = false;
                 }
@@ -120,8 +118,9 @@ public class Menu {
                         tamaGolems.add(t);
                     }
 
+                    //Metodo che genera l'equilibrio!!!
                     Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements);
+                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements, player1, player2);
 
                     start = false;
                 }

@@ -5,7 +5,7 @@ import it.unibs.fp.Utilities.UsefulStrings;
 import java.util.ArrayList;
 
 public class Player {
-    private ArrayList<TamaGolem> team;
+    public ArrayList<TamaGolem> team;
     private String name;
     private TamaGolem activeGolem;
 

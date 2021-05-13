@@ -10,6 +10,7 @@ public class UsefulStrings {
     private static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
     private static final String HOW_MANY_TAMAGOLEMS = "I Tamagolem schierati sono %d.\n";
+    private static final String HOW_MANY_STONES = "QUante pietre si vuole assegnare per l'elemento %s?\nSi consideri che il minimo è 0 e il massimo %d.\n";
 
     private static final int MIN_ELEMENTS = 3;
     private static final int MAX_EASY_LEVEL = 5;
@@ -209,4 +210,7 @@ public class UsefulStrings {
         return ENERGY;
     }
 
+    public static String getHowManyStones() {
+        return HOW_MANY_STONES;
+    }
 }
