@@ -1,6 +1,7 @@
 package it.unibs.fp.MainTamaGolem;
 
 import it.unibs.fp.Utilities.*;
+
 import java.util.*;
 
 public class Menu {
@@ -27,29 +28,25 @@ public class Menu {
         pause(1200);
 
         boolean start = true;
-        while (start) {
+        do {
             char homonymyAnswer;
-            boolean nameFix = false;
-            do {
-                player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
-                player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
-                if (player1.getName().equalsIgnoreCase(player2.getName())) {
-                    homonymyAnswer = DataInput.readChar(UsefulStrings.getHomonymyMessage());
-                    if (homonymyAnswer == 'S' || homonymyAnswer == 's') {
-                        String tmp = player2.getName();
-                        do {
-                            player2.homonymyFix();
-                        } while (player2.getName().equals(tmp));
-                        System.out.println(UsefulStrings.getHomonymyFixedMessage() + player2.getName() + "\".");
-                    } else { ;
-                        String p1Name = player1.getName();
-                        do {
-                            player2.setName(DataInput.readNotEmptyString(UsefulStrings.player2SecondNameRequest(player1.getName())));
-                        } while ((player2.getName().equalsIgnoreCase(p1Name)));
-                    }
-                    nameFix = true;
+            player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
+            player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
+            if (player1.getName().equalsIgnoreCase(player2.getName())) {
+                homonymyAnswer = DataInput.readChar(UsefulStrings.getHomonymyMessage());
+                if (homonymyAnswer == 'S' || homonymyAnswer == 's') {
+                    String tmp = player2.getName();
+                    do {
+                        player2.homonymyFix();
+                    } while (player2.getName().equals(tmp));
+                    System.out.println(UsefulStrings.getHomonymyFixedMessage() + player2.getName() + "\".");
+                } else {
+                    String p1Name = player1.getName();
+                    do {
+                        player2.setName(DataInput.readNotEmptyString(UsefulStrings.player2SecondNameRequest(player1.getName())));
+                    } while ((player2.getName().equalsIgnoreCase(p1Name)));
                 }
-            } while (!nameFix);
+            }
 
             pause(800);
 
@@ -66,7 +63,7 @@ public class Menu {
                     int commonStones = howManyCommonStones(tamas, elements, stones);
 
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
-                    for (int i = 0; i<tamas; i++) {
+                    for (int i = 0; i < tamas; i++) {
                         String tamaName = "Tamagolem " + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
                         t.setName(tamaName);
@@ -91,7 +88,7 @@ public class Menu {
                     int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
 
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
-                    for (int i = 0; i<tamas; i++) {
+                    for (int i = 0; i < tamas; i++) {
                         String tamaName = "Tamagolem" + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
                         t.setName(tamaName);
@@ -116,7 +113,7 @@ public class Menu {
                     int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
 
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
-                    for (int i = 0; i<tamas; i++) {
+                    for (int i = 0; i < tamas; i++) {
                         String tamaName = "Tamagolem" + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
                         t.setName(tamaName);
@@ -131,7 +128,7 @@ public class Menu {
                 }
                 default -> throw new IllegalStateException("Unexpected value: " + matchLevel);
             }
-        }
+        } while (start);
     }
 
     private int howManyElements(int level) {
@@ -243,13 +240,13 @@ public class Menu {
         }
     }
 
-    public void assignCommonStones (ArrayList<Elements> usedElements, int commonStones) {
+    public void assignCommonStones(ArrayList<Elements> usedElements, int commonStones) {
         for (Elements e : usedElements) {
             numberOfElementAndStones1.put(e, commonStones);
         }
     }
 
-    public void chooseStones (Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones) {
+    public void chooseStones(Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones) {
         System.out.printf(UsefulStrings.getSettingElements(), player);
 
         String e;
@@ -265,7 +262,7 @@ public class Menu {
 
             int position = usedElements.indexOf(e);
 
-            numberOfElementAndStones.replace(usedElements.get(position), availableStones-1); //Se non funzia, piango
+            numberOfElementAndStones.replace(usedElements.get(position), availableStones - 1); //Se non funzia, piango
         }
     }
 }
