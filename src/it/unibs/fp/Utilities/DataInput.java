@@ -90,7 +90,6 @@ public class DataInput {
 				ended = true;
 			} catch (InputMismatchException var5) {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(600);
 				String var4 = reader.next();
 			}
 		} while(!ended);
@@ -133,9 +132,9 @@ public class DataInput {
 			if (readValue >= minimum && readValue <= maximum) {
 				ended = true;
 			} else if (readValue < minimum) {
-				System.out.println("Attenzione: e' richiesto un valore maggiore a " + minimum);
+				System.out.println(MINIMUM_ERROR + minimum);
 			} else {
-				System.out.println("Attenzione: e' richiesto un valore minore o uguale a " + maximum);
+				System.out.println(MAXIMUM_ERROR + maximum);
 			}
 		} while(!ended);
 
@@ -153,7 +152,7 @@ public class DataInput {
 				readValue = reader.nextDouble();
 				ended = true;
 			} catch (InputMismatchException var6) {
-				System.out.println("Attenzione: il dato inserito non e' nel formato corretto");
+				System.out.println(FORMAT_ERROR);
 				String var5 = reader.next();
 			}
 		} while(!ended);
@@ -166,17 +165,17 @@ public class DataInput {
 	}
 
 	public static double readDoubleWithMinimum(String message, double minimum) {
-		boolean finito = false;
+		boolean ended = false;
 		double readValue = 0.0D;
 
 		do {
 			readValue = readDouble(message);
 			if (readValue > minimum) {
-				finito = true;
+				ended = true;
 			} else {
-				System.out.println("Attenzione: e' richiesto un valore maggiore a " + minimum);
+				System.out.println(MINIMUM_ERROR + minimum);
 			}
-		} while(!finito);
+		} while(!ended);
 
 		return readValue;
 	}
