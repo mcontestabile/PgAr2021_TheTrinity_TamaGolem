@@ -1,8 +1,6 @@
 package it.unibs.fp.MainTamaGolem;
 
 import it.unibs.fp.Utilities.UsefulStrings;
-
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class Player {

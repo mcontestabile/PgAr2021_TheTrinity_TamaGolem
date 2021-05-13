@@ -3,11 +3,11 @@ import java.util.*;
 
 public class DataInput {
 	private static final Scanner reader = createScanner();
-	private static final String FORMAT_ERROR = "Attenzione: il dato inserito non e' nel formato corretto";
-	private static final String MINIMUM_ERROR = "Attenzione: e' richiesto un valore maggiore a ";
-	private static final String EMPTY_STRING_ERROR = "Attenzione: non hai inserito alcun carattere";
-	private static final String MAXIMUM_ERROR = "Attenzione: e' richiesto un valore minore o uguale a ";
-	private static final String ALLOWED_CHARS = "Attenzione: i caratteri ammissibili sono: ";
+	private static final String FORMAT_ERROR = "Il dato inserito non e' nel formato corretto.";
+	private static final String MINIMUM_ERROR = "E' richiesto un valore maggiore a ";
+	private static final String EMPTY_STRING_ERROR = "Non hai inserito alcun carattere.";
+	private static final String MAXIMUM_ERROR = "E' richiesto un valore minore o uguale a ";
+	private static final String ALLOWED_CHARS = "I caratteri ammissibili sono: ";
 	private static final char YES = 'S';
 	private static final char NO = 'N';
 
@@ -35,7 +35,7 @@ public class DataInput {
 			if (read.length() > 0) {
 				ended = true;
 			} else {
-				System.out.println("Attenzione: non hai inserito alcun carattere");
+				System.out.println(EMPTY_STRING_ERROR);
 			}
 		} while(!ended);
 
@@ -53,7 +53,7 @@ public class DataInput {
 				readValue = reading.charAt(0);
 				ended = true;
 			} else {
-				System.out.println("Attenzione: non hai inserito alcun carattere");
+				System.out.println(EMPTY_STRING_ERROR);
 			}
 		} while(!ended);
 
@@ -71,7 +71,7 @@ public class DataInput {
 			if (allowed.indexOf(readValue) != -1) {
 				ended = true;
 			} else {
-				System.out.println("Attenzione: i caratteri ammissibili sono: " + allowed);
+				System.out.println(ALLOWED_CHARS + allowed + ".");
 			}
 		} while(!ended);
 
@@ -89,7 +89,8 @@ public class DataInput {
 				readValue = reader.nextInt();
 				ended = true;
 			} catch (InputMismatchException var5) {
-				System.out.println("Attenzione: il dato inserito non e' nel formato corretto");
+				System.out.println(UsefulStrings.getErrorString());
+				pause(600);
 				String var4 = reader.next();
 			}
 		} while(!ended);
@@ -115,7 +116,7 @@ public class DataInput {
 			if (readValue >= minimum) {
 				ended = true;
 			} else {
-				System.out.println("Attenzione: e' richiesto un valore maggiore a " + minimum);
+				System.out.println(MINIMUM_ERROR + minimum + ".");
 			}
 		} while(!ended);
 
@@ -123,20 +124,20 @@ public class DataInput {
 	}
 
 	public static int readIntWIthMaxAndMin(String message, int minimum, int maximum) {
-		boolean finito = false;
+		boolean ended = false;
 		boolean var4 = false;
 
 		int readValue;
 		do {
 			readValue = readInt(message);
 			if (readValue >= minimum && readValue <= maximum) {
-				finito = true;
+				ended = true;
 			} else if (readValue < minimum) {
 				System.out.println("Attenzione: e' richiesto un valore maggiore a " + minimum);
 			} else {
 				System.out.println("Attenzione: e' richiesto un valore minore o uguale a " + maximum);
 			}
-		} while(!finito);
+		} while(!ended);
 
 		return readValue;
 	}
