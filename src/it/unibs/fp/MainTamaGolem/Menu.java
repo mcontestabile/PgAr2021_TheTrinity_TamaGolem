@@ -13,7 +13,11 @@ public class Menu {
     private static final int MIN_STONES = 0;
 
     Stack<TamaGolem> tamaGolems = new Stack<>();
+    Stack<TamaGolem> tamaGolems1 = new Stack<>();
+    Stack<TamaGolem> tamaGolems2 = new Stack<>();
+
     ArrayList<Elements> usedElements = new ArrayList<>();
+    private HashMap<Elements, Integer> numberOfElementAndStones = new HashMap();
     private HashMap<Elements, Integer> numberOfElementAndStones1 = new HashMap();
     private HashMap<Elements, Integer> numberOfElementAndStones2 = new HashMap<>();
 
@@ -70,9 +74,19 @@ public class Menu {
                         tamaGolems.add(t);
                     }
 
-                    //Metodo che genera l'equilibrio!!!
+                    tamaGolems1 = tamaGolems;
+                    tamaGolems2 = tamaGolems;
+
+                    //TODO metodo che genera l'equilibrio!!!
+
+                    assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
+
+                    numberOfElementAndStones1 = numberOfElementAndStones;
+                    numberOfElementAndStones2 = numberOfElementAndStones;
+
+
                     Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements, player1, player2);
+                    fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
                 }
@@ -95,9 +109,19 @@ public class Menu {
                         tamaGolems.add(t);
                     }
 
-                    //Metodo che genera l'equilibrio!!!
+
+                    tamaGolems1 = tamaGolems;
+                    tamaGolems2 = tamaGolems;
+
+                    //TODO metodo che genera l'equilibrio!!!
+
+                    assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
+
+                    numberOfElementAndStones1 = numberOfElementAndStones;
+                    numberOfElementAndStones2 = numberOfElementAndStones;
+
                     Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements, player1, player2);
+                    fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
                 }
@@ -120,9 +144,19 @@ public class Menu {
                         tamaGolems.add(t);
                     }
 
-                    //Metodo che genera l'equilibrio!!!
+
+                    tamaGolems1 = tamaGolems;
+                    tamaGolems2 = tamaGolems;
+
+                    //TODO metodo che genera l'equilibrip!!!
+
+                    assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
+
+                    numberOfElementAndStones1 = numberOfElementAndStones;
+                    numberOfElementAndStones2 = numberOfElementAndStones;
+
                     Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems, stones, commonStones, usedElements, player1, player2);
+                    fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
                 }
@@ -240,14 +274,14 @@ public class Menu {
         }
     }
 
-    public void assignCommonStones(ArrayList<Elements> usedElements, int commonStones) {
+    public HashMap<Elements, Integer> assignCommonStones(ArrayList<Elements> usedElements, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones) {
         for (Elements e : usedElements) {
-            numberOfElementAndStones1.put(e, commonStones);
+            numberOfElementAndStones.put(e, commonStones);
         }
+        return numberOfElementAndStones;
     }
 
-    public void chooseStones(Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones) {
-        System.out.printf(UsefulStrings.getSettingElements(), player);
+    public void chooseStones (Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones, TamaGolem activeGolem) {        System.out.printf(UsefulStrings.getSettingElements(), player);
 
         String e;
 
