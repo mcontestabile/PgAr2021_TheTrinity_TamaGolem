@@ -12,6 +12,10 @@ public class UsefulStrings {
     private static final String HOW_MANY_TAMAGOLEMS = "I Tamagolem schierati sono %d.\n";
     private static final String HOW_MANY_STONES = "QUante pietre si vuole assegnare per l'elemento %s?\nSi consideri che il minimo è 0 e il massimo %d.\n";
 
+    private static final String SETTING_ELEMENTS = "%s, ora devi scegliere, per ciascun Golem, quante pietre assegnare a ciascun elemento.";
+    private static final String CHOOSE_ELEMENT_NAME = "Inserire il nome di un elemento: ";
+    private static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s: ";
+
     private static final int MIN_ELEMENTS = 3;
     private static final int MAX_EASY_LEVEL = 5;
     private static final int MIN_NORMAL_LEVEL = 6;
@@ -212,5 +216,17 @@ public class UsefulStrings {
 
     public static String getHowManyStones() {
         return HOW_MANY_STONES;
+    }
+
+    public static String getSettingElements() {
+        return SETTING_ELEMENTS;
+    }
+
+    public static String getChooseElementName() {
+        return CHOOSE_ELEMENT_NAME;
+    }
+
+    public static String getSettingStonesNumberForElement() {
+        return SETTING_STONES_NUMBER_FOR_ELEMENT;
     }
 }

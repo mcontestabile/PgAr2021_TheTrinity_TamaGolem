@@ -11,9 +11,10 @@ public class Menu {
 
     private static final int MIN_STONES = 0;
 
-    ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
+    Stack<TamaGolem> tamaGolems = new Stack<>();
     ArrayList<Elements> usedElements = new ArrayList<>();
-    private HashMap<Elements, Integer> numberOfElementAndStones = new HashMap();
+    private HashMap<Elements, Integer> numberOfElementAndStones1 = new HashMap();
+    private HashMap<Elements, Integer> numberOfElementAndStones2 = new HashMap<>();
 
     RandomEnum randomEnum = new RandomEnum();
 
@@ -28,7 +29,7 @@ public class Menu {
         boolean start = true;
         while (start) {
             char homonymyAnswer;
-            boolean nameFix = true;
+            boolean nameFix = false;
             do {
                 player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
                 player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
@@ -46,9 +47,9 @@ public class Menu {
                             player2.setName(DataInput.readNotEmptyString(UsefulStrings.player2SecondNameRequest(player1.getName())));
                         } while ((player2.getName().equalsIgnoreCase(p1Name)));
                     }
+                    nameFix = true;
                 }
-                nameFix = false;
-            } while (nameFix);
+            } while (!nameFix);
 
             pause(800);
 
@@ -68,7 +69,7 @@ public class Menu {
                     for (int i = 0; i<tamas; i++) {
                         String tamaName = "Tamagolem " + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
-                        t.setName("Tamagolem" + i);
+                        t.setName(tamaName);
                         tamaGolems.add(t);
                     }
 
@@ -93,7 +94,7 @@ public class Menu {
                     for (int i = 0; i<tamas; i++) {
                         String tamaName = "Tamagolem" + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
-                        t.setName("Tamagolem" + i);
+                        t.setName(tamaName);
                         tamaGolems.add(t);
                     }
 
@@ -118,7 +119,7 @@ public class Menu {
                     for (int i = 0; i<tamas; i++) {
                         String tamaName = "Tamagolem" + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
-                        t.setName("Tamagolem" + i);
+                        t.setName(tamaName);
                         tamaGolems.add(t);
                     }
 
@@ -222,7 +223,7 @@ public class Menu {
      *
      * @return tamagolems.
      */
-    public ArrayList<TamaGolem> getTamagolems() {
+    public Stack<TamaGolem> getTamagolems() {
         return tamaGolems;
     }
 
@@ -244,16 +245,27 @@ public class Menu {
 
     public void assignCommonStones (ArrayList<Elements> usedElements, int commonStones) {
         for (Elements e : usedElements) {
-            numberOfElementAndStones.put(e, commonStones);
+            numberOfElementAndStones1.put(e, commonStones);
         }
     }
 
-    public void chooseStones (int commonStones, ArrayList<Elements> elements, int stones) {
-        /*
-        for (Elements e: elements) {
-            int number = DataInput.readIntWIthMaxAndMin(UsefulStrings.getHowManyStones(), MIN_STONES, stones);
-            numberOfElementAndStones.put(e, number);
-            commonStones -= number;
-         */
+    public void chooseStones (Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones) {
+        System.out.printf(UsefulStrings.getSettingElements(), player);
+
+        String e;
+
+        for (int availableStones = commonStones; availableStones > 0; availableStones--) {
+
+            System.out.println(usedElements);
+
+            do {
+                e = DataInput.readNotEmptyString(UsefulStrings.getChooseElementName());
+                int choice = DataInput.readIntWIthMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
+            } while (!usedElements.contains(e));
+
+            int position = usedElements.indexOf(e);
+
+            numberOfElementAndStones.replace(usedElements.get(position), availableStones-1); //Se non funzia, piango
+        }
     }
 }

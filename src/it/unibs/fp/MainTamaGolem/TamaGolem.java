@@ -1,6 +1,7 @@
 package it.unibs.fp.MainTamaGolem;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class TamaGolem {
     private int energy = 10;
