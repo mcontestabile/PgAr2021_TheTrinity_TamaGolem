@@ -9,8 +9,12 @@ public class Menu {
     private static final int NORMAL_LEVEL = 2;
     private static final int HARD_LEVEL = 3;
 
+    private static final int MIN_STONES = 0;
+
     ArrayList<TamaGolem> tamaGolems = new ArrayList<>();
     ArrayList<Elements> usedElements = new ArrayList<>();
+    private HashMap<Elements, Integer> numberOfElementAndStones = new HashMap();
+
     RandomEnum randomEnum = new RandomEnum();
 
     Player player1;
@@ -236,5 +240,20 @@ public class Menu {
             Thread.sleep(millisPause);
         } catch (InterruptedException ignored) {
         }
+    }
+
+    public void assignCommonStones (ArrayList<Elements> usedElements, int commonStones) {
+        for (Elements e : usedElements) {
+            numberOfElementAndStones.put(e, commonStones);
+        }
+    }
+
+    public void chooseStones (int commonStones, ArrayList<Elements> elements, int stones) {
+        /*
+        for (Elements e: elements) {
+            int number = DataInput.readIntWIthMaxAndMin(UsefulStrings.getHowManyStones(), MIN_STONES, stones);
+            numberOfElementAndStones.put(e, number);
+            commonStones -= number;
+         */
     }
 }
