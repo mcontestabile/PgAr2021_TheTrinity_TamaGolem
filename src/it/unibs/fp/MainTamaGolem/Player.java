@@ -1,15 +1,14 @@
 package it.unibs.fp.MainTamaGolem;
 
 import it.unibs.fp.Utilities.UsefulStrings;
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class Player {
-    public ArrayList<TamaGolem> team;
+    public Stack<TamaGolem> team = new Stack<>();
     private String name;
     private TamaGolem activeGolem;
 
     public Player(String name) {
-        team = new ArrayList<TamaGolem>();
         this.name= name;
     }
 
@@ -17,7 +16,7 @@ public class Player {
         this.name = UsefulStrings.getHomonymyNames();
     }
 
-    public ArrayList<TamaGolem> getTeam() {
+    public Stack<TamaGolem> getTeam() {
         return team;
     }
 

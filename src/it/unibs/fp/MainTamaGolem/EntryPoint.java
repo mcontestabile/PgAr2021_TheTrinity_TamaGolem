@@ -6,4 +6,5 @@ public class EntryPoint {
         Menu menu = new Menu();
         menu.menu();
     }
+
 }
