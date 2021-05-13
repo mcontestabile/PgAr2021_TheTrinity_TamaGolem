@@ -1,4 +1,4 @@
-package it.unibs.fp.TamaGolem;
+package it.unibs.fp.MainTamaGolem;
 
 import java.util.ArrayList;
 

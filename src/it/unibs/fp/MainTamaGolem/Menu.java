@@ -1,7 +1,6 @@
-package it.unibs.fp.TamaGolem;
+package it.unibs.fp.MainTamaGolem;
 
 import it.unibs.fp.Utilities.*;
-
 import java.util.*;
 
 public class Menu {
@@ -45,7 +44,6 @@ public class Menu {
             } while (nameFix);
 
             pause(800);
-
 
             int matchLevel = DataInput.readIntWIthMaxAndMin(UsefulStrings.getHowManyElements(), EASY_LEVEL, HARD_LEVEL);
             /*do {

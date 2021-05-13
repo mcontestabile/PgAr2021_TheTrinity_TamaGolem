@@ -1,7 +1,4 @@
-package it.unibs.fp.TamaGolem;
-
-import it.unibs.fp.Utilities.*;
-import java.util.*;
+package it.unibs.fp.MainTamaGolem;
 
 /**
  * With generateRandomNode we get the nodes (elements) that will

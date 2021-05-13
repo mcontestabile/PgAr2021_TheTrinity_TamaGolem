@@ -1,6 +1,5 @@
-package it.unibs.fp.TamaGolem;
+package it.unibs.fp.MainTamaGolem;
 
-import it.unibs.fp.Utilities.*;
 import java.util.ArrayList;
 
 public class Fight {

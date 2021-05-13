@@ -1,7 +1,8 @@
 package it.unibs.fp.Utilities;
 
-import it.unibs.fp.TamaGolem.Elements;
-import java.util.*;
+import it.unibs.fp.MainTamaGolem.Elements;
+
+import java.util.Random;
 
 public class RandomEnum {
     private final Elements[] elements = Elements.values();

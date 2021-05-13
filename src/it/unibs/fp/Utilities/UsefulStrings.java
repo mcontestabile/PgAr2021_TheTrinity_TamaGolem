@@ -121,6 +121,10 @@ public class UsefulStrings {
             "ARI ARI ARI ARI ARI ARI Arrivederci!"
     };
 
+    public static String player2SecondNameRequest(String player1Name) {
+        return "Inserire un nome (diverso da \"" + player1Name + "\") per il Secondo Giocatore:\n";
+    }
+
     public static String getHomonymyNames() {
         return HOMONYMY_NAMES[(int) (Math.random() * HOMONYMY_NAMES.length)];
     }
@@ -131,10 +135,6 @@ public class UsefulStrings {
 
     public static String getGoodbyeString() {
         return GOODBYE_STRINGS[(int) (Math.random() * GOODBYE_STRINGS.length)];
-    }
-
-    public static String player2SecondNameRequest(String player1Name) {
-        return "Inserire un nome (diverso da \"" + player1Name + "\") per il Secondo Giocatore:\n";
     }
 
     public static String getStrongerElement() {
