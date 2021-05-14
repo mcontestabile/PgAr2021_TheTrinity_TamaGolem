@@ -2,9 +2,7 @@ package it.unibs.fp.MainTamaGolem;
 
 import it.unibs.fp.Utilities.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.*;
 
 public class Fight {
     Menu menu = new Menu();

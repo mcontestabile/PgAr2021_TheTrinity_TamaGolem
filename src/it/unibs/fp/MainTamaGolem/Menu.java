@@ -16,7 +16,7 @@ public class Menu {
     Stack<TamaGolem> tamaGolems1 = new Stack<>();
     Stack<TamaGolem> tamaGolems2 = new Stack<>();
 
-    ArrayList<Elements> usedElements = new ArrayList<>();
+    public ArrayList<Elements> usedElements = new ArrayList<>();
     private HashMap<Elements, Integer> numberOfElementAndStones = new HashMap();
     private HashMap<Elements, Integer> numberOfElementAndStones1 = new HashMap();
     private HashMap<Elements, Integer> numberOfElementAndStones2 = new HashMap<>();
@@ -190,7 +190,7 @@ public class Menu {
             elementsToExtract = (int) Math.floor(Math.random() * (UsefulStrings.getMaxEasyLevel() - UsefulStrings.getMinElements() + 1) + UsefulStrings.getMinElements());
 
             for (int i = 0; i < elementsToExtract; i++) {
-                usedElements.add(randomEnum.random());
+                usedElements.add(RandomEnum.random());
             }
 
             elements = elementsToExtract;

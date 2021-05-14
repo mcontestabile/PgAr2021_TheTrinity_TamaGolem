@@ -1,15 +1,15 @@
 package it.unibs.fp.Utilities;
 
-import it.unibs.fp.MainTamaGolem.Elements;
+import it.unibs.fp.MainTamaGolem.*;
 
 import java.util.Random;
 
 public class RandomEnum {
-    private final Elements[] elements = Elements.values();
-    private final Random random = new Random();
+    private static final Elements[] ELEMENTS = Elements.values();
+    private static Random rand = new Random();
 
-    public final Elements random(){
+    public static final Elements random(){
         // Choose randomly an enum
-        return elements[random.nextInt(elements.length)];
+        return ELEMENTS[rand.nextInt(ELEMENTS.length)];
     }
 }

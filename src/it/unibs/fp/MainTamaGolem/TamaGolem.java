@@ -6,7 +6,7 @@ import java.util.Stack;
 public class TamaGolem {
     private int energy = 10;
     private int stones;
-    private ArrayList<Elements> elements = new ArrayList<>();
+    private ArrayList<Elements> elements;
     private String name;
 
     public TamaGolem(int energy, int stones, ArrayList<Elements> elements, String name) {
