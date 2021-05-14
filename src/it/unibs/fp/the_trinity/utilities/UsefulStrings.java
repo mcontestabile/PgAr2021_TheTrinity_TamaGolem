@@ -24,10 +24,10 @@ public class UsefulStrings {
             "\nil Tamagolem precedente del giocatore è eliminato dallo Scontro, ovvero perde tutta la vita %d." +
             "\nL’evocazione si verifica solo se il giocatore ha ancora TamaGolem disponibili, ossia il numero di Tamagolem eliminati è strettamente inferiore a %d." +
             "\nIn caso affermativo:" +
-            "\n1. Un nuovo Tamagolem viene selezionato per la fase dell’evocazione; la sua Vita viene inizializzata al valore massimo %d." +
+            "\n1. Un nuovo Tamagolem viene selezionato per la fase dell’evocazione; la sua vita viene inizializzata al valore massimo di %d." +
             "\n2. Il giocatore seleziona esattamente %d pietre degli elementi da far mangiare al Tamagolem, fra quelle a sua disposizione." +
-            "\n   Le pietre selezionate verranno scagliate ciclicamente finché il Tamagolem resterà in vita." +
-            "\n3. Il Tamagolem viene schierato in campo, l’evocazione termina e lo scontro può procedere.";
+            "\n    Le pietre selezionate verranno scagliate ciclicamente finché il Tamagolem resterà in vita." +
+            "\n3. Il Tamagolem viene schierato in campo, l’evocazione termina e lo scontro può procedere.\n";
 
     public static final String WELCOME_MESSAGE =
 
