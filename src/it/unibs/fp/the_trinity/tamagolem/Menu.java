@@ -25,7 +25,6 @@
 package it.unibs.fp.the_trinity.tamagolem;
 
 import it.unibs.fp.the_trinity.utilities.DataInput;
-import it.unibs.fp.the_trinity.utilities.RandomEnum;
 import it.unibs.fp.the_trinity.utilities.UsefulStrings;
 import java.util.*;
 
@@ -36,25 +35,26 @@ import java.util.*;
  * @author Iannella Simone
  */
 public class Menu {
-    Stack<TamaGolem> tamaGolems = new Stack<>();
-    Stack<TamaGolem> tamaGolems1 = new Stack<>();
-    Stack<TamaGolem> tamaGolems2 = new Stack<>();
+    // TODO we can delete first tamaGolems stack
+    private Stack<TamaGolem> tamaGolems = new Stack<>();
+    private Stack<TamaGolem> tamaGolems1 = new Stack<>();
+    private Stack<TamaGolem> tamaGolems2 = new Stack<>();
 
-    public List<TamaElements> elem;
-    public ArrayList<TamaElements> usedElements = new ArrayList<>();
-    private HashMap<TamaElements, Integer> numberOfElementAndStones = new HashMap<>();
-    private HashMap<TamaElements, Integer> numberOfElementAndStones1 = new HashMap<>();
-    private HashMap<TamaElements, Integer> numberOfElementAndStones2 = new HashMap<>();
+    public List<TamaElement> elem;
+    public ArrayList<TamaElement> usedElements = new ArrayList<>();
+    private HashMap<TamaElement, Integer> numberOfElementAndStones = new HashMap<>();
+    private HashMap<TamaElement, Integer> numberOfElementAndStones1 = new HashMap<>();
+    private HashMap<TamaElement, Integer> numberOfElementAndStones2 = new HashMap<>();
 
-    Player player1;
-    Player player2;
+    private Player player1;
+    private Player player2;
 
     public void menu() {
         System.out.println(UsefulStrings.WELCOME_MESSAGE);
         System.out.println(UsefulStrings.TITLE);
         pause(1000);
 
-        boolean start = true;
+        boolean end = false;
         do {
             setPlayersNames();
 
@@ -92,10 +92,11 @@ public class Menu {
             numberOfElementAndStones1 = numberOfElementAndStones;
             numberOfElementAndStones2 = numberOfElementAndStones;
 
+            System.out.println(UsefulStrings.getStartFightMessage(player1.getName(), player2.getName(), getTamaGolemsNumber(), FightHandler.ENERGY, stones));
+
             FightHandler fight = new FightHandler();
             fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
-            start = false;
 
             // TODO replace switch
             /*
@@ -226,7 +227,7 @@ public class Menu {
                 default -> throw new IllegalStateException("Unexpected value: " + matchLevel);
             }
              */
-        } while (start);
+        } while (!end);
     }
 
     // TODO add comments
@@ -260,9 +261,7 @@ public class Menu {
      */
     private int howManyElements(int level) {
         int elementsToExtract;
-        int elements;
-
-        elem = Arrays.asList(TamaElements.values());
+        elem = Arrays.asList(TamaElement.values());
 
         int min = 0;
         int max = 0;
@@ -286,15 +285,10 @@ public class Menu {
 
         elementsToExtract = (int) Math.floor(Math.random() * (max - min +1) + min);
 
-        for (int i = 0; i < elementsToExtract; i++) {
-            TamaElements e = RandomEnum.random();
-            usedElements.add(e);
-            elem.remove(e);
-        }
+        Collections.shuffle(elem);
+        for (int i=0; i<elementsToExtract; i++) usedElements.add(elem.get(i));
 
-        elements = elementsToExtract;
-
-        return elements;
+        return elementsToExtract;
     }
 
     /**
@@ -358,7 +352,7 @@ public class Menu {
      *
      * @return usedElements.
      */
-    public ArrayList<TamaElements> getUsedElements() {
+    public ArrayList<TamaElement> getUsedElements() {
         return usedElements;
     }
 
@@ -369,14 +363,14 @@ public class Menu {
         }
     }
 
-    public HashMap<TamaElements, Integer> assignCommonStones(ArrayList<TamaElements> usedElements, int stonesForEachElement, HashMap<TamaElements, Integer> numberOfElementAndStones) {
-        for (TamaElements e : usedElements) {
+    public HashMap<TamaElement, Integer> assignCommonStones(ArrayList<TamaElement> usedElements, int stonesForEachElement, HashMap<TamaElement, Integer> numberOfElementAndStones) {
+        for (TamaElement e : usedElements) {
             numberOfElementAndStones.put(e, stonesForEachElement);
         }
         return numberOfElementAndStones;
     }
 
-    public void chooseStones(Player player, int commonStones, HashMap<TamaElements, Integer> numberOfElementAndStones, ArrayList<TamaElements> usedElements, int stones, TamaGolem activeGolem) {
+    public void chooseStones(Player player, int commonStones, HashMap<TamaElement, Integer> numberOfElementAndStones, ArrayList<TamaElement> usedElements, int stones, TamaGolem activeGolem) {
         System.out.printf(UsefulStrings.SETTING_ELEMENTS, player.getName());
 
         String e;

@@ -1,6 +1,36 @@
+/*
+ * Copyright (c) 2021, The Trinity and/or its affiliates. All rights reserved.
+ * THE TRINITY PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 package it.unibs.fp.the_trinity.utilities;
 import java.util.*;
 
+/**
+ * @author Serina Ivan
+ * @author Contestabile Martina
+ * @author Baresi Marco
+ * @author Iannella Simone
+ */
 public class DataInput {
 	private static final Scanner reader = createScanner();
 	private static final String FORMAT_ERROR = "Il dato inserito non e' nel formato corretto.";

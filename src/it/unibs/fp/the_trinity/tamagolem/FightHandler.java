@@ -41,7 +41,7 @@ public class FightHandler {
     // TODO da eliminare
     Menu menu = new Menu();
 
-    public void LetThemFight (Stack<TamaGolem> tamaGolem1, Stack<TamaGolem> tamaGolem2, int stones, int commonStones, ArrayList<TamaElements> usedElements, Player player1, Player player2, HashMap<TamaElements, Integer> numberOfElementAndStones1, HashMap<TamaElements, Integer> numberOfElementAndStones2) {
+    public void LetThemFight (Stack<TamaGolem> tamaGolem1, Stack<TamaGolem> tamaGolem2, int stones, int commonStones, ArrayList<TamaElement> usedElements, Player player1, Player player2, HashMap<TamaElement, Integer> numberOfElementAndStones1, HashMap<TamaElement, Integer> numberOfElementAndStones2) {
         player1.team = tamaGolem1;
         player2.team = tamaGolem2;
 

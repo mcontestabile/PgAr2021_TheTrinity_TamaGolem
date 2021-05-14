@@ -30,10 +30,10 @@ public class TamaGolem {
     private int energy;
     private int stones;
     // TODO should use a Circular List
-    private ArrayList<TamaElements> elements;
+    private ArrayList<TamaElement> elements;
     private String name;
 
-    public TamaGolem(int energy, int stones, ArrayList<TamaElements> elements, String name) {
+    public TamaGolem(int energy, int stones, ArrayList<TamaElement> elements, String name) {
         this.energy = energy;
         this.stones = stones;
         this.elements = elements;
@@ -48,7 +48,7 @@ public class TamaGolem {
         return stones;
     }
 
-    public ArrayList<TamaElements> getElements() {
+    public ArrayList<TamaElement> getElements() {
         return elements;
     }
 

@@ -27,6 +27,9 @@ package it.unibs.fp.the_trinity.tamagolem;
 import it.unibs.fp.the_trinity.utilities.UsefulStrings;
 import java.util.Stack;
 
+/**
+ * @author Iannella Simone
+ */
 public class Player {
     public Stack<TamaGolem> team = new Stack<>();
     private String name;
