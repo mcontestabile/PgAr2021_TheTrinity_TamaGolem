@@ -9,16 +9,16 @@ public class UsefulStrings {
     private static final String PLAYER_2_SECOND_NAME_REQUEST = "Inserire un nome (diverso da \"%s\") per il Secondo Giocatore:\n";
     private static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
     private static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
-
-    private static final String HOW_MANY_TAMAGOLEMS = "\nI Tamagolem schierati sono %d.\n";
-    private static final String HOW_MANY_ELEMENTS = "Il numero di elementi estratti è %d.\n";
-    private static final String HOW_MANY_STONES = "Il numero di pietre da assegnare è %d.\n";
+    private static final String HOW_MANY_TAMAGOLEMS = "\nI Tamagolem schierati per entrambi i giocatori sono %d.\n";
+    private static final String ONE_TAMAGOLEM = "\nOgni giocatore schiera un Tamagolem.\n";
+    private static final String HOW_MANY_ELEMENTS = "\nSono stati estratti %d elementi:\n";
+    private static final String HOW_MANY_STONES = "\nIl numero di pietre da assegnare è %d.\n";
 
     private static final String SETTING_ELEMENTS = "\n%s, ora devi scegliere quali pietre dare al tuo Tamagolem. \n Elementi ->";
     private static final String CHOOSE_ELEMENT_NAME = "\nInserire il nome (o l'iniziale) di un elemento:\n";
     private static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s:\n";
 
-    private static final String START_FIGHT_MESSAGE = "%s, %s, state per iniziare la battaglia. Inizieremo con l'evocazione dei Tamagolem." +
+    private static final String START_FIGHT_MESSAGE = "\n%s e %s, state per cominciare la battaglia. Inizieremo con l'evocazione dei Tamagolem." +
             "\n La procedura di evocazione di un Tamagolem è una sottofase che ricorre più volte durante lo scontro. In generale, l’evocazione interrompe lo" +
             "\nScontro ogni qualvolta sia necessario schierare in campo un nuovo Tamagolem da parte di un giocatore, evento che si verifica quando" +
             "\nil Tamagolem precedente del giocatore è eliminato dallo Scontro, ovvero perde tutta la vita %d." +
@@ -38,8 +38,11 @@ public class UsefulStrings {
 
     private static final int MIN_TAMAS = 3;
     private static final int MAX_TAMAS = 10;
-
     private static final int ENERGY = 10;
+
+    private static final int LOW_MILLIS_PAUSE = 500;
+    private static final int MEDIUM_MILLIS_PAUSE = 750;
+    private static final int HIGH_MILLIS_PAUSE = 1000;
 
     private static final String WELCOME_MESSAGE =
 
@@ -249,6 +252,22 @@ public class UsefulStrings {
 
   public static String getSettingStonesNumberForElement() {
         return SETTING_STONES_NUMBER_FOR_ELEMENT;
+    }
+
+    public static int getLowMillisPause() {
+        return LOW_MILLIS_PAUSE;
+    }
+
+    public static int getMediumMillisPause() {
+        return MEDIUM_MILLIS_PAUSE;
+    }
+
+    public static int getHighMillisPause() {
+        return HIGH_MILLIS_PAUSE;
+    }
+
+    public static String getOneTamagolem() {
+        return ONE_TAMAGOLEM;
     }
 
     public static String getStartFightMessage() {

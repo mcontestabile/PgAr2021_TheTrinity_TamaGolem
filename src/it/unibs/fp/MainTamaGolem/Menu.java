@@ -16,8 +16,9 @@ public class Menu {
     Stack<TamaGolem> tamaGolems1 = new Stack<>();
     Stack<TamaGolem> tamaGolems2 = new Stack<>();
 
-    public List<Elements> elem;
-    public ArrayList<Elements> usedElements = new ArrayList<>();
+    private List<Elements> elem;
+    private List<Elements> usedElem = new ArrayList<>();
+    private ArrayList<Elements> usedElements = new ArrayList<>();
     private HashMap<Elements, Integer> numberOfElementAndStones = new HashMap();
     private HashMap<Elements, Integer> numberOfElementAndStones1 = new HashMap();
     private HashMap<Elements, Integer> numberOfElementAndStones2 = new HashMap<>();
@@ -30,7 +31,7 @@ public class Menu {
     public void menu() {
         System.out.println(UsefulStrings.getWelcomeMessage());
         System.out.println(UsefulStrings.getTitle());
-        pause(1000);
+        pause(UsefulStrings.getHighMillisPause());
 
         boolean start = true;
         do {
@@ -53,7 +54,7 @@ public class Menu {
                 }
             }
 
-            pause(500);
+            pause(UsefulStrings.getLowMillisPause());
 
             int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.getSelectLevel(), EASY_LEVEL, HARD_LEVEL);
 
@@ -86,11 +87,20 @@ public class Menu {
             int tamas = howManyTamagolems(elements, stones);
             int commonStones = howManyCommonStones(tamas, elements, stones);
 
-            pause(500);
-            System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
-            System.out.printf(UsefulStrings.getHowManyStones(), stones);
+            pause(UsefulStrings.getMediumMillisPause());
+            if (tamas == 1){
+                System.out.print(UsefulStrings.getOneTamagolem());
+            }else {
+                System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
+            }
+            pause(UsefulStrings.getLowMillisPause());
             System.out.printf(UsefulStrings.getHowManyElements(), elements);
-            pause(500);
+            for (Elements e : usedElem) {
+                System.out.println(e);
+            }
+            pause(UsefulStrings.getMediumMillisPause());
+            System.out.printf(UsefulStrings.getHowManyStones(), stones);
+            pause(UsefulStrings.getLowMillisPause());
 
             for (int i = 0; i < tamas; i++) {
                 String tamaName = "Tamagolem " + i;
@@ -159,7 +169,7 @@ public class Menu {
         Collections.shuffle(elem);
 
         for (int i = 0; i < elementsToExtract; i++) {
-            System.out.println(elem.get(i));
+            usedElem.add(elem.get(i));
         }
 
         elements = elementsToExtract;
@@ -232,13 +242,6 @@ public class Menu {
         return usedElements;
     }
 
-    private void pause(int millisPause) {
-        try {
-            Thread.sleep(millisPause);
-        } catch (InterruptedException ignored) {
-        }
-    }
-
     public HashMap<Elements, Integer> assignCommonStones(ArrayList<Elements> usedElements, int stonesForEachElement, HashMap<Elements, Integer> numberOfElementAndStones) {
         for (Elements e : usedElements) {
             numberOfElementAndStones.put(e, stonesForEachElement);
@@ -285,6 +288,13 @@ public class Menu {
 
     public int getTamaGolemsNumber() {
         return tamaGolems.size();
+    }
+
+    private void pause(int millisPause) {
+        try {
+            Thread.sleep(millisPause);
+        } catch (InterruptedException ignored) {
+        }
     }
 }
 
