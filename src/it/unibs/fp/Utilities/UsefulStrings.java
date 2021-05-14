@@ -13,11 +13,21 @@ public class UsefulStrings {
     private static final String HOW_MANY_TAMAGOLEMS = "\nI Tamagolem schierati sono %d.\n";
     private static final String HOW_MANY_ELEMENTS = "Il numero di elementi estratti è %d.\n";
     private static final String HOW_MANY_STONES = "Il numero di pietre da assegnare è %d.\n";
-    //private static final String HOW_MANY_STONES = "Quante pietre si vuole assegnare per l'elemento %s?\nSi consideri che il minimo è 0 e il massimo %d.\n";
 
     private static final String SETTING_ELEMENTS = "\n%s, ora devi scegliere quali pietre dare al tuo Tamagolem. \n Elementi ->";
     private static final String CHOOSE_ELEMENT_NAME = "\nInserire il nome (o l'iniziale) di un elemento:\n";
     private static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s:\n";
+
+    private static final String START_FIGHT_MESSAGE = "%s, %s, state per iniziare la battaglia fra Golems. Inizieremo con l'evocazione del Golem." +
+            "\n La procedura di evocazione di un TamaGolem è una sottofase che ricorre più volte durante lo scontro. In generale, l’evocazione interrompe lo" +
+            "\nScontro ogni qualvolta sia necessario schierare in campo un nuovo TamaGolem da parte di un giocatore, evento che si verifica quando" +
+            "\nil TamaGolem precedente del giocatore è eliminato dallo Scontro, ovvero perde tutta la vita %d." +
+            "\nL’evocazione si verifica solo se il giocatore ha ancora TamaGolem disponibili, ossia il numero di TamaGolem eliminati è strettamente inferiore a %d." +
+            "\nIn caso affermativo:" +
+            "\n1. Un nuovo TamaGolem viene selezionato per la fase dell’evocazione; la sua Vita viene inizializzata al valore massimo %d." +
+            "\n2. Il giocatore seleziona esattamente %d pietre degli elementi da far mangiare al TamaGolem, fra quelle a sua disposizione." +
+            "\n   Le pietre selezionate verranno scagliate ciclicamente finché il TamaGolem resterà in vita." +
+            "\n3. Il TamaGolem viene schierato in campo, l’evocazione termina e lo Scontro può procedere.";
 
     private static final int MIN_ELEMENTS = 3;
     private static final int MAX_EASY_LEVEL = 5;
@@ -239,5 +249,9 @@ public class UsefulStrings {
 
   public static String getSettingStonesNumberForElement() {
         return SETTING_STONES_NUMBER_FOR_ELEMENT;
+    }
+
+    public static String getStartFightMessage() {
+        return START_FIGHT_MESSAGE;
     }
 }

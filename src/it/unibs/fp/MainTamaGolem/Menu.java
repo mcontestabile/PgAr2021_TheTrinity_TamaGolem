@@ -331,7 +331,10 @@ public class Menu {
             } while (!usedElements.contains(e));
 
          */
-
         }
+
+    public int getTamaGolemsNumber() {
+        return tamaGolems.size();
     }
 }
+
