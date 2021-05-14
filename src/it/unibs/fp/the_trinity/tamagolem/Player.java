@@ -1,6 +1,30 @@
-package it.unibs.fp.MainTamaGolem;
+/*
+ * Copyright (c) 2021, The Trinity and/or its affiliates. All rights reserved.
+ * THE TRINITY PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+package it.unibs.fp.the_trinity.tamagolem;
 
-import it.unibs.fp.Utilities.*;
+import it.unibs.fp.the_trinity.utilities.UsefulStrings;
 import java.util.Stack;
 
 public class Player {

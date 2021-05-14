@@ -1,4 +1,4 @@
-package it.unibs.fp.Utilities;
+package it.unibs.fp.the_trinity.utilities;
 /*
 Questa classe rappresenta un menu testuale generico a piu' voci
 Si suppone che la voce per uscire sia sempre associata alla scelta 0 

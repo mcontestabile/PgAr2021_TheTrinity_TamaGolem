@@ -1,4 +1,4 @@
-package it.unibs.fp.Utilities;
+package it.unibs.fp.the_trinity.utilities;
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)

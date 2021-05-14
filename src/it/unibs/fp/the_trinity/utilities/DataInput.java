@@ -1,4 +1,4 @@
-package it.unibs.fp.Utilities;
+package it.unibs.fp.the_trinity.utilities;
 import java.util.*;
 
 public class DataInput {

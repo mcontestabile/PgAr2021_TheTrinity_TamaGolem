@@ -1,11 +1,41 @@
-package it.unibs.fp.MainTamaGolem;
+/*
+ * Copyright (c) 2021, The Trinity and/or its affiliates. All rights reserved.
+ * THE TRINITY PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+package it.unibs.fp.the_trinity.tamagolem;
 
-import it.unibs.fp.Utilities.*;
-
+import it.unibs.fp.the_trinity.utilities.DataInput;
+import it.unibs.fp.the_trinity.utilities.RandomEnum;
+import it.unibs.fp.the_trinity.utilities.UsefulStrings;
 import java.util.*;
 
+/**
+ * The {@code Equilibrium} class contains methods to ...
+ *
+ * @author Contestabile Martina
+ * @author Iannella Simone
+ */
 public class Menu {
-
     private static final int EASY_LEVEL = 1;
     private static final int NORMAL_LEVEL = 2;
     private static final int HARD_LEVEL = 3;
@@ -16,13 +46,11 @@ public class Menu {
     Stack<TamaGolem> tamaGolems1 = new Stack<>();
     Stack<TamaGolem> tamaGolems2 = new Stack<>();
 
-    public List<Elements> elem;
-    public ArrayList<Elements> usedElements = new ArrayList<>();
-    private HashMap<Elements, Integer> numberOfElementAndStones = new HashMap();
-    private HashMap<Elements, Integer> numberOfElementAndStones1 = new HashMap();
-    private HashMap<Elements, Integer> numberOfElementAndStones2 = new HashMap<>();
-
-    RandomEnum randomEnum = new RandomEnum();
+    public List<TamaElements> elem;
+    public ArrayList<TamaElements> usedElements = new ArrayList<>();
+    private HashMap<TamaElements, Integer> numberOfElementAndStones = new HashMap<>();
+    private HashMap<TamaElements, Integer> numberOfElementAndStones1 = new HashMap<>();
+    private HashMap<TamaElements, Integer> numberOfElementAndStones2 = new HashMap<>();
 
     Player player1;
     Player player2;
@@ -34,34 +62,54 @@ public class Menu {
 
         boolean start = true;
         do {
-            char homonymyAnswer;
-            player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
-            player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
-            if (player1.getName().equalsIgnoreCase(player2.getName())) {
-                homonymyAnswer = DataInput.readChar(UsefulStrings.getHomonymyMessage());
-                if (homonymyAnswer == 'S' || homonymyAnswer == 's') {
-                    String tmp = player2.getName();
-                    do {
-                        player2.homonymyFix();
-                    } while (player2.getName().equals(tmp));
-                    System.out.println(UsefulStrings.getHomonymyFixedMessage() + player2.getName() + "\".");
-                } else {
-                    String p1Name = player1.getName();
-                    do {
-                        player2.setName(DataInput.readNotEmptyString(UsefulStrings.player2SecondNameRequest(player1.getName())));
-                    } while ((player2.getName().equalsIgnoreCase(p1Name)));
-                }
-            }
+            setPlayersNames();
 
-            pause(500);
-
+            // TODO crea un metodo che gestisce la partita, "spostando" li' il setup
             int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.getSelectLevel(), EASY_LEVEL, HARD_LEVEL);
 
+            int elements = howManyElements(matchLevel);
+            int stones = howManyStones(elements);
+            int tamas = howManyTamagolems(elements, stones);
+            int commonStones = howManyCommonStones(tamas, elements, stones);
+
+            // stones for each element only for NORMAL_LEVEL and HARD_LEVEL?
+            int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
+
+            pause(500);
+            System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
+            System.out.printf(UsefulStrings.getHowManyElements(), elements);
+            System.out.printf(UsefulStrings.getHowManyStones(), stones);
+            pause(500);
+
+            for (int i = 0; i < tamas; i++) {
+                String tamaName = "Tamagolem " + i;
+                TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
+                t.setName(tamaName);
+                tamaGolems.add(t);
+            }
+
+            tamaGolems1 = tamaGolems;
+            tamaGolems2 = tamaGolems;
+
+            //TODO metodo che genera l'equilibrio!!!
+
+            assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
+
+            numberOfElementAndStones1 = numberOfElementAndStones;
+            numberOfElementAndStones2 = numberOfElementAndStones;
+
+            Fight fight = new Fight();
+            fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
+
+            start = false;
+
+            // TODO replace switch
             switch (matchLevel) {
                 case EASY_LEVEL -> {
                     /*
                      * If the user's choice is low, the match level will be 3 ≤ ml ≤ 5.
                      */
+                    /*
                     int elements = howManyElements(EASY_LEVEL);
                     int stones = howManyStones(elements);
                     int tamas = howManyTamagolems(elements, stones);
@@ -95,12 +143,14 @@ public class Menu {
                     fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
+                     */
                 }
 
                 case NORMAL_LEVEL -> {
                     /*
                      * If the user's choice is medium, the match level will be 6 ≤ ml ≤ 8.
                      */
+                    /*
                     int elements = howManyElements(NORMAL_LEVEL);
                     int stones = howManyStones(elements);
                     int tamas = howManyTamagolems(elements, stones);
@@ -135,12 +185,14 @@ public class Menu {
                     fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
+                     */
                 }
 
                 case HARD_LEVEL -> {
                     /*
                      * If the user's choice is high, the match level will be 9 ≤ ml ≤ 10.
                      */
+                    /*
                     int elements = howManyElements(HARD_LEVEL);
                     int stones = howManyStones(elements);
                     int tamas = howManyTamagolems(elements, stones);
@@ -164,7 +216,7 @@ public class Menu {
                     tamaGolems1 = tamaGolems;
                     tamaGolems2 = tamaGolems;
 
-                    //TODO metodo che genera l'equilibrip!!!
+                    //TODO metodo che genera l'equilibrio!!!
 
                     assignCommonStones(usedElements, stonesForEachElement, numberOfElementAndStones);
 
@@ -175,10 +227,34 @@ public class Menu {
                     fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
+                     */
                 }
                 default -> throw new IllegalStateException("Unexpected value: " + matchLevel);
             }
         } while (start);
+    }
+
+    // TODO add comments
+    private void setPlayersNames() {
+        char homonymAnswer;
+        player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
+        player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
+        if (player1.getName().equalsIgnoreCase(player2.getName())) {
+            homonymAnswer = DataInput.readChar(UsefulStrings.getHomonymyMessage());
+            if (homonymAnswer == 'S' || homonymAnswer == 's') {
+                String tmp = player2.getName();
+                do {
+                    player2.homonymyFix();
+                } while (player2.getName().equals(tmp));
+                System.out.println(UsefulStrings.getHomonymyFixedMessage() + player2.getName() + "\".");
+            } else {
+                String p1Name = player1.getName();
+                do {
+                    player2.setName(DataInput.readNotEmptyString(UsefulStrings.player2SecondNameRequest(player1.getName())));
+                } while ((player2.getName().equalsIgnoreCase(p1Name)));
+            }
+        }
+        pause(500);
     }
 
     /**
@@ -188,12 +264,10 @@ public class Menu {
      * @return the number of elements, that is an {@code int}.
      */
     private int howManyElements(int level) {
-        Random random = new Random();
         int elementsToExtract;
-        int addedElement;
-        int elements = 0;
+        int elements;
 
-        elem = Arrays.asList(Elements.values());
+        elem = Arrays.asList(TamaElements.values());
 
         int min = 0;
         int max = 0;
@@ -218,7 +292,7 @@ public class Menu {
         elementsToExtract = (int) Math.floor(Math.random() * (max - min +1) + min);
 
         for (int i = 0; i < elementsToExtract; i++) {
-            Elements e = randomEnum.random();
+            TamaElements e = RandomEnum.random();
             usedElements.add(e);
             elem.remove(e);
         }
@@ -275,7 +349,7 @@ public class Menu {
     }
 
     /**
-     * This methods returns the {@code int} golems that will
+     * This methods returns the {@code TamaGolem} golems that will
      * fight in the match.
      *
      * @return tamagolems.
@@ -289,7 +363,7 @@ public class Menu {
      *
      * @return usedElements.
      */
-    public ArrayList<Elements> getUsedElements() {
+    public ArrayList<TamaElements> getUsedElements() {
         return usedElements;
     }
 
@@ -300,14 +374,14 @@ public class Menu {
         }
     }
 
-    public HashMap<Elements, Integer> assignCommonStones(ArrayList<Elements> usedElements, int stonesForEachElement, HashMap<Elements, Integer> numberOfElementAndStones) {
-        for (Elements e : usedElements) {
+    public HashMap<TamaElements, Integer> assignCommonStones(ArrayList<TamaElements> usedElements, int stonesForEachElement, HashMap<TamaElements, Integer> numberOfElementAndStones) {
+        for (TamaElements e : usedElements) {
             numberOfElementAndStones.put(e, stonesForEachElement);
         }
         return numberOfElementAndStones;
     }
 
-    public void chooseStones(Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones, TamaGolem activeGolem) {
+    public void chooseStones(Player player, int commonStones, HashMap<TamaElements, Integer> numberOfElementAndStones, ArrayList<TamaElements> usedElements, int stones, TamaGolem activeGolem) {
         System.out.printf(UsefulStrings.getSettingElements(), player.getName());
 
         String e;

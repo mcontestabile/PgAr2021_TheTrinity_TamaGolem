@@ -1,13 +1,36 @@
-package it.unibs.fp.MainTamaGolem;
+/*
+ * Copyright (c) 2021, The Trinity and/or its affiliates. All rights reserved.
+ * THE TRINITY PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+package it.unibs.fp.the_trinity.tamagolem;
 
-import it.unibs.fp.Utilities.*;
-
+import it.unibs.fp.the_trinity.utilities.UsefulStrings;
 import java.util.*;
 
 public class Fight {
     Menu menu = new Menu();
 
-    public void LetThemFight (Stack<TamaGolem> tamaGolems1, Stack<TamaGolem> tamaGolems2, int stones, int commonStones, ArrayList<Elements> usedElements, Player player1, Player player2, HashMap<Elements, Integer> numberOfElementAndStones1, HashMap<Elements, Integer> numberOfElementAndStones2) {
+    public void LetThemFight (Stack<TamaGolem> tamaGolems1, Stack<TamaGolem> tamaGolems2, int stones, int commonStones, ArrayList<TamaElements> usedElements, Player player1, Player player2, HashMap<TamaElements, Integer> numberOfElementAndStones1, HashMap<TamaElements, Integer> numberOfElementAndStones2) {
         player1.team = tamaGolems1;
         player2.team = tamaGolems2;
 
