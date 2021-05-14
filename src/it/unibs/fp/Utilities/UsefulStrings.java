@@ -9,10 +9,10 @@ public class UsefulStrings {
     private static final String PLAYER_2_SECOND_NAME_REQUEST = "Inserire un nome (diverso da \"%s\") per il Secondo Giocatore:\n";
     private static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
     private static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
-    private static final String HOW_MANY_TAMAGOLEMS = "\nI Tamagolem schierati sono %d.\n";
+    private static final String HOW_MANY_TAMAGOLEMS = "\n •I Tamagolem schierati sono %d.\n";
     private static final String ONE_TAMAGOLEM = "\nOgni giocatore schiera un Tamagolem.\n";
-    private static final String HOW_MANY_ELEMENTS = "\nSono stati estratti %d elementi:\n";
-    private static final String HOW_MANY_STONES = "\nIl numero di pietre da assegnare è %d.\n";
+    private static final String HOW_MANY_ELEMENTS = " •Sono stati estratti %d elementi.\n";
+    private static final String HOW_MANY_STONES = " •Il numero di pietre da assegnare è %d.\n";
 
     private static final String SETTING_ELEMENTS = "\n%s, ora devi scegliere quali pietre dare al tuo Tamagolem. \n Elementi ->";
     private static final String CHOOSE_ELEMENT_NAME = "\nInserire il nome (o l'iniziale) di un elemento:\n";

@@ -99,10 +99,7 @@ public class Menu {
             }
             pause(UsefulStrings.getLowMillisPause());
             System.out.printf(UsefulStrings.getHowManyElements(), elements);
-            for (Elements e : usedElem) {
-                System.out.println(e);
-            }
-            pause(UsefulStrings.getMediumMillisPause());
+            pause(UsefulStrings.getLowMillisPause());
             System.out.printf(UsefulStrings.getHowManyStones(), getHowManyStones());
             pause(UsefulStrings.getLowMillisPause());
 
@@ -124,6 +121,7 @@ public class Menu {
             numberOfElementAndStones2 = numberOfElementAndStones;
 
             System.out.printf(UsefulStrings.getStartFightMessage(), player1.getName(), player2.getName(), UsefulStrings.getEnergy(), getTamaGolemsNumber(),UsefulStrings.getEnergy(), getHowManyStones());
+            pause(UsefulStrings.getHighMillisPause());
 
             Fight fight = new Fight();
             fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
@@ -255,7 +253,12 @@ public class Menu {
     }
 
     public void chooseStones(Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones, TamaGolem activeGolem) {
+
         System.out.printf(UsefulStrings.getSettingElements(), player.getName());
+
+        for (Elements e : usedElem) {
+            System.out.println(e);
+        }
 
         String e;
         int choice;
