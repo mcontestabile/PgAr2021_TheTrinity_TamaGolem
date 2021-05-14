@@ -9,7 +9,7 @@ public class UsefulStrings {
     private static final String PLAYER_2_SECOND_NAME_REQUEST = "Inserire un nome (diverso da \"%s\") per il Secondo Giocatore:\n";
     private static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
     private static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
-    private static final String HOW_MANY_TAMAGOLEMS = "\nI Tamagolem schierati per entrambi i giocatori sono %d.\n";
+    private static final String HOW_MANY_TAMAGOLEMS = "\nI Tamagolem schierati sono %d.\n";
     private static final String ONE_TAMAGOLEM = "\nOgni giocatore schiera un Tamagolem.\n";
     private static final String HOW_MANY_ELEMENTS = "\nSono stati estratti %d elementi:\n";
     private static final String HOW_MANY_STONES = "\nIl numero di pietre da assegnare è %d.\n";
@@ -19,15 +19,15 @@ public class UsefulStrings {
     private static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s:\n";
 
     private static final String START_FIGHT_MESSAGE = "\n%s e %s, state per cominciare la battaglia. Inizieremo con l'evocazione dei Tamagolem." +
-            "\n La procedura di evocazione di un Tamagolem è una sottofase che ricorre più volte durante lo scontro. In generale, l’evocazione interrompe lo" +
-            "\nScontro ogni qualvolta sia necessario schierare in campo un nuovo Tamagolem da parte di un giocatore, evento che si verifica quando" +
-            "\nil Tamagolem precedente del giocatore è eliminato dallo Scontro, ovvero perde tutta la vita %d." +
-            "\nL’evocazione si verifica solo se il giocatore ha ancora TamaGolem disponibili, ossia il numero di Tamagolem eliminati è strettamente inferiore a %d." +
+            "\nLa procedura di evocazione di un Tamagolem è una sottofase che ricorre più volte durante lo scontro. In generale, l’evocazione interrompe lo" +
+            "\nscontro ogni qualvolta sia necessario schierare in campo un nuovo Tamagolem da parte di un giocatore, evento che si verifica quando" +
+            "\nil Tamagolem precedente del giocatore è eliminato dallo scontro, ovvero perde tutti i punti vita: %d." +
+            "\nL’evocazione si verifica solo se il giocatore ha ancora Tamagolem disponibili, ossia il numero di Tamagolem eliminati è strettamente inferiore a %d." +
             "\nIn caso affermativo:" +
-            "\n1. Un nuovo Tamagolem viene selezionato per la fase dell’evocazione; la sua Vita viene inizializzata al valore massimo %d." +
+            "\n1. Un nuovo Tamagolem viene selezionato per la fase dell’evocazione; la sua vita viene inizializzata al valore massimo di %d." +
             "\n2. Il giocatore seleziona esattamente %d pietre degli elementi da far mangiare al Tamagolem, fra quelle a sua disposizione." +
-            "\n   Le pietre selezionate verranno scagliate ciclicamente finché il Tamagolem resterà in vita." +
-            "\n3. Il Tamagolem viene schierato in campo, l’evocazione termina e lo scontro può procedere.";
+            "\n    Le pietre selezionate verranno scagliate ciclicamente finché il Tamagolem resterà in vita." +
+            "\n3. Il Tamagolem viene schierato in campo, l’evocazione termina e lo scontro può procedere.\n";
 
     private static final int MIN_ELEMENTS = 3;
     private static final int MAX_EASY_LEVEL = 5;

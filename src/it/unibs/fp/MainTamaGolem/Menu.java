@@ -25,12 +25,15 @@ public class Menu {
 
     RandomEnum randomEnum = new RandomEnum();
 
+    int matchLevel;
+
     Player player1;
     Player player2;
 
     public void menu() {
         System.out.println(UsefulStrings.getWelcomeMessage());
         System.out.println(UsefulStrings.getTitle());
+
         pause(UsefulStrings.getHighMillisPause());
 
         boolean start = true;
@@ -56,7 +59,7 @@ public class Menu {
 
             pause(UsefulStrings.getLowMillisPause());
 
-            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.getSelectLevel(), EASY_LEVEL, HARD_LEVEL);
+            matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.getSelectLevel(), EASY_LEVEL, HARD_LEVEL);
 
             int elements = 0;
 
@@ -87,7 +90,8 @@ public class Menu {
             int tamas = howManyTamagolems(elements, stones);
             int commonStones = howManyCommonStones(tamas, elements, stones);
 
-            pause(UsefulStrings.getMediumMillisPause());
+            pause(UsefulStrings.getLowMillisPause());
+
             if (tamas == 1){
                 System.out.print(UsefulStrings.getOneTamagolem());
             }else {
@@ -99,7 +103,7 @@ public class Menu {
                 System.out.println(e);
             }
             pause(UsefulStrings.getMediumMillisPause());
-            System.out.printf(UsefulStrings.getHowManyStones(), stones);
+            System.out.printf(UsefulStrings.getHowManyStones(), getHowManyStones());
             pause(UsefulStrings.getLowMillisPause());
 
             for (int i = 0; i < tamas; i++) {
@@ -119,6 +123,7 @@ public class Menu {
             numberOfElementAndStones1 = numberOfElementAndStones;
             numberOfElementAndStones2 = numberOfElementAndStones;
 
+            System.out.printf(UsefulStrings.getStartFightMessage(), player1.getName(), player2.getName(), UsefulStrings.getEnergy(), getTamaGolemsNumber(),UsefulStrings.getEnergy(), getHowManyStones());
 
             Fight fight = new Fight();
             fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
@@ -288,6 +293,10 @@ public class Menu {
 
     public int getTamaGolemsNumber() {
         return tamaGolems.size();
+    }
+
+    public int getHowManyStones(){
+        return howManyStones(matchLevel);
     }
 
     private void pause(int millisPause) {
