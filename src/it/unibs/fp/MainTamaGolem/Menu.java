@@ -165,7 +165,7 @@ public class Menu {
 
                     //TODO metodo che genera l'equilibrip!!!
 
-                    assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
+                    assignCommonStones(usedElements, stonesForEachElement, numberOfElementAndStones);
 
                     numberOfElementAndStones1 = numberOfElementAndStones;
                     numberOfElementAndStones2 = numberOfElementAndStones;
@@ -289,9 +289,9 @@ public class Menu {
         }
     }
 
-    public HashMap<Elements, Integer> assignCommonStones(ArrayList<Elements> usedElements, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones) {
+    public HashMap<Elements, Integer> assignCommonStones(ArrayList<Elements> usedElements, int stonesForEachElement, HashMap<Elements, Integer> numberOfElementAndStones) {
         for (Elements e : usedElements) {
-            numberOfElementAndStones.put(e, commonStones);
+            numberOfElementAndStones.put(e, stonesForEachElement);
         }
         return numberOfElementAndStones;
     }
@@ -300,7 +300,27 @@ public class Menu {
         System.out.printf(UsefulStrings.getSettingElements(), player.getName());
 
         String e;
+        int choice;
 
+        int availableStones = commonStones;
+
+        while (availableStones>0) {
+            System.out.println(usedElements);
+
+            do {
+                e = DataInput.readNotEmptyString(UsefulStrings.getChooseElementName());
+                choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
+            } while (!usedElements.contains(e));
+
+            int position = usedElements.indexOf(e);
+            numberOfElementAndStones.replace(usedElements.get(position), availableStones - choice); //Se non funzia, piango
+
+            availableStones--;
+        }
+
+        /* Prima si poteva selezionare una pietra alla volta,
+           il while sopra consente una scelta più dinamica (assegnare
+           tutte le availableStones ad un solo elemento, oppure 2 ad un elemento).
         for (int availableStones = commonStones; availableStones > 0; availableStones--) {
 
             System.out.println(usedElements);
@@ -310,9 +330,8 @@ public class Menu {
             //    int choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
             } while (!usedElements.contains(e));
 
-            int position = usedElements.indexOf(e);
+         */
 
-            numberOfElementAndStones.replace(usedElements.get(position), availableStones - 1); //Se non funzia, piango
         }
     }
 }
