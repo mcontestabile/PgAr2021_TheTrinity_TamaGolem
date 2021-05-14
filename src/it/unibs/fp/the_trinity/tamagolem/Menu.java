@@ -36,12 +36,6 @@ import java.util.*;
  * @author Iannella Simone
  */
 public class Menu {
-    private static final int EASY_LEVEL = 1;
-    private static final int NORMAL_LEVEL = 2;
-    private static final int HARD_LEVEL = 3;
-
-    private static final int MIN_STONES = 0;
-
     Stack<TamaGolem> tamaGolems = new Stack<>();
     Stack<TamaGolem> tamaGolems1 = new Stack<>();
     Stack<TamaGolem> tamaGolems2 = new Stack<>();
@@ -56,8 +50,8 @@ public class Menu {
     Player player2;
 
     public void menu() {
-        System.out.println(UsefulStrings.getWelcomeMessage());
-        System.out.println(UsefulStrings.getTitle());
+        System.out.println(UsefulStrings.WELCOME_MESSAGE);
+        System.out.println(UsefulStrings.TITLE);
         pause(1000);
 
         boolean start = true;
@@ -65,7 +59,7 @@ public class Menu {
             setPlayersNames();
 
             // TODO crea un metodo che gestisce la partita, "spostando" li' il setup
-            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.getSelectLevel(), EASY_LEVEL, HARD_LEVEL);
+            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.SELECT_LEVEL, FightHandler.EASY_LEVEL, FightHandler.HARD_LEVEL);
 
             int elements = howManyElements(matchLevel);
             int stones = howManyStones(elements);
@@ -76,14 +70,14 @@ public class Menu {
             int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
 
             pause(500);
-            System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
-            System.out.printf(UsefulStrings.getHowManyElements(), elements);
-            System.out.printf(UsefulStrings.getHowManyStones(), stones);
+            System.out.printf(UsefulStrings.HOW_MANY_TAMAGOLEMS, tamas);
+            System.out.printf(UsefulStrings.HOW_MANY_ELEMENTS, elements);
+            System.out.printf(UsefulStrings.HOW_MANY_STONES, stones);
             pause(500);
 
             for (int i = 0; i < tamas; i++) {
                 String tamaName = "Tamagolem " + i;
-                TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
+                TamaGolem t = new TamaGolem(FightHandler.ENERGY, stones, usedElements, tamaName);
                 t.setName(tamaName);
                 tamaGolems.add(t);
             }
@@ -91,25 +85,25 @@ public class Menu {
             tamaGolems1 = tamaGolems;
             tamaGolems2 = tamaGolems;
 
-            //TODO metodo che genera l'equilibrio!!!
+            Equilibrium equilibrium = new Equilibrium(FightHandler.ENERGY, elements);
 
             assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
 
             numberOfElementAndStones1 = numberOfElementAndStones;
             numberOfElementAndStones2 = numberOfElementAndStones;
 
-            Fight fight = new Fight();
+            FightHandler fight = new FightHandler();
             fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
             start = false;
 
             // TODO replace switch
+            /*
             switch (matchLevel) {
                 case EASY_LEVEL -> {
-                    /*
+
                      * If the user's choice is low, the match level will be 3 ≤ ml ≤ 5.
-                     */
-                    /*
+
                     int elements = howManyElements(EASY_LEVEL);
                     int stones = howManyStones(elements);
                     int tamas = howManyTamagolems(elements, stones);
@@ -143,14 +137,14 @@ public class Menu {
                     fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
-                     */
+
                 }
 
                 case NORMAL_LEVEL -> {
-                    /*
+
                      * If the user's choice is medium, the match level will be 6 ≤ ml ≤ 8.
-                     */
-                    /*
+
+
                     int elements = howManyElements(NORMAL_LEVEL);
                     int stones = howManyStones(elements);
                     int tamas = howManyTamagolems(elements, stones);
@@ -185,14 +179,14 @@ public class Menu {
                     fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
-                     */
+
                 }
 
                 case HARD_LEVEL -> {
-                    /*
+
                      * If the user's choice is high, the match level will be 9 ≤ ml ≤ 10.
-                     */
-                    /*
+
+
                     int elements = howManyElements(HARD_LEVEL);
                     int stones = howManyStones(elements);
                     int tamas = howManyTamagolems(elements, stones);
@@ -227,26 +221,27 @@ public class Menu {
                     fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
 
                     start = false;
-                     */
+
                 }
                 default -> throw new IllegalStateException("Unexpected value: " + matchLevel);
             }
+             */
         } while (start);
     }
 
     // TODO add comments
     private void setPlayersNames() {
         char homonymAnswer;
-        player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer1NameRequest()));
-        player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.getPlayer2NameRequest()));
+        player1 = new Player(DataInput.readNotEmptyString(UsefulStrings.PLAYER_1_NAME_REQUEST));
+        player2 = new Player(DataInput.readNotEmptyString(UsefulStrings.PLAYER_2_NAME_REQUEST));
         if (player1.getName().equalsIgnoreCase(player2.getName())) {
-            homonymAnswer = DataInput.readChar(UsefulStrings.getHomonymyMessage());
+            homonymAnswer = DataInput.readChar(UsefulStrings.HOMONYM_MESSAGE);
             if (homonymAnswer == 'S' || homonymAnswer == 's') {
                 String tmp = player2.getName();
                 do {
-                    player2.homonymyFix();
+                    player2.homonymFix();
                 } while (player2.getName().equals(tmp));
-                System.out.println(UsefulStrings.getHomonymyFixedMessage() + player2.getName() + "\".");
+                System.out.println(UsefulStrings.HOMONYM_FIXED_MESSAGE + player2.getName() + "\".");
             } else {
                 String p1Name = player1.getName();
                 do {
@@ -273,19 +268,19 @@ public class Menu {
         int max = 0;
 
         switch (level) {
-            case EASY_LEVEL -> {
-                min = UsefulStrings.getMinElements();
-                max = UsefulStrings.getMaxEasyLevel();
+            case FightHandler.EASY_LEVEL -> {
+                min = FightHandler.MIN_ELEMENTS;
+                max = FightHandler.MAX_EASY_LEVEL;
             }
 
-            case NORMAL_LEVEL -> {
-                min = UsefulStrings.getMinNormalLevel();
-                max = UsefulStrings.getMaxNormalLevel();
+            case FightHandler.NORMAL_LEVEL -> {
+                min = FightHandler.MIN_NORMAL_LEVEL;
+                max = FightHandler.MAX_NORMAL_LEVEL;
             }
 
-            case HARD_LEVEL -> {
-                min = UsefulStrings.getMinHardLevel();
-                max = UsefulStrings.getMaxElements();
+            case FightHandler.HARD_LEVEL -> {
+                min = FightHandler.MIN_HARD_LEVEL;
+                max = FightHandler.MAX_ELEMENTS;
             }
         }
 
@@ -382,7 +377,7 @@ public class Menu {
     }
 
     public void chooseStones(Player player, int commonStones, HashMap<TamaElements, Integer> numberOfElementAndStones, ArrayList<TamaElements> usedElements, int stones, TamaGolem activeGolem) {
-        System.out.printf(UsefulStrings.getSettingElements(), player.getName());
+        System.out.printf(UsefulStrings.SETTING_ELEMENTS, player.getName());
 
         String e;
         int choice;
@@ -393,8 +388,8 @@ public class Menu {
             System.out.println(usedElements);
 
             do {
-                e = DataInput.readNotEmptyString(UsefulStrings.getChooseElementName());
-                choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
+                e = DataInput.readNotEmptyString(UsefulStrings.CHOOSE_ELEMENT_NAME);
+                choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.SETTING_STONES_NUMBER_FOR_ELEMENT, 0, availableStones);
             } while (!usedElements.contains(e));
 
             int position = usedElements.indexOf(e);
@@ -416,7 +411,7 @@ public class Menu {
             } while (!usedElements.contains(e));
 
          */
-        }
+    }
 
     public int getTamaGolemsNumber() {
         return tamaGolems.size();

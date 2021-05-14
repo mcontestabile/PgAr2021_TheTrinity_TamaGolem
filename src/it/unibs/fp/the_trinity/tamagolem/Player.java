@@ -36,8 +36,8 @@ public class Player {
         this.name= name;
     }
 
-    public void homonymyFix(){
-        this.name = UsefulStrings.getHomonymyNames();
+    public void homonymFix(){
+        this.name = UsefulStrings.getHomonymName();
     }
 
     public Stack<TamaGolem> getTeam() {

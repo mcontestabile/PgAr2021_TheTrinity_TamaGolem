@@ -33,7 +33,7 @@ import java.util.Random;
  * @author Baresi Marco
  */
 public class Equilibrium {
-    private int maxPower;
+    private final int maxPower;
     private int nElements;
     private int[][] matrix;
 

@@ -10,6 +10,7 @@ public class DataInput {
 	private static final String ALLOWED_CHARS = "I caratteri ammissibili sono: ";
 	private static final char YES = 'S';
 	private static final char NO = 'N';
+	private static final int LOW_MILLIS_PAUSE = 500;
 
 	public DataInput() {
 	}
@@ -90,7 +91,7 @@ public class DataInput {
 				ended = true;
 			} catch (InputMismatchException var5) {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(600);
+				pause(LOW_MILLIS_PAUSE);
 				String var4 = reader.next();
 			}
 		} while(!ended);
@@ -110,7 +111,7 @@ public class DataInput {
 				ended = true;
 			} catch (InputMismatchException var5) {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(500);
+				pause(LOW_MILLIS_PAUSE);
 				String var4 = reader.next();
 			}
 		} while(!ended);
@@ -154,7 +155,7 @@ public class DataInput {
 				ended = true;
 			} else {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(500);
+				pause(LOW_MILLIS_PAUSE);
 			}
 		} while(!ended);
 
@@ -171,10 +172,10 @@ public class DataInput {
 				ended = true;
 			} else if (readValue < minimum) {
 				System.out.printf(UsefulStrings.getErrorString());
-				pause(600);
+				pause(LOW_MILLIS_PAUSE);
 			} else {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(600);
+				pause(LOW_MILLIS_PAUSE);
 			}
 		} while(!ended);
 
