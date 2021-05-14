@@ -29,7 +29,7 @@ public class Menu {
     public void menu() {
         System.out.println(UsefulStrings.getWelcomeMessage());
         System.out.println(UsefulStrings.getTitle());
-        pause(1200);
+        pause(1000);
 
         boolean start = true;
         do {
@@ -52,9 +52,9 @@ public class Menu {
                 }
             }
 
-            pause(800);
+            pause(500);
 
-            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.getHowManyElements(), EASY_LEVEL, HARD_LEVEL);
+            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.getSelectLevel(), EASY_LEVEL, HARD_LEVEL);
 
             switch (matchLevel) {
                 case EASY_LEVEL -> {
@@ -66,7 +66,12 @@ public class Menu {
                     int tamas = howManyTamagolems(elements, stones);
                     int commonStones = howManyCommonStones(tamas, elements, stones);
 
+                    pause(500);
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
+                    System.out.printf(UsefulStrings.getHowManyElements(), elements);
+                    System.out.printf(UsefulStrings.getHowManyStones(), stones);
+                    pause(500);
+
                     for (int i = 0; i < tamas; i++) {
                         String tamaName = "Tamagolem " + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
@@ -101,7 +106,12 @@ public class Menu {
                     int commonStones = howManyCommonStones(tamas, elements, stones);
                     int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
 
+                    pause(500);
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
+                    System.out.printf(UsefulStrings.getHowManyElements(), elements);
+                    System.out.printf(UsefulStrings.getHowManyStones(), stones);
+                    pause(500);
+
                     for (int i = 0; i < tamas; i++) {
                         String tamaName = "Tamagolem" + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
@@ -136,7 +146,12 @@ public class Menu {
                     int commonStones = howManyCommonStones(tamas, elements, stones);
                     int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
 
+                    pause(500);
                     System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
+                    System.out.printf(UsefulStrings.getHowManyElements(), elements);
+                    System.out.printf(UsefulStrings.getHowManyStones(), stones);
+                    pause(500);
+
                     for (int i = 0; i < tamas; i++) {
                         String tamaName = "Tamagolem" + i;
                         TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);

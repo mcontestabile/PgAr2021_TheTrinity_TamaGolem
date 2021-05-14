@@ -110,7 +110,7 @@ public class DataInput {
 				ended = true;
 			} catch (InputMismatchException var5) {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(600);
+				pause(500);
 				String var4 = reader.next();
 			}
 		} while(!ended);
@@ -152,12 +152,9 @@ public class DataInput {
 			readValue = readInt(message);
 			if (readValue >= minimum && readValue <= maximum) {
 				ended = true;
-			} else if (readValue < minimum) {
-				System.out.println(UsefulStrings.getErrorString());
-				pause(600);
 			} else {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(600);
+				pause(500);
 			}
 		} while(!ended);
 

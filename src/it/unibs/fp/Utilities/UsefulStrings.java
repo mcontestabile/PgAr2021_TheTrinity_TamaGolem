@@ -2,7 +2,7 @@ package it.unibs.fp.Utilities;
 
 public class UsefulStrings {
     private static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
-    private static final String HOW_MANY_ELEMENTS = "\nScegli il livello di difficolta' della partita: \n» Facile (1).\n» Normale (2).\n» Difficile (3).\n";
+    private static final String SELECT_LEVEL = "\nScegli il livello di difficolta' della partita: \n» Facile (1).\n» Normale (2).\n» Difficile (3).\n";
 
     private static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
     private static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
@@ -10,7 +10,8 @@ public class UsefulStrings {
     private static final String HOMONYMY_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
     private static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
-    private static final String HOW_MANY_TAMAGOLEMS = "I Tamagolem schierati sono %d.\n";
+    private static final String HOW_MANY_TAMAGOLEMS = "\nI Tamagolem schierati sono %d.\n";
+    private static final String HOW_MANY_ELEMENTS = "Il numero di elementi estratti è %d.\n";
     private static final String HOW_MANY_STONES = "Il numero di pietre da assegnare è %d.\n";
     //private static final String HOW_MANY_STONES = "Quante pietre si vuole assegnare per l'elemento %s?\nSi consideri che il minimo è 0 e il massimo %d.\n";
 
@@ -92,9 +93,9 @@ public class UsefulStrings {
             "La Winx che non si caga nessuno",
             "Paolo Brosio",
             "Terry A. Davis",
-            "Emilio è peggio",
+            "Emilio è Peggio",
             "Emilio Credenza",
-            "Teo Mammutpoveri",
+            "Teo Mammupoveri",
             "Gerry Freddie",
             "Enrico Daddy",
             "THE_REAL_JOSH"
@@ -152,8 +153,8 @@ public class UsefulStrings {
         return STRONGER_ELEMENT;
     }
 
-    public static String getHowManyElements() {
-        return HOW_MANY_ELEMENTS;
+    public static String getSelectLevel() {
+        return SELECT_LEVEL;
     }
 
     public static String getPlayer1NameRequest() {
@@ -230,6 +231,10 @@ public class UsefulStrings {
 
     public static String getChooseElementName() {
         return CHOOSE_ELEMENT_NAME;
+    }
+    
+    public static String getHowManyElements(){
+        return HOW_MANY_ELEMENTS;
     }
 
   /*  public static String getSettingStonesNumberForElement() {
