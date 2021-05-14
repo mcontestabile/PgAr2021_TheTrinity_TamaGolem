@@ -16,6 +16,7 @@ public class Menu {
     Stack<TamaGolem> tamaGolems1 = new Stack<>();
     Stack<TamaGolem> tamaGolems2 = new Stack<>();
 
+    public List<Elements> elem;
     public ArrayList<Elements> usedElements = new ArrayList<>();
     private HashMap<Elements, Integer> numberOfElementAndStones = new HashMap();
     private HashMap<Elements, Integer> numberOfElementAndStones1 = new HashMap();
@@ -180,39 +181,49 @@ public class Menu {
         } while (start);
     }
 
+    /**
+     * This method returns an {@code int} type that rapresents the
+     * element's number used in the fight.
+     * @param level the match's level.
+     * @return the number of elements, that is an {@code int}.
+     */
     private int howManyElements(int level) {
         Random random = new Random();
         int elementsToExtract;
         int addedElement;
         int elements = 0;
 
-        if (level == EASY_LEVEL) {
-            elementsToExtract = (int) Math.floor(Math.random() * (UsefulStrings.getMaxEasyLevel() - UsefulStrings.getMinElements() + 1) + UsefulStrings.getMinElements());
+        elem = Arrays.asList(Elements.values());
 
-            for (int i = 0; i < elementsToExtract; i++) {
-                usedElements.add(RandomEnum.random());
+        int min = 0;
+        int max = 0;
+
+        switch (level) {
+            case EASY_LEVEL -> {
+                min = UsefulStrings.getMinElements();
+                max = UsefulStrings.getMaxEasyLevel();
             }
 
-            elements = elementsToExtract;
-
-        } else if (level == NORMAL_LEVEL) {
-            elementsToExtract = (int) Math.floor(Math.random() * (UsefulStrings.getMaxNormalLevel() - UsefulStrings.getMinNormalLevel() + 1) + UsefulStrings.getMinNormalLevel());
-
-            for (int i = 0; i < elementsToExtract; i++) {
-                usedElements.add(randomEnum.random());
+            case NORMAL_LEVEL -> {
+                min = UsefulStrings.getMinNormalLevel();
+                max = UsefulStrings.getMaxNormalLevel();
             }
 
-            elements = elementsToExtract;
-
-        } else if (level == HARD_LEVEL) {
-            elementsToExtract = (int) Math.floor(Math.random() * (UsefulStrings.getMaxElements() - UsefulStrings.getMinHardLevel() + 1) + UsefulStrings.getMinHardLevel());
-
-            for (int i = 0; i < elementsToExtract; i++) {
-                usedElements.add(randomEnum.random());
+            case HARD_LEVEL -> {
+                min = UsefulStrings.getMinHardLevel();
+                max = UsefulStrings.getMaxElements();
             }
-
-            elements = elementsToExtract;
         }
+
+        elementsToExtract = (int) Math.floor(Math.random() * (max - min +1) + min);
+
+        for (int i = 0; i < elementsToExtract; i++) {
+            Elements e = randomEnum.random();
+            usedElements.add(e);
+            elem.remove(e);
+        }
+
+        elements = elementsToExtract;
 
         return elements;
     }
@@ -264,7 +275,7 @@ public class Menu {
     }
 
     /**
-     * This methods returns the golems that will
+     * This methods returns the {@code int} golems that will
      * fight in the match.
      *
      * @return tamagolems.

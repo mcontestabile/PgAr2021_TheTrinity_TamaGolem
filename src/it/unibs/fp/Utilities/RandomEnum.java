@@ -8,7 +8,7 @@ public class RandomEnum {
     private static final Elements[] ELEMENTS = Elements.values();
     private static Random rand = new Random();
 
-    public static final Elements random(){
+    public static Elements random(){
         // Choose randomly an enum
         return ELEMENTS[rand.nextInt(ELEMENTS.length)];
     }
