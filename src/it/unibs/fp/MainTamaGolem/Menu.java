@@ -292,7 +292,7 @@ public class Menu {
 
             do {
                 e = DataInput.readNotEmptyString(UsefulStrings.getChooseElementName());
-                int choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
+            //    int choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
             } while (!usedElements.contains(e));
 
             int position = usedElements.indexOf(e);
