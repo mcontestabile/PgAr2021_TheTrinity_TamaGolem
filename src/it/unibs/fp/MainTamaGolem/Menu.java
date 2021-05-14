@@ -281,7 +281,8 @@ public class Menu {
         return numberOfElementAndStones;
     }
 
-    public void chooseStones (Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones, TamaGolem activeGolem) {        System.out.printf(UsefulStrings.getSettingElements(), player);
+    public void chooseStones(Player player, int commonStones, HashMap<Elements, Integer> numberOfElementAndStones, ArrayList<Elements> usedElements, int stones, TamaGolem activeGolem) {
+        System.out.printf(UsefulStrings.getSettingElements(), player.getName());
 
         String e;
 
@@ -291,7 +292,7 @@ public class Menu {
 
             do {
                 e = DataInput.readNotEmptyString(UsefulStrings.getChooseElementName());
-                int choice = DataInput.readIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
+                int choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
             } while (!usedElements.contains(e));
 
             int position = usedElements.indexOf(e);

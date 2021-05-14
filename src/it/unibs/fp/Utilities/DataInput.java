@@ -98,6 +98,26 @@ public class DataInput {
 		return readValue;
 	}
 
+	public static int readfInt(String message) {
+		boolean ended = false;
+		int readValue = 0;
+
+		do {
+			System.out.printf(message);
+
+			try {
+				readValue = reader.nextInt();
+				ended = true;
+			} catch (InputMismatchException var5) {
+				System.out.println(UsefulStrings.getErrorString());
+				pause(600);
+				String var4 = reader.next();
+			}
+		} while(!ended);
+
+		return readValue;
+	}
+
 	public static int readPositiveInt(String message) {
 		return readIntWithMinimum(message, 1);
 	}
@@ -134,6 +154,26 @@ public class DataInput {
 				ended = true;
 			} else if (readValue < minimum) {
 				System.out.println(UsefulStrings.getErrorString());
+				pause(600);
+			} else {
+				System.out.println(UsefulStrings.getErrorString());
+				pause(600);
+			}
+		} while(!ended);
+
+		return readValue;
+	}
+	public static int readfIntWithMaxAndMin(String message, int minimum, int maximum) {
+		boolean ended = false;
+		boolean var4 = false;
+
+		int readValue;
+		do {
+			readValue = readfInt(message);
+			if (readValue >= minimum && readValue <= maximum) {
+				ended = true;
+			} else if (readValue < minimum) {
+				System.out.printf(UsefulStrings.getErrorString());
 				pause(600);
 			} else {
 				System.out.println(UsefulStrings.getErrorString());

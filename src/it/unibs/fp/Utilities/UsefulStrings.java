@@ -11,11 +11,12 @@ public class UsefulStrings {
     private static final String HOMONYMY_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
 
     private static final String HOW_MANY_TAMAGOLEMS = "I Tamagolem schierati sono %d.\n";
-    private static final String HOW_MANY_STONES = "QUante pietre si vuole assegnare per l'elemento %s?\nSi consideri che il minimo è 0 e il massimo %d.\n";
+    private static final String HOW_MANY_STONES = "Il numero di pietre da assegnare è %d.\n";
+    //private static final String HOW_MANY_STONES = "Quante pietre si vuole assegnare per l'elemento %s?\nSi consideri che il minimo è 0 e il massimo %d.\n";
 
-    private static final String SETTING_ELEMENTS = "%s, ora devi scegliere, per ciascun Golem, quante pietre assegnare a ciascun elemento.";
-    private static final String CHOOSE_ELEMENT_NAME = "Inserire il nome di un elemento: ";
-    private static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s: ";
+    private static final String SETTING_ELEMENTS = "\n%s, ora devi scegliere quali pietre dare al tuo Tamagolem. \n Elementi ->";
+    private static final String CHOOSE_ELEMENT_NAME = "\nInserire il nome (o l'iniziale) di un elemento:\n";
+    //private static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s:\n";
 
     private static final int MIN_ELEMENTS = 3;
     private static final int MAX_EASY_LEVEL = 5;
@@ -81,10 +82,9 @@ public class UsefulStrings {
             "Robber",
             "TetoShfonda",
             "Keyshan",
-            "Emilio Fede",
             "Palombaro Procopio",
             "Barry Bee Benson",
-            "Zeb99",
+            "ZebA99",
             "Shaggy all'1%",
             "La testa di Art Attack",
             "Christian 'Ice'",
@@ -92,6 +92,11 @@ public class UsefulStrings {
             "La Winx che non si caga nessuno",
             "Paolo Brosio",
             "Terry A. Davis",
+            "Emilio è peggio",
+            "Emilio Credenza",
+            "Teo Mammutpoveri",
+            "Gerry Freddie",
+            "Enrico Daddy",
             "THE_REAL_JOSH"
     };
 
@@ -227,7 +232,7 @@ public class UsefulStrings {
         return CHOOSE_ELEMENT_NAME;
     }
 
-    public static String getSettingStonesNumberForElement() {
+  /*  public static String getSettingStonesNumberForElement() {
         return SETTING_STONES_NUMBER_FOR_ELEMENT;
-    }
+    }*/
 }
