@@ -28,6 +28,7 @@ package it.unibs.fp.the_trinity.utilities;
  * @author Iannella Simone
  */
 public class UsefulStrings {
+    public static final String TAMAGOLEM_NAME = "Tamagolem ";
     public static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
     public static final String SELECT_LEVEL = "\nScegli il livello di difficolta' della partita: \n» Facile (1).\n» Normale (2).\n» Difficile (3).\n";
 

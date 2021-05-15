@@ -36,11 +36,6 @@ import java.util.*;
  * @author Iannella Simone
  */
 public class Menu {
-    // TODO we can delete tamaGolems stacks, in Player there are same list
-    public List<TamaElement> elem;
-    public ArrayList<TamaElement> usedElements = new ArrayList<>();
-    private HashMap<TamaElement, Integer> numberOfElementAndStones = new HashMap<>();
-
     private Player player1;
     private Player player2;
 
@@ -49,45 +44,32 @@ public class Menu {
         System.out.println(UsefulStrings.TITLE);
         Time.pause(Time.HIGH_MILLIS_PAUSE);
 
+        setPlayersNames();
+        int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.SELECT_LEVEL, FightUtils.EASY_LEVEL, FightUtils.HARD_LEVEL);
+        FightHandler fightHandler = new FightHandler(matchLevel, player1, player2);
+
+        Equilibrium equilibrium = new Equilibrium(FightUtils.ENERGY, fightHandler.getElements());
+
+        Time.pause(Time.LOW_MILLIS_PAUSE);
+        System.out.printf(UsefulStrings.HOW_MANY_TAMAGOLEMS, fightHandler.getTamas());
+        System.out.printf(UsefulStrings.HOW_MANY_ELEMENTS, fightHandler.getElements());
+        System.out.printf(UsefulStrings.HOW_MANY_STONES, fightHandler.getGolemStones());
+        Time.pause(Time.LOW_MILLIS_PAUSE);
+        System.out.println(UsefulStrings.getStartFightMessage(player1.getName(), player2.getName(), fightHandler.getTamas(), FightUtils.ENERGY, fightHandler.getGolemStones()));
+
+        // TODO to remove
+        System.out.println(fightHandler.getUsedElements());
+
         boolean end = false;
         do {
-            setPlayersNames();
-
-            // TODO crea un metodo che gestisce la partita, "spostando" li' il setup
-            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.SELECT_LEVEL, FightUtils.EASY_LEVEL, FightUtils.HARD_LEVEL);
-
-            int elements = howManyElements(matchLevel);
-            int stones = howManyStones(elements);
-            int tamas = howManyTamagolems(elements, stones);
-            int commonStones = howManyCommonStones(tamas, elements, stones);
-
-            // stones for each element only for NORMAL_LEVEL and HARD_LEVEL?
-            int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
-
-            Time.pause(Time.LOW_MILLIS_PAUSE);
-            System.out.printf(UsefulStrings.HOW_MANY_TAMAGOLEMS, tamas);
-            System.out.printf(UsefulStrings.HOW_MANY_ELEMENTS, elements);
-            System.out.printf(UsefulStrings.HOW_MANY_STONES, stones);
-            Time.pause(Time.LOW_MILLIS_PAUSE);
-
-            for (int i = 0; i < tamas; i++) {
-                String tamaName = "Tamagolem " + i;
-                TamaGolem t = new TamaGolem(FightUtils.ENERGY, stones, usedElements, tamaName);
-                t.setName(tamaName);
-                player1.addTamaGolem(t);
-            }
-
-            Equilibrium equilibrium = new Equilibrium(FightUtils.ENERGY, elements);
-
-            assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
-
-
-            System.out.println(UsefulStrings.getStartFightMessage(player1.getName(), player2.getName(), howManyTamagolems(elements, stones), FightUtils.ENERGY, stones));
-
-            chooseStones(player1, commonStones, numberOfElementAndStones, usedElements, stones, player1.getActiveGolem());
-
-            FightHandler fight = new FightHandler();
-            //fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
+            // riempio le listedi elementi dei due golem attivi dei player
+            // "invoco" un golem da ogni player
+            // eseguo la funzione di equilibrium calcolare i danni
+            // controllo se i golem sono ancora vivi, in tal caso passo al secondo turno
+            // se uno dei due golem e' morto, controllo se ci sono ancora golem disponibili
+            // in caso affermativo chiamo nuovamente il metodo per scegliere le pietre
+            // se un player ha finito i golem la partita e' finita e decreto il vincitore
+            // passo al turno successivo
         } while (!end);
     }
 
@@ -115,112 +97,26 @@ public class Menu {
     }
 
     /**
-     * This method returns an {@code int} type that rapresents the
-     * element's number used in the fight.
-     * @param level the match's level.
-     * @return the number of elements, that is an {@code int}.
-     */
-    private int howManyElements(int level) {
-        int elementsToExtract;
-        elem = Arrays.asList(TamaElement.values());
-
-        int min = 0;
-        int max = 0;
-
-        switch (level) {
-            case FightUtils.EASY_LEVEL -> {
-                min = FightUtils.MIN_ELEMENTS;
-                max = FightUtils.MAX_EASY_LEVEL;
-            }
-
-            case FightUtils.NORMAL_LEVEL -> {
-                min = FightUtils.MIN_NORMAL_LEVEL;
-                max = FightUtils.MAX_NORMAL_LEVEL;
-            }
-
-            case FightUtils.HARD_LEVEL -> {
-                min = FightUtils.MIN_HARD_LEVEL;
-                max = FightUtils.MAX_ELEMENTS;
-            }
-        }
-
-        elementsToExtract = (int) Math.floor(Math.random() * (max - min +1) + min);
-
-        Collections.shuffle(elem);
-        for (int i=0; i<elementsToExtract; i++) usedElements.add(elem.get(i));
-
-        return elementsToExtract;
-    }
-
-    /**
-     * This method calculates the stones involved in the match.
-     *
-     * @param elements are the elements involved in the match.
-     * @return how many stones are involved in the match.
-     */
-    private int howManyStones(int elements) {
-        return (int) (Math.ceil((elements + 1.0) / 3.0) + 1.0);
-    }
-
-    /**
-     * This method calculates the tamagolems involved in the match.
-     * This integer value is based on the elements.
-     *
-     * @param elements are the elements involved in the match.
-     * @param stones   how many stones are involved in the match.
-     * @return the tamagolems' number.
-     */
-    private int howManyTamagolems(int elements, int stones) {
-        return (int) (Math.ceil(((elements - 1.0) * (elements - 2.0)) / (2.0 * stones)));
-    }
-
-    /**
-     * This method calculates the common stones involved in the match.
-     *
-     * @param tamagolems the tamagolems' number.
-     * @param elements   are the elements involved in the match.
-     * @param stones     how many stones are involved in the match.
-     * @return the common stones.
-     */
-    private int howManyCommonStones(int tamagolems, int elements, int stones) {
-        return (int) (Math.ceil(((2.0 * tamagolems * stones) / elements)) * elements);
-    }
-
-    /**
-     * This method calculates the common stones for each element involved in the match.
-     *
-     * @param tamagolems the tamagolems' number.
-     * @param elements   are the elements involved in the match.
-     * @param stones     how many stones are involved in the match.
-     * @return the stones for each element.
-     */
-    private int howManyStonesForEachElement(int tamagolems, int elements, int stones) {
-        return (int) (Math.ceil((2.0 * tamagolems * stones) / elements));
-    }
-
-    /**
      * This method returns the elements used during the fight.
      *
      * @return usedElements.
      */
+    /*
     public ArrayList<TamaElement> getUsedElements() {
         return usedElements;
     }
+     */
 
-    public HashMap<TamaElement, Integer> assignCommonStones(ArrayList<TamaElement> usedElements, int stonesForEachElement, HashMap<TamaElement, Integer> numberOfElementAndStones) {
-        for (TamaElement e : usedElements) {
-            numberOfElementAndStones.put(e, stonesForEachElement);
-        }
-        return numberOfElementAndStones;
-    }
-
-    public void chooseStones(Player player, int commonStones, HashMap<TamaElement, Integer> numberOfElementAndStones, ArrayList<TamaElement> usedElements, int stones, TamaGolem activeGolem) {
+    /*
+    public ArrayList<TamaElement> chooseGolemStones(Player player) {
         System.out.printf(UsefulStrings.SETTING_ELEMENTS, player.getName());
 
         String e;
         int choice = 0;
 
         int availableStones = commonStones;
+
+
 
         while (availableStones>0) {
             System.out.println(usedElements);
@@ -242,25 +138,6 @@ public class Menu {
 
             availableStones--;
         }
-
-        /* Prima si poteva selezionare una pietra alla volta,
-           il while sopra consente una scelta più dinamica (assegnare
-           tutte le availableStones ad un solo elemento, oppure 2 ad un elemento).
-        for (int availableStones = commonStones; availableStones > 0; availableStones--) {
-
-            System.out.println(usedElements);
-
-            do {
-                e = DataInput.readNotEmptyString(UsefulStrings.getChooseElementName());
-            //    int choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(), MIN_STONES, availableStones);
-            } while (!usedElements.contains(e));
-
-         */
-    }
-
-    /*
-    public int getTamaGolemsNumber() {
-        return tamaGolems.size();
     }
      */
 
