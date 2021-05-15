@@ -35,6 +35,11 @@ package it.unibs.fp.the_trinity.tamagolem;
 public class EntryPoint {
 
     public static void main (String[] args) {
+        int i = 0;
+        for (TamaElement t : TamaElement.values()) {
+            i++;
+            System.out.println(t.toString() + " " + i);
+        }
         Menu menu = new Menu();
         menu.menu();
     }

@@ -31,9 +31,8 @@ import java.util.Stack;
  * @author Iannella Simone
  */
 public class Player {
-    public Stack<TamaGolem> team = new Stack<>();
+    private Stack<TamaGolem> team = new Stack<>();
     private String name;
-    private TamaGolem activeGolem;
 
     public Player(String name) {
         this.name= name;
@@ -43,6 +42,16 @@ public class Player {
         this.name = UsefulStrings.getHomonymName();
     }
 
+    public void addTamaGolem(TamaGolem golem) {
+        team.push(golem);
+    }
+
+    /**
+     * This methods returns the {@code TamaGolem} golems that will
+     * fight in the match.
+     *
+     * @return tamagolems.
+     */
     public Stack<TamaGolem> getTeam() {
         return team;
     }
@@ -52,7 +61,7 @@ public class Player {
     }
 
     public TamaGolem getActiveGolem() {
-        return activeGolem;
+        return team.pop();
     }
 
     public void setName(String name) {

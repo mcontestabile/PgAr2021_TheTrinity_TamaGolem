@@ -165,14 +165,6 @@ public class UsefulStrings {
 
     // TODO static final means also "Public", and they must not be here
 
-
-    /*
-    private static final int LOW_MILLIS_PAUSE = 500;
-    private static final int MEDIUM_MILLIS_PAUSE = 750;
-    private static final int HIGH_MILLIS_PAUSE = 1000;
-
-     */
-
     public static String getHomonymName() {
         return HOMONYMY_NAMES[(int) (Math.random() * HOMONYMY_NAMES.length)];
     }
@@ -191,5 +183,9 @@ public class UsefulStrings {
 
     public static String getStartFightMessage(String player1, String player2, int nGolems, int energy, int nStones) {
         return String.format(START_FIGHT_MESSAGE, player1, player2, energy, nGolems, energy, nStones);
+    }
+
+    public static String getSettingStonesNumberForElement(String elementName) {
+        return String.format(SETTING_STONES_NUMBER_FOR_ELEMENT, elementName);
     }
 }

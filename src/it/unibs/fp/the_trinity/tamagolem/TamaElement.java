@@ -44,6 +44,13 @@ public enum TamaElement {
         this.index = index;
     }
 
+
+    public boolean containsAbbreviation(String abbreviation) {
+        for (TamaElement t : TamaElement.values())
+            if (t.abbreviation.equals(abbreviation.toUpperCase())) return true;
+        return false;
+    }
+
     public String getAbbreviation() {
         return abbreviation;
     }

@@ -25,26 +25,21 @@
 package it.unibs.fp.the_trinity.tamagolem;
 
 import it.unibs.fp.the_trinity.utilities.DataInput;
+import it.unibs.fp.the_trinity.utilities.Time;
 import it.unibs.fp.the_trinity.utilities.UsefulStrings;
 import java.util.*;
 
 /**
- * The {@code Equilibrium} class contains methods to ...
+ * The {@code Menu} class contains methods to ...
  *
  * @author Contestabile Martina
  * @author Iannella Simone
  */
 public class Menu {
-    // TODO we can delete first tamaGolems stack
-    private Stack<TamaGolem> tamaGolems = new Stack<>();
-    private Stack<TamaGolem> tamaGolems1 = new Stack<>();
-    private Stack<TamaGolem> tamaGolems2 = new Stack<>();
-
+    // TODO we can delete tamaGolems stacks, in Player there are same list
     public List<TamaElement> elem;
     public ArrayList<TamaElement> usedElements = new ArrayList<>();
     private HashMap<TamaElement, Integer> numberOfElementAndStones = new HashMap<>();
-    private HashMap<TamaElement, Integer> numberOfElementAndStones1 = new HashMap<>();
-    private HashMap<TamaElement, Integer> numberOfElementAndStones2 = new HashMap<>();
 
     private Player player1;
     private Player player2;
@@ -52,14 +47,14 @@ public class Menu {
     public void menu() {
         System.out.println(UsefulStrings.WELCOME_MESSAGE);
         System.out.println(UsefulStrings.TITLE);
-        pause(1000);
+        Time.pause(Time.HIGH_MILLIS_PAUSE);
 
         boolean end = false;
         do {
             setPlayersNames();
 
             // TODO crea un metodo che gestisce la partita, "spostando" li' il setup
-            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.SELECT_LEVEL, FightHandler.EASY_LEVEL, FightHandler.HARD_LEVEL);
+            int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.SELECT_LEVEL, FightUtils.EASY_LEVEL, FightUtils.HARD_LEVEL);
 
             int elements = howManyElements(matchLevel);
             int stones = howManyStones(elements);
@@ -69,164 +64,30 @@ public class Menu {
             // stones for each element only for NORMAL_LEVEL and HARD_LEVEL?
             int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
 
-            pause(500);
+            Time.pause(Time.LOW_MILLIS_PAUSE);
             System.out.printf(UsefulStrings.HOW_MANY_TAMAGOLEMS, tamas);
             System.out.printf(UsefulStrings.HOW_MANY_ELEMENTS, elements);
             System.out.printf(UsefulStrings.HOW_MANY_STONES, stones);
-            pause(500);
+            Time.pause(Time.LOW_MILLIS_PAUSE);
 
             for (int i = 0; i < tamas; i++) {
                 String tamaName = "Tamagolem " + i;
-                TamaGolem t = new TamaGolem(FightHandler.ENERGY, stones, usedElements, tamaName);
+                TamaGolem t = new TamaGolem(FightUtils.ENERGY, stones, usedElements, tamaName);
                 t.setName(tamaName);
-                tamaGolems.add(t);
+                player1.addTamaGolem(t);
             }
 
-            tamaGolems1 = tamaGolems;
-            tamaGolems2 = tamaGolems;
-
-            Equilibrium equilibrium = new Equilibrium(FightHandler.ENERGY, elements);
+            Equilibrium equilibrium = new Equilibrium(FightUtils.ENERGY, elements);
 
             assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
 
-            numberOfElementAndStones1 = numberOfElementAndStones;
-            numberOfElementAndStones2 = numberOfElementAndStones;
 
-            System.out.println(UsefulStrings.getStartFightMessage(player1.getName(), player2.getName(), getTamaGolemsNumber(), FightHandler.ENERGY, stones));
+            System.out.println(UsefulStrings.getStartFightMessage(player1.getName(), player2.getName(), howManyTamagolems(elements, stones), FightUtils.ENERGY, stones));
+
+            chooseStones(player1, commonStones, numberOfElementAndStones, usedElements, stones, player1.getActiveGolem());
 
             FightHandler fight = new FightHandler();
-            fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
-
-
-            // TODO replace switch
-            /*
-            switch (matchLevel) {
-                case EASY_LEVEL -> {
-
-                     * If the user's choice is low, the match level will be 3 ≤ ml ≤ 5.
-
-                    int elements = howManyElements(EASY_LEVEL);
-                    int stones = howManyStones(elements);
-                    int tamas = howManyTamagolems(elements, stones);
-                    int commonStones = howManyCommonStones(tamas, elements, stones);
-
-                    pause(500);
-                    System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
-                    System.out.printf(UsefulStrings.getHowManyElements(), elements);
-                    System.out.printf(UsefulStrings.getHowManyStones(), stones);
-                    pause(500);
-
-                    for (int i = 0; i < tamas; i++) {
-                        String tamaName = "Tamagolem " + i;
-                        TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
-                        t.setName(tamaName);
-                        tamaGolems.add(t);
-                    }
-
-                    tamaGolems1 = tamaGolems;
-                    tamaGolems2 = tamaGolems;
-
-                    //TODO metodo che genera l'equilibrio!!!
-
-                    assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
-
-                    numberOfElementAndStones1 = numberOfElementAndStones;
-                    numberOfElementAndStones2 = numberOfElementAndStones;
-
-
-                    Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
-
-                    start = false;
-
-                }
-
-                case NORMAL_LEVEL -> {
-
-                     * If the user's choice is medium, the match level will be 6 ≤ ml ≤ 8.
-
-
-                    int elements = howManyElements(NORMAL_LEVEL);
-                    int stones = howManyStones(elements);
-                    int tamas = howManyTamagolems(elements, stones);
-                    int commonStones = howManyCommonStones(tamas, elements, stones);
-                    int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
-
-                    pause(500);
-                    System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
-                    System.out.printf(UsefulStrings.getHowManyElements(), elements);
-                    System.out.printf(UsefulStrings.getHowManyStones(), stones);
-                    pause(500);
-
-                    for (int i = 0; i < tamas; i++) {
-                        String tamaName = "Tamagolem" + i;
-                        TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
-                        t.setName(tamaName);
-                        tamaGolems.add(t);
-                    }
-
-
-                    tamaGolems1 = tamaGolems;
-                    tamaGolems2 = tamaGolems;
-
-                    //TODO metodo che genera l'equilibrio!!!
-
-                    assignCommonStones(usedElements, commonStones, numberOfElementAndStones);
-
-                    numberOfElementAndStones1 = numberOfElementAndStones;
-                    numberOfElementAndStones2 = numberOfElementAndStones;
-
-                    Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
-
-                    start = false;
-
-                }
-
-                case HARD_LEVEL -> {
-
-                     * If the user's choice is high, the match level will be 9 ≤ ml ≤ 10.
-
-
-                    int elements = howManyElements(HARD_LEVEL);
-                    int stones = howManyStones(elements);
-                    int tamas = howManyTamagolems(elements, stones);
-                    int commonStones = howManyCommonStones(tamas, elements, stones);
-                    int stonesForEachElement = howManyStonesForEachElement(tamas, elements, stones);
-
-                    pause(500);
-                    System.out.printf(UsefulStrings.getHowManyTamagolems(), tamas);
-                    System.out.printf(UsefulStrings.getHowManyElements(), elements);
-                    System.out.printf(UsefulStrings.getHowManyStones(), stones);
-                    pause(500);
-
-                    for (int i = 0; i < tamas; i++) {
-                        String tamaName = "Tamagolem" + i;
-                        TamaGolem t = new TamaGolem(UsefulStrings.getEnergy(), stones, usedElements, tamaName);
-                        t.setName(tamaName);
-                        tamaGolems.add(t);
-                    }
-
-
-                    tamaGolems1 = tamaGolems;
-                    tamaGolems2 = tamaGolems;
-
-                    //TODO metodo che genera l'equilibrio!!!
-
-                    assignCommonStones(usedElements, stonesForEachElement, numberOfElementAndStones);
-
-                    numberOfElementAndStones1 = numberOfElementAndStones;
-                    numberOfElementAndStones2 = numberOfElementAndStones;
-
-                    Fight fight = new Fight();
-                    fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
-
-                    start = false;
-
-                }
-                default -> throw new IllegalStateException("Unexpected value: " + matchLevel);
-            }
-             */
+            //fight.LetThemFight(tamaGolems1, tamaGolems2, stones, commonStones, usedElements, player1, player2, numberOfElementAndStones1, numberOfElementAndStones2);
         } while (!end);
     }
 
@@ -250,7 +111,7 @@ public class Menu {
                 } while ((player2.getName().equalsIgnoreCase(p1Name)));
             }
         }
-        pause(500);
+        Time.pause(Time.LOW_MILLIS_PAUSE);
     }
 
     /**
@@ -267,19 +128,19 @@ public class Menu {
         int max = 0;
 
         switch (level) {
-            case FightHandler.EASY_LEVEL -> {
-                min = FightHandler.MIN_ELEMENTS;
-                max = FightHandler.MAX_EASY_LEVEL;
+            case FightUtils.EASY_LEVEL -> {
+                min = FightUtils.MIN_ELEMENTS;
+                max = FightUtils.MAX_EASY_LEVEL;
             }
 
-            case FightHandler.NORMAL_LEVEL -> {
-                min = FightHandler.MIN_NORMAL_LEVEL;
-                max = FightHandler.MAX_NORMAL_LEVEL;
+            case FightUtils.NORMAL_LEVEL -> {
+                min = FightUtils.MIN_NORMAL_LEVEL;
+                max = FightUtils.MAX_NORMAL_LEVEL;
             }
 
-            case FightHandler.HARD_LEVEL -> {
-                min = FightHandler.MIN_HARD_LEVEL;
-                max = FightHandler.MAX_ELEMENTS;
+            case FightUtils.HARD_LEVEL -> {
+                min = FightUtils.MIN_HARD_LEVEL;
+                max = FightUtils.MAX_ELEMENTS;
             }
         }
 
@@ -338,29 +199,12 @@ public class Menu {
     }
 
     /**
-     * This methods returns the {@code TamaGolem} golems that will
-     * fight in the match.
-     *
-     * @return tamagolems.
-     */
-    public Stack<TamaGolem> getTamagolems() {
-        return tamaGolems;
-    }
-
-    /**
      * This method returns the elements used during the fight.
      *
      * @return usedElements.
      */
     public ArrayList<TamaElement> getUsedElements() {
         return usedElements;
-    }
-
-    private void pause(int millisPause) {
-        try {
-            Thread.sleep(millisPause);
-        } catch (InterruptedException ignored) {
-        }
     }
 
     public HashMap<TamaElement, Integer> assignCommonStones(ArrayList<TamaElement> usedElements, int stonesForEachElement, HashMap<TamaElement, Integer> numberOfElementAndStones) {
@@ -374,17 +218,24 @@ public class Menu {
         System.out.printf(UsefulStrings.SETTING_ELEMENTS, player.getName());
 
         String e;
-        int choice;
+        int choice = 0;
 
         int availableStones = commonStones;
 
         while (availableStones>0) {
             System.out.println(usedElements);
 
+            boolean contains = false;
             do {
                 e = DataInput.readNotEmptyString(UsefulStrings.CHOOSE_ELEMENT_NAME);
-                choice = DataInput.readfIntWithMaxAndMin(UsefulStrings.SETTING_STONES_NUMBER_FOR_ELEMENT, 0, availableStones);
-            } while (!usedElements.contains(e));
+                String t = getElementFromAbbreviation(usedElements, e);
+                if (t != null) {
+                    contains = true;
+                    e = t;
+                    choice = DataInput.readIntWithMaxAndMin(UsefulStrings.getSettingStonesNumberForElement(e), 0, availableStones);
+                }
+            } while (!usedElements.contains(e) || !contains);
+
 
             int position = usedElements.indexOf(e);
             numberOfElementAndStones.replace(usedElements.get(position), availableStones - choice); //Se non funzia, piango
@@ -407,8 +258,16 @@ public class Menu {
          */
     }
 
+    /*
     public int getTamaGolemsNumber() {
         return tamaGolems.size();
+    }
+     */
+
+    private String getElementFromAbbreviation(ArrayList<TamaElement>elements, String abbreviation) {
+        for (TamaElement t : elements)
+            if (t.containsAbbreviation(abbreviation)) return t.name();
+        return null;
     }
 }
 

@@ -40,7 +40,6 @@ public class DataInput {
 	private static final String ALLOWED_CHARS = "I caratteri ammissibili sono: ";
 	private static final char YES = 'S';
 	private static final char NO = 'N';
-	private static final int LOW_MILLIS_PAUSE = 500;
 
 	public DataInput() {
 	}
@@ -121,27 +120,7 @@ public class DataInput {
 				ended = true;
 			} catch (InputMismatchException var5) {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(LOW_MILLIS_PAUSE);
-				String var4 = reader.next();
-			}
-		} while(!ended);
-
-		return readValue;
-	}
-
-	public static int readfInt(String message) {
-		boolean ended = false;
-		int readValue = 0;
-
-		do {
-			System.out.printf(message);
-
-			try {
-				readValue = reader.nextInt();
-				ended = true;
-			} catch (InputMismatchException var5) {
-				System.out.println(UsefulStrings.getErrorString());
-				pause(LOW_MILLIS_PAUSE);
+				Time.pause(Time.LOW_MILLIS_PAUSE);
 				String var4 = reader.next();
 			}
 		} while(!ended);
@@ -173,7 +152,6 @@ public class DataInput {
 
 		return readValue;
 	}
-
 	public static int readIntWithMaxAndMin(String message, int minimum, int maximum) {
 		boolean ended = false;
 		boolean var4 = false;
@@ -185,27 +163,7 @@ public class DataInput {
 				ended = true;
 			} else {
 				System.out.println(UsefulStrings.getErrorString());
-				pause(LOW_MILLIS_PAUSE);
-			}
-		} while(!ended);
-
-		return readValue;
-	}
-	public static int readfIntWithMaxAndMin(String message, int minimum, int maximum) {
-		boolean ended = false;
-		boolean var4 = false;
-
-		int readValue;
-		do {
-			readValue = readfInt(message);
-			if (readValue >= minimum && readValue <= maximum) {
-				ended = true;
-			} else if (readValue < minimum) {
-				System.out.printf(UsefulStrings.getErrorString());
-				pause(LOW_MILLIS_PAUSE);
-			} else {
-				System.out.println(UsefulStrings.getErrorString());
-				pause(LOW_MILLIS_PAUSE);
+				Time.pause(Time.LOW_MILLIS_PAUSE);
 			}
 		} while(!ended);
 
