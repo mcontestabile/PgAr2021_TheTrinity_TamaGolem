@@ -30,21 +30,53 @@ package it.unibs.fp.the_trinity.utilities;
 public class UsefulStrings {
     public static final String TAMAGOLEM_NAME = "Tamagolem ";
     public static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
-    public static final String SELECT_LEVEL = "\nScegli il livello di difficolta' della partita: \n» Facile (1).\n» Normale (2).\n» Difficile (3).\n";
+    public static final String SELECT_LEVEL = """
 
-    public static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
-    public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
-    public static final String PLAYER_2_SECOND_NAME_REQUEST = "Inserire un nome (diverso da \"%s\") per il Secondo Giocatore:\n";
-    public static final String HOMONYM_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno d'ufficio? (S/N)\n";
+            =================================================
+             Scegli il livello di difficolta' della partita:
+            =================================================
+             » Facile (1)
+             » Normale (2)
+             » Difficile (3)
+            """;
+
+    public static final String PLAYER_1_NAME_REQUEST = """
+            =======================================
+             Inserire il nome del Primo Giocatore:
+            =======================================\n """;
+
+    public static final String PLAYER_2_NAME_REQUEST = """
+            =========================================
+             Inserire il nome del Secondo Giocatore:
+            =========================================\n """;
+
+    public static final String PLAYER_2_SECOND_NAME_REQUEST = """
+            =============================================================
+             Inserire un nome (diverso da \"%s\") per il Secondo Giocatore:
+            =============================================================
+            """;
+    public static final String HOMONYM_MESSAGE = """
+            E' stato inserito lo stesso identificativo per entrambi i giocatori.
+                
+            ========================================================================
+             Vuoi che al Secondo Giocatore venga assegnato un nome d'ufficio? (S/N)
+            ========================================================================
+            """;
     public static final String HOMONYM_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
-    public static final String HOW_MANY_TAMAGOLEMS = "\n •I Tamagolem schierati sono %d.\n";
-    public static final String ONE_TAMAGOLEM = "\nOgni giocatore schiera un Tamagolem.\n";
+    public static final String HOW_MANY_TAMAGOLEMS = "\n •Ogni giocatore schiera %d Tamagolem.\n";
+    public static final String ONE_TAMAGOLEM = "\n •Ogni giocatore schiera un Tamagolem.\n";
     public static final String HOW_MANY_ELEMENTS = " •Sono stati estratti %d elementi.\n";
     public static final String HOW_MANY_STONES = " •Il numero di pietre da assegnare è %d.\n";
 
     public static final String SETTING_ELEMENTS = "\n%s, ora devi scegliere quali pietre dare al tuo Tamagolem. \n Elementi ->";
-    public static final String CHOOSE_ELEMENT_NAME = "\nInserire il nome (o l'iniziale) di un elemento:\n";
-    public static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s:\n";
+
+    public static final String CHOOSE_ELEMENT_NAME = """
+    =================================================
+     Inserire il nome (o l'iniziale) di un elemento:
+    =================================================
+    """;
+
+    //public static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s:\n";
 
     public static final String START_FIGHT_MESSAGE = "\n%s e %s, state per cominciare la battaglia. Inizieremo con l'evocazione dei Tamagolem." +
             "\nLa procedura di evocazione di un Tamagolem è una sottofase che ricorre più volte durante lo scontro. In generale, l’evocazione interrompe lo" +
@@ -58,12 +90,38 @@ public class UsefulStrings {
             "\n3. Il Tamagolem viene schierato in campo, l’evocazione termina e lo scontro può procedere.\n";
 
     public static final String WELCOME_MESSAGE =
-
             """
-
-                      █▄▄ █▀▀ █▄ █ █ █ █▀▀ █▄ █ █ █ ▀█▀ █▀█   █ █▄ █
-                      █▄█ ██▄ █ ▀█ ▀▄▀ ██▄ █ ▀█ █▄█  █  █▄█   █ █ ▀█
+                    
+                    +===============================================================================================================================+
+                    |{>/-------------------------------------------------------------------------------------------------------------------------\\<}|
+                    | :|     █▄▄ █▀▀ █▄ █ █ █ █▀▀ █▄ █ █ █ ▀█▀ █▀█   █ █▄ █                                                                      |: |
+                    |: |     █▄█ ██▄ █ ▀█ ▀▄▀ ██▄ █ ▀█ █▄█  █  █▄█   █ █ ▀█                                                                      | :|
+                    | :|                                                                                                                         |: |
+                    |: |      ███        ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████    ▄██████▄   ▄██████▄   ▄█          ▄████████   ▄▄▄▄███▄▄▄▄     | :|
+                    | :|  ▀█████████▄   ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███   ███    ███ ███    ███ ███         ███    ███ ▄██▀▀▀███▀▀▀██▄   |: |
+                    |: |     ▀███▀▀██   ███    ███ ███   ███   ███   ███    ███   ███    █▀  ███    ███ ███         ███    █▀  ███   ███   ███   | :|
+                    | :|      ███   ▀   ███    ███ ███   ███   ███   ███    ███  ▄███        ███    ███ ███        ▄███▄▄▄     ███   ███   ███   |: |
+                    |: |      ███     ▀███████████ ███   ███   ███ ▀███████████ ▀▀███ ████▄  ███    ███ ███       ▀▀███▀▀▀     ███   ███   ███   | :|
+                    | :|      ███       ███    ███ ███   ███   ███   ███    ███   ███    ███ ███    ███ ███         ███    █▄  ███   ███   ███   |: |
+                    |: |      ███       ███    ███ ███   ███   ███   ███    ███   ███    ███ ███    ███ ███▌    ▄   ███    ███ ███   ███   ███   | :|
+                    | :|     ▄████▀     ███    █▀   ▀█   ███   █▀    ███    █▀    ████████▀   ▀██████▀  █████▄▄██   ██████████  ▀█   ███   █▀    |: |
+                    |{>\\-------------------------------------------------------------------------------------------------------------------------/<}|
+                    +===============================================================================================================================+
                     """;
+
+             /*
+             """
+             █▄▄ █▀▀ █▄ █ █ █ █▀▀ █▄ █ █ █ ▀█▀ █▀█   █ █▄ █
+             █▄█ ██▄ █ ▀█ ▀▄▀ ██▄ █ ▀█ █▄█  █  █▄█   █ █ ▀█
+             
+               ███        ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████    ▄██████▄   ▄██████▄   ▄█          ▄████████   ▄▄▄▄███▄▄▄▄  
+           ▀█████████▄   ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███   ███    ███ ███    ███ ███         ███    ███ ▄██▀▀▀███▀▀▀██▄
+              ▀███▀▀██   ███    ███ ███   ███   ███   ███    ███   ███    █▀  ███    ███ ███         ███    █▀  ███   ███   ███
+               ███   ▀   ███    ███ ███   ███   ███   ███    ███  ▄███        ███    ███ ███        ▄███▄▄▄     ███   ███   ███
+               ███     ▀███████████ ███   ███   ███ ▀███████████ ▀▀███ ████▄  ███    ███ ███       ▀▀███▀▀▀     ███   ███   ███
+               ███       ███    ███ ███   ███   ███   ███    ███   ███    ███ ███    ███ ███         ███    █▄  ███   ███   ███
+               ███       ███    ███ ███   ███   ███   ███    ███   ███    ███ ███    ███ ███▌    ▄   ███    ███ ███   ███   ███
+              ▄████▀     ███    █▀   ▀█   ███   █▀    ███    █▀    ████████▀   ▀██████▀  █████▄▄██   ██████████  ▀█   ███   █▀ """; */
 
                     /*"  _____                         _          _       \n" +
                     " | __  |___ ___ _ _ ___ ___ _ _| |_ ___   |_|___   \n" +
@@ -83,29 +141,13 @@ public class UsefulStrings {
         ██████╦╝███████╗██║░╚███║░░╚██╔╝░░███████╗██║░╚███║╚██████╔╝░░░██║░░░╚█████╔╝       ██║██║░╚███║
         ╚═════╝░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░░╚════╝░       ╚═╝╚═╝░░╚══╝*/
 
-
-    public static final String TITLE =
-
-            """
-                        ███        ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████    ▄██████▄   ▄██████▄   ▄█          ▄████████   ▄▄▄▄███▄▄▄▄  \s
-                    ▀█████████▄   ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███   ███    ███ ███    ███ ███         ███    ███ ▄██▀▀▀███▀▀▀██▄\s
-                       ▀███▀▀██   ███    ███ ███   ███   ███   ███    ███   ███    █▀  ███    ███ ███         ███    █▀  ███   ███   ███\s
-                        ███   ▀   ███    ███ ███   ███   ███   ███    ███  ▄███        ███    ███ ███        ▄███▄▄▄     ███   ███   ███\s
-                        ███     ▀███████████ ███   ███   ███ ▀███████████ ▀▀███ ████▄  ███    ███ ███       ▀▀███▀▀▀     ███   ███   ███\s
-                        ███       ███    ███ ███   ███   ███   ███    ███   ███    ███ ███    ███ ███         ███    █▄  ███   ███   ███\s
-                        ███       ███    ███ ███   ███   ███   ███    ███   ███    ███ ███    ███ ███▌    ▄   ███    ███ ███   ███   ███\s
-                       ▄████▀     ███    █▀   ▀█   ███   █▀    ███    █▀    ████████▀   ▀██████▀  █████▄▄██   ██████████  ▀█   ███   █▀ \s
-                                                                                                  ▀                                     \s
-                    """;
-
-                    /*" ______   ____  ___ ___   ____   ____   ___   _        ___  ___ ___   \n" +
+                  /*" ______   ____  ___ ___   ____   ____   ___   _        ___  ___ ___   \n" +
                     "|      | /    ||   |   | /    | /    | /   \\ | |      /  _]|   |   | \n" +
                     "|      ||  o  || _   _ ||  o  ||   __||     || |     /  [_ | _   _ |  \n" +
                     "|_|  |_||     ||  \\_/  ||     ||  |  ||  O  || |___ |    _]|  \\_/  |\n" +
                     "  |  |  |  _  ||   |   ||  _  ||  |_ ||     ||     ||   [_ |   |   |  \n" +
                     "  |  |  |  |  ||   |   ||  |  ||     ||     ||     ||     ||   |   |  \n" +
                     "  |__|  |__|__||___|___||__|__||___,_| \\___/ |_____||_____||___|___| \n";*/
-
 
     private static final String[] HOMONYMY_NAMES = {
             "Franco",
@@ -186,7 +228,7 @@ public class UsefulStrings {
         return String.format(START_FIGHT_MESSAGE, player1, player2, energy, nGolems, energy, nStones);
     }
 
-    public static String getSettingStonesNumberForElement(String elementName) {
+    /*public static String getSettingStonesNumberForElement(String elementName) {
         return String.format(SETTING_STONES_NUMBER_FOR_ELEMENT, elementName);
-    }
+    }*/
 }

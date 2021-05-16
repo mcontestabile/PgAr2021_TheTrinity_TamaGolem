@@ -42,21 +42,24 @@ public class Menu {
 
     public void menu() {
         System.out.println(UsefulStrings.WELCOME_MESSAGE);
-        System.out.println(UsefulStrings.TITLE);
-        Time.pause(Time.HIGH_MILLIS_PAUSE);
+        Time.pause(Time.MEDIUM_MILLIS_PAUSE);
 
         setPlayersNames();
         int matchLevel = DataInput.readIntWithMaxAndMin(UsefulStrings.SELECT_LEVEL, FightUtils.EASY_LEVEL, FightUtils.HARD_LEVEL);
         FightHandler fightHandler = new FightHandler(matchLevel, player1, player2);
-
         Equilibrium equilibrium = new Equilibrium(FightUtils.ENERGY, fightHandler.getElements());
 
+        if (fightHandler.getTamas() == 1)
+            System.out.print(UsefulStrings.ONE_TAMAGOLEM);
+        else
+            System.out.printf(UsefulStrings.HOW_MANY_TAMAGOLEMS, fightHandler.getTamas());
         Time.pause(Time.LOW_MILLIS_PAUSE);
-        System.out.printf(UsefulStrings.HOW_MANY_TAMAGOLEMS, fightHandler.getTamas());
         System.out.printf(UsefulStrings.HOW_MANY_ELEMENTS, fightHandler.getElements());
+        Time.pause(Time.LOW_MILLIS_PAUSE);
         System.out.printf(UsefulStrings.HOW_MANY_STONES, fightHandler.getGolemStones());
         Time.pause(Time.LOW_MILLIS_PAUSE);
         System.out.println(UsefulStrings.getStartFightMessage(player1.getName(), player2.getName(), fightHandler.getTamas(), FightUtils.ENERGY, fightHandler.getGolemStones()));
+        Time.pause(Time.HIGH_MILLIS_PAUSE);
 
         // TODO to remove
         System.out.println(fightHandler.getUsedElements());
@@ -94,7 +97,6 @@ public class Menu {
                 } while ((player2.getName().equalsIgnoreCase(p1Name)));
             }
         }
-        Time.pause(Time.LOW_MILLIS_PAUSE);
     }
 
     /**
@@ -141,11 +143,9 @@ public class Menu {
         }
     }
      */
-
-    private String getElementFromAbbreviation(ArrayList<TamaElement>elements, String abbreviation) {
+    private String getElementFromAbbreviation(ArrayList<TamaElement> elements, String abbreviation) {
         for (TamaElement t : elements)
             if (t.containsAbbreviation(abbreviation)) return t.name();
         return null;
     }
 }
-
