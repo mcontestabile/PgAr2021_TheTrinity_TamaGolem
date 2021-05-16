@@ -92,6 +92,7 @@ public class Menu {
                             System.out.println(UsefulStrings.getTamagolemLife(golemBName, playerB.getName(), newLife, FightUtils.ENERGY));
                     } else
                         System.out.println(UsefulStrings.NULL_INTERACTION);
+                    Time.pause(Time.HIGH_MILLIS_PAUSE);
                 } while (fightHandler.getPlayerA().isActiveGolemAlive() && fightHandler.getPlayerB().isActiveGolemAlive());
                 System.out.printf(UsefulStrings.getDeathMessage(), fightHandler.getPlayerA().isActiveGolemAlive() ? golemBName : golemAName);
                 System.out.println(UsefulStrings.getCondolenceMessage());
