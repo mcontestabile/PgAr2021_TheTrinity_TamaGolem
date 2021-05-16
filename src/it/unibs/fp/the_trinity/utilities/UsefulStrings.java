@@ -28,33 +28,36 @@ package it.unibs.fp.the_trinity.utilities;
  * @author Iannella Simone
  */
 public class UsefulStrings {
+    public static final String FRAME = "‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗‗";
+    public static final String DOUBLE_LINE = FRAME + "\n" + FRAME + "\n";
+
     public static final String TAMAGOLEM_NAME = "Tamagolem ";
-    public static final String STRONGER_ELEMENT = "L'elemento %s infligge un danno %d.\n";
+    public static final String STRONGER_ELEMENT = "Il tamagolem %s del player %s L'elemento %s infligge un danno %d.\n";
     public static final String SELECT_LEVEL = "\nScegli il livello di difficolta' della partita: \n» Facile (1).\n» Normale (2).\n» Difficile (3).\n";
 
-    public static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
-    public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
-    public static final String PLAYER_2_SECOND_NAME_REQUEST = "Inserire un nome (diverso da \"%s\") per il Secondo Giocatore:\n";
-    public static final String HOMONYM_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
+    public static final String PLAYER_1_NAME_REQUEST = "\nInserire il nome del Primo Giocatore: ";
+    public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore: ";
+    public static final String PLAYER_2_SECOND_NAME_REQUEST = "Inserire un nome (diverso da \"%s\") per il Secondo Giocatore: ";
+    public static final String HOMONYM_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N) ";
     public static final String HOMONYM_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
     public static final String HOW_MANY_TAMAGOLEMS = "\n •I Tamagolem schierati sono %d.\n";
     public static final String ONE_TAMAGOLEM = "\nOgni giocatore schiera un Tamagolem.\n";
     public static final String HOW_MANY_ELEMENTS = " •Sono stati estratti %d elementi.\n";
     public static final String HOW_MANY_STONES = " •Il numero di pietre da assegnare è %d.\n";
 
-    public static final String SETTING_ELEMENTS = "\n%s, ora devi scegliere quali pietre dare al tuo Tamagolem. \n Elementi ->";
-    public static final String CHOOSE_ELEMENT_NAME = "\nInserire il nome (o l'iniziale) di un elemento:\n";
-    public static final String SETTING_STONES_NUMBER_FOR_ELEMENT = "Inserire quante pietre assegnare all'elemento %s:\n";
+    public static final String SETTING_ELEMENTS = "\n%s, ora devi scegliere quali pietre dare al tuo Tamagolem. \n Elementi ->\n";
+    public static final String CHOOSE_ELEMENT_NAME = "\nInserire il nome (o l'iniziale) di un elemento: ";
 
     public static final String START_FIGHT_MESSAGE = "\n%s e %s, state per cominciare la battaglia. Inizieremo con l'evocazione dei Tamagolem." +
-            "\nLa procedura di evocazione di un Tamagolem è una sottofase che ricorre più volte durante lo scontro. In generale, l’evocazione interrompe lo" +
-            "\nscontro ogni qualvolta sia necessario schierare in campo un nuovo Tamagolem da parte di un giocatore, evento che si verifica quando" +
-            "\nil Tamagolem precedente del giocatore è eliminato dallo scontro, ovvero perde tutti i punti vita: %d." +
-            "\nL’evocazione si verifica solo se il giocatore ha ancora Tamagolem disponibili, ossia il numero di Tamagolem eliminati è strettamente inferiore a %d." +
-            "\nIn caso affermativo:" +
-            "\n1. Un nuovo Tamagolem viene selezionato per la fase dell’evocazione; la sua vita viene inizializzata al valore massimo di %d." +
-            "\n2. Il giocatore seleziona esattamente %d pietre degli elementi da far mangiare al Tamagolem, fra quelle a sua disposizione." +
-            "\n    Le pietre selezionate verranno scagliate ciclicamente finché il Tamagolem resterà in vita." +
+            "\nLa procedura di evocazione di un Tamagolem è una sottofase che ricorre più volte durante lo scontro. In generale," +
+            "\nl’evocazione interrompe lo nscontro ogni qualvolta sia necessario schierare in campo un nuovo Tamagolem da parte" +
+            "\ndi un giocatore, evento che si verifica quando il Tamagolem precedente del giocatore è eliminato dallo scontro," +
+            "\novvero perde tutti i punti vita: %d." +
+            "\nL’evocazione si verifica solo se il giocatore ha ancora Tamagolem disponibili, ossia il numero di Tamagolem" +
+            "\neliminati è strettamente inferiore a %d. In caso affermativo:" +
+            "\n1. Un nuovo Tamagolem viene selezionato per la fase dell’evocazione; la sua vita viene inizializzata a %d." +
+            "\n2. Il giocatore seleziona esattamente %d pietre degli elementi da far mangiare al Tamagolem, fra quelle a sua" +
+            "\n\tdisposizione. Le pietre selezionate verranno scagliate ciclicamente finché il Tamagolem resterà in vita." +
             "\n3. Il Tamagolem viene schierato in campo, l’evocazione termina e lo scontro può procedere.\n";
 
     public static final String WELCOME_MESSAGE =
@@ -184,9 +187,5 @@ public class UsefulStrings {
 
     public static String getStartFightMessage(String player1, String player2, int nGolems, int energy, int nStones) {
         return String.format(START_FIGHT_MESSAGE, player1, player2, energy, nGolems, energy, nStones);
-    }
-
-    public static String getSettingStonesNumberForElement(String elementName) {
-        return String.format(SETTING_STONES_NUMBER_FOR_ELEMENT, elementName);
     }
 }

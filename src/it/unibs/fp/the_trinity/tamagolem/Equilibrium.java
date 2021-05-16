@@ -263,7 +263,7 @@ public class Equilibrium {
     }
 
     // TODO create getDamage method
-    public int calculateInteraction(TamaElement a, TamaElement b) {
-        return matrix[a.ordinal()][b.getIndex()];
+    public int calculateInteraction(int indexA, int indexB) {
+        return matrix[indexA][indexB];
     }
 }

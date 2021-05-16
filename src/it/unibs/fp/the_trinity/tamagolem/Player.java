@@ -25,13 +25,15 @@
 package it.unibs.fp.the_trinity.tamagolem;
 
 import it.unibs.fp.the_trinity.utilities.UsefulStrings;
-import java.util.Stack;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 /**
  * @author Iannella Simone
  */
 public class Player {
-    private Stack<TamaGolem> team = new Stack<>();
+    private ArrayDeque<TamaGolem> team = new ArrayDeque<>();
     private String name;
 
     public Player(String name) {
@@ -43,7 +45,7 @@ public class Player {
     }
 
     public void addTamaGolem(TamaGolem golem) {
-        team.push(golem);
+        team.add(golem);
     }
 
     /**
@@ -52,7 +54,7 @@ public class Player {
      *
      * @return tamagolems.
      */
-    public Stack<TamaGolem> getTeam() {
+    public ArrayDeque<TamaGolem> getTeam() {
         return team;
     }
 
@@ -61,7 +63,14 @@ public class Player {
     }
 
     public TamaGolem getActiveGolem() {
-        return team.pop();
+        TamaGolem g = team.peekFirst();
+        if (g != null && !g.isAlive())
+            team.removeFirst();
+        return team.peekFirst();
+    }
+
+    public boolean isActiveGolemAlive() {
+        return team.peekFirst() != null && team.peekFirst().isAlive();
     }
 
     public void setName(String name) {

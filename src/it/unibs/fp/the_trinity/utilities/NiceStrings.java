@@ -20,7 +20,7 @@ public class NiceStrings {
 		return res.toString();
 	}
 
-	public static String incolumn(String s, int width) {
+	public static String inColumn(String s, int width) {
 		StringBuffer res = new StringBuffer(width);
 		int charValueWeHaveToPrint = Math.min(width, s.length());
 		res.append(s, 0, charValueWeHaveToPrint);

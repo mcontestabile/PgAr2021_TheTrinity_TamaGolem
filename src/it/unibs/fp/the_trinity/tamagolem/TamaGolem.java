@@ -24,32 +24,36 @@
  */
 package it.unibs.fp.the_trinity.tamagolem;
 
+import it.unibs.fp.the_trinity.utilities.CircularList;
+
 import java.util.ArrayList;
 
-public class TamaGolem {
+public class TamaGolem implements Cloneable {
     private int energy;
-    private int stones;
-    // TODO should use a Circular List
-    private ArrayList<TamaElement> elements;
+    private CircularList<TamaElement> elements;
     private String name;
+    private boolean alive;
 
-    public TamaGolem(int energy, int stones, ArrayList<TamaElement> elements, String name) {
+    public TamaGolem(int energy, String name) {
         this.energy = energy;
-        this.stones = stones;
-        this.elements = elements;
         this.name = name;
+        alive = true;
+    }
+
+    public void addElements(CircularList<TamaElement> elements) {
+        this.elements = elements;
     }
 
     public int getEnergy() {
         return energy;
     }
 
-    public int getStones() {
-        return stones;
-    }
-
     public ArrayList<TamaElement> getElements() {
         return elements;
+    }
+
+    public TamaElement nextElement() {
+        return elements.getNext();
     }
 
     public String getName() {
@@ -60,5 +64,23 @@ public class TamaGolem {
         this.name = name;
     }
 
-    // TODO getElement method, that change position of Circular List
+    /**
+     * @param damage
+     * @return new life of golem
+     */
+    public int damageGolem(int damage) {
+        energy -= damage;
+        if (energy <= 0)
+            alive = false;
+        return energy;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

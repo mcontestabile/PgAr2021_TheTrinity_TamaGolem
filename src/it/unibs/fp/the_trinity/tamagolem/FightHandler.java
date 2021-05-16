@@ -35,12 +35,13 @@ public class FightHandler {
     private int golemStones;
     private Player playerA;
     private Player playerB;
+    // TODO si puo' rimuovere used elements e rimpiazzarlo con numberOfElements
     private ArrayList<TamaElement> usedElements;
     private HashMap<TamaElement, Integer> numberOfElementAndStones;
 
     public FightHandler(int matchLevel, Player playerA, Player playerB) {
         this.playerA = playerA;
-        this.playerA = playerB;
+        this.playerB = playerB;
         elements = FightUtils.howManyElements(matchLevel);
         golemStones = FightUtils.howManyStones(elements);
         tamas = FightUtils.howManyTamagolems(elements, golemStones);
@@ -50,17 +51,19 @@ public class FightHandler {
         addTamaGolems();
     }
 
-    public void LetThemFight () {
+    public void letThemFight () {
         // invoco la funzione equilibrio con gli active golem
     }
 
     private void addTamaGolems() {
         for (int i = 0; i < tamas; i++) {
             String tamaName = UsefulStrings.TAMAGOLEM_NAME + i;
-            TamaGolem t = new TamaGolem(FightUtils.ENERGY, golemStones, usedElements, tamaName);
+            TamaGolem t = new TamaGolem(FightUtils.ENERGY, tamaName);
             t.setName(tamaName);
-            playerA.addTamaGolem(t);
-            playerA.addTamaGolem(t);
+            try {
+                playerA.addTamaGolem((TamaGolem) t.clone());
+                playerB.addTamaGolem((TamaGolem) t.clone());
+            } catch (CloneNotSupportedException ignored) {}
         }
     }
 
@@ -94,5 +97,13 @@ public class FightHandler {
 
     public HashMap<TamaElement, Integer> getNumberOfElementAndStones() {
         return numberOfElementAndStones;
+    }
+
+    public int remainingStonesForElement(TamaElement element) {
+        return numberOfElementAndStones.get(element);
+    }
+
+    public void decreaseStonesOfElement(TamaElement element) {
+        numberOfElementAndStones.replace(element, (numberOfElementAndStones.get(element)-1));
     }
 }

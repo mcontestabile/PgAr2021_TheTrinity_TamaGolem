@@ -24,38 +24,42 @@
  */
 package it.unibs.fp.the_trinity.tamagolem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public enum TamaElement {
-    ASFALTO("A", 0),
-    SINDONE_DI_TORINO("S", 1),
-    HENRICOBACTER("H", 2),
-    CADREGA("C", 3),
-    MEMORY_FOAM("M", 4),
-    LIQUORE_DI_ZEKE("L", 5),
-    PAPILLOMA("P", 6),
-    ERBA("E", 7),
-    TAPPETO_DI_KEYSHAN("T", 8),
-    DOGECOIN("D", 8);
+    ASFALTO("A"),
+    SINDONE_DI_TORINO("S"),
+    HENRICOBACTER("H"),
+    CADREGA("C"),
+    MEMORY_FOAM("M"),
+    LIQUORE_DI_ZEKE("L"),
+    PAPILLOMA("P"),
+    ERBA("E"),
+    TAPPETO_DI_KEYSHAN("T"),
+    DOGECOIN("D");
 
     private String abbreviation;
-    private int index;
 
-    TamaElement(String abbreviation, int index) {
+    TamaElement(String abbreviation) {
         this.abbreviation = abbreviation;
-        this.index = index;
     }
 
-
-    public boolean containsAbbreviation(String abbreviation) {
-        for (TamaElement t : TamaElement.values())
-            if (t.abbreviation.equals(abbreviation.toUpperCase())) return true;
-        return false;
+    public boolean containsAbbreviation(String value) {
+        return abbreviation.equals(value.toUpperCase());
     }
 
     public String getAbbreviation() {
         return abbreviation;
     }
 
-    public int getIndex() {
-        return index;
+    public static boolean containsElement(String value) {
+        return Arrays.stream(TamaElement.class.getEnumConstants()).anyMatch(e -> e.name().equals(value));
+    }
+
+    public static TamaElement getElementFromAbbreviation(ArrayList<TamaElement> elements, String abbreviation) {
+        for (TamaElement t : elements)
+            if (t.containsAbbreviation(abbreviation)) return t;
+        return null;
     }
 }
