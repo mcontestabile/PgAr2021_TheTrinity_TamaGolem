@@ -34,7 +34,7 @@ public class UsefulStrings {
     public static final String PLAYER_1_NAME_REQUEST = "Inserire il nome del Primo Giocatore:\n";
     public static final String PLAYER_2_NAME_REQUEST = "Inserire il nome del Secondo Giocatore:\n";
     public static final String PLAYER_2_SECOND_NAME_REQUEST = "Inserire un nome (diverso da \"%s\") per il Secondo Giocatore:\n";
-    public static final String HOMONYM_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno automaticamente? (S/N)\n";
+    public static final String HOMONYM_MESSAGE = "E' stato inserito lo stesso nome per entrambi i giocatori. \nVuoi che al Secondo Giocatore ne venga assegnato uno d'ufficio? (S/N)\n";
     public static final String HOMONYM_FIXED_MESSAGE = "Congratulazioni Giocatore 2! \nIl tuo nuovo nome ora è \"";
     public static final String HOW_MANY_TAMAGOLEMS = "\n •I Tamagolem schierati sono %d.\n";
     public static final String ONE_TAMAGOLEM = "\nOgni giocatore schiera un Tamagolem.\n";
