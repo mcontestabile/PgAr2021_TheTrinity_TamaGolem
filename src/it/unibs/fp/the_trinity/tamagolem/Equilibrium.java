@@ -84,7 +84,7 @@ public class Equilibrium {
      */
     private void generateMatrix() {
         matrix = new int[nElements][nElements];
-        int rowSum, value=0, min, max, remainingCols;
+        int rowSum, value=0, min, max, remainingCols, e = 0;
 
         for (int r = 0; r < (nElements-1); r++) {
             rowSum = 0;
@@ -114,7 +114,7 @@ public class Equilibrium {
                 }
 
                 else if (c == (nElements - 1)) {
-                    int e = 0;
+                    e = 0;
                     while (rowSum == 0 || rowSum < -maxPower || rowSum > maxPower) {
                         e++;
                         // If the last cell of the row will take an illegal value,
@@ -127,15 +127,8 @@ public class Equilibrium {
                             if (rowSum >= -maxPower && rowSum <= maxPower && rowSum != 0) break;
                         }
 
-                        // TODO remove that control
-                        if (e == 100000) {
-                            System.out.println("ERRORE WHILE");
-                            for (int ro = 0; ro < nElements; ro++) {
-                                for (int co = 0; co < nElements; co++) {
-                                    System.out.format("%3d\t", matrix[ro][co]);
-                                }
-                                System.out.println();
-                            }
+                        if (e == 3) {
+                            e = -1;
                             break;
                         }
                     }
@@ -149,15 +142,9 @@ public class Equilibrium {
 
                 rowSum += matrix[r][c];
 
-                // TODO remove that control
-                if (matrix[r][c] == 0 || matrix[r][c] < -maxPower || matrix[r][c] > maxPower) {
-                    System.out.println("RIGENERO");
-                    for (int ro = 0; ro < nElements; ro++) {
-                        for (int co = 0; co < nElements; co++) {
-                            System.out.format("%3d\t", matrix[ro][co]);
-                        }
-                        System.out.println();
-                    }
+                if (e == -1) {
+                    generateMatrix();
+                    break;
                 }
 
             }

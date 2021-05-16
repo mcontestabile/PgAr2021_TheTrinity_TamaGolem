@@ -43,7 +43,13 @@ public class FightUtils {
         return  (int) Math.floor(Math.random() * (max - min +1) + min);
     }
 
-    //TODO comments
+    /**
+     * This method allows the most equilibrate fight we can aim, because, if it is called, it allows the random generation of the elements, so that
+     * 1.Every time the players decide to start a new fight, the elements and the equilibrium is always different.
+     * 2.Every fight is different from the others.
+     * @param elementsToExtract number of elements to extract
+     * @return elements that are all the elements involved in the current fight.
+     */
     public static ArrayList<TamaElement> generateRandomElements(int elementsToExtract) {
         ArrayList<TamaElement> elements = new ArrayList<>();
         List<TamaElement> elem = Arrays.asList(TamaElement.values());
@@ -98,7 +104,12 @@ public class FightUtils {
         return (int) (Math.ceil((2.0 * tamagolems * stones) / elements));
     }
 
-    // TODO comments
+    /**
+     * This method sets for each stone, that is represented by a single element, the number of available stones for the player in the entire fight.
+     * @param usedElements generated elements of match
+     * @param stonesForEachElement number of stones for each element
+     * @return numberOfElementAndStones.
+     */
     public static HashMap<TamaElement, Integer> generateElementAndStonesMap(ArrayList<TamaElement> usedElements, int stonesForEachElement) {
         HashMap<TamaElement, Integer> numberOfElementAndStones = new HashMap<>();
         for (TamaElement e : usedElements)

@@ -35,7 +35,6 @@ public class FightHandler {
     private int golemStones;
     private Player playerA;
     private Player playerB;
-    // TODO si puo' rimuovere used elements e rimpiazzarlo con numberOfElements
     private ArrayList<TamaElement> usedElements;
     private HashMap<TamaElement, Integer> numberOfElementAndStones;
 
@@ -49,10 +48,6 @@ public class FightHandler {
         usedElements = FightUtils.generateRandomElements(elements);
         numberOfElementAndStones = FightUtils.generateElementAndStonesMap(usedElements, FightUtils.howManyStonesForEachElement(tamas, elements, golemStones));
         addTamaGolems();
-    }
-
-    public void letThemFight () {
-        // invoco la funzione equilibrio con gli active golem
     }
 
     private void addTamaGolems() {

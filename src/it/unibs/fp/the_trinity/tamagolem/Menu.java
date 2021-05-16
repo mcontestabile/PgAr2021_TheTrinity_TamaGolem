@@ -30,7 +30,7 @@ import it.unibs.fp.the_trinity.utilities.Time;
 import it.unibs.fp.the_trinity.utilities.UsefulStrings;
 
 /**
- * The {@code Menu} class contains methods to ...
+ * The {@code Menu} class.
  *
  * @author Contestabile Martina
  * @author Iannella Simone
@@ -41,10 +41,14 @@ public class Menu {
 
     public void menu() {
         int interaction;
-        TamaElement a;
-        TamaElement b;
+        int newLife = 0;
+        TamaElement elementA;
+        TamaElement elementB;
+        String golemAName;
+        String golemBName;
+        String winner;
+        char answer;
         System.out.println(UsefulStrings.WELCOME_MESSAGE);
-        System.out.println(UsefulStrings.TITLE);
         System.out.println(UsefulStrings.DOUBLE_LINE);
         Time.pause(Time.HIGH_MILLIS_PAUSE);
         boolean end = false;
@@ -70,32 +74,39 @@ public class Menu {
                 fightHandler.getPlayerA().getActiveGolem().addElements(chooseGolemStones(fightHandler, playerA));
                 fightHandler.getPlayerB().getActiveGolem().addElements(chooseGolemStones(fightHandler, playerB));
                 do {
-                    a = fightHandler.getPlayerA().getActiveGolem().nextElement();
-                    b = fightHandler.getPlayerB().getActiveGolem().nextElement();
-                    interaction = equilibrium.calculateInteraction(fightHandler.getUsedElements().indexOf(a), fightHandler.getUsedElements().indexOf(b));
-                    System.out.println(a.toString() + " VS " + b.toString());
-                    System.out.println(interaction);
-                    if (interaction < 0)
-                        System.out.println("New life of golem A " + fightHandler.getPlayerA().getActiveGolem().damageGolem(-interaction));
-                    else if (interaction > 0)
-                        System.out.println("New life of golem B " + fightHandler.getPlayerB().getActiveGolem().damageGolem(interaction));
-
-                    ///fightHandler.letThemFight();
-
-                    // ✓ riempio le liste di elementi dei due golem attivi dei player
-                    // ✓ "invoco" un golem da ogni player
-                    // ✓ eseguo la funzione di equilibrium per calcolare i danni
-                    // ✓ controllo se i golem sono ancora vivi, in tal caso passo al secondo turno
-                    // ✓ se uno dei due golem e' morto, controllo se ci sono ancora golem disponibili
-                    // ✓ in caso affermativo chiamo nuovamente il metodo per scegliere le pietre
-                    // se un player ha finito i golem la partita e' finita e decreto il vincitore
-                    // passo al turno successivo
-                    // chiedo se vogliono iniziare una nuova partita
+                    golemAName = playerA.getActiveGolem().getName();
+                    golemBName = playerB.getActiveGolem().getName();
+                    elementA = fightHandler.getPlayerA().getActiveGolem().nextElement();
+                    elementB = fightHandler.getPlayerB().getActiveGolem().nextElement();
+                    interaction = equilibrium.calculateInteraction(fightHandler.getUsedElements().indexOf(elementA), fightHandler.getUsedElements().indexOf(elementB));
+                    System.out.println(UsefulStrings.FRAME + "\n" + UsefulStrings.getElementsVs(elementA.toString(), elementB.toString()));
+                    if (interaction < 0) {
+                        System.out.println(UsefulStrings.getTamagolemDamage(playerB.getName(), -interaction, playerA.getName()));
+                        newLife = fightHandler.getPlayerA().getActiveGolem().damageGolem(-interaction);
+                        if (newLife > 0)
+                            System.out.println(UsefulStrings.getTamagolemLife(golemAName, playerA.getName(), newLife, FightUtils.ENERGY));
+                    } else if (interaction > 0) {
+                        System.out.println(UsefulStrings.getTamagolemDamage(playerA.getName(), interaction, playerB.getName()));
+                        newLife = fightHandler.getPlayerB().getActiveGolem().damageGolem(interaction);
+                        if (newLife > 0)
+                            System.out.println(UsefulStrings.getTamagolemLife(golemBName, playerB.getName(), newLife, FightUtils.ENERGY));
+                    } else
+                        System.out.println(UsefulStrings.NULL_INTERACTION);
                 } while (fightHandler.getPlayerA().isActiveGolemAlive() && fightHandler.getPlayerB().isActiveGolemAlive());
+                System.out.printf(UsefulStrings.getDeathMessage(), fightHandler.getPlayerA().isActiveGolemAlive() ? golemBName : golemAName);
+                System.out.println(UsefulStrings.getCondolenceMessage());
             } while (fightHandler.getPlayerA().getActiveGolem() != null && fightHandler.getPlayerB().getActiveGolem() != null);
-            // stampo il vincitore
-            // chiedo se vuole iniziare una nuova partita
+            if (fightHandler.getPlayerA().getActiveGolem() != null)
+                winner = fightHandler.getPlayerA().getName();
+            else
+                winner = fightHandler.getPlayerB().getName();
+            System.out.println(UsefulStrings.getWinner(winner));
+            answer = DataInput.readChar(UsefulStrings.END_QUESTION);
+            if (answer != 'S' && answer != 's')
+                end = true;
         } while (!end);
+        System.out.println(UsefulStrings.DOUBLE_LINE);
+        System.out.println(UsefulStrings.getGoodbyeString());
     }
 
     // TODO add comments
@@ -145,22 +156,28 @@ public class Menu {
             for (TamaElement e : fightHandler.getNumberOfElementAndStones().keySet())
                 if (fightHandler.remainingStonesForElement(e) > 0)
                     System.out.println("-" + e.toString());
-
-            boolean contains = false;
+            System.out.println();
+            boolean error = false;
             do {
+                element = null;
+                if (error)
+                    System.out.println(UsefulStrings.getErrorString());
                 choice = DataInput.readNotEmptyString(UsefulStrings.CHOOSE_ELEMENT_NAME).toUpperCase();
                 TamaElement t = TamaElement.getElementFromAbbreviation(fightHandler.getUsedElements(), choice);
 
                 if (t != null) {
+                    if (fightHandler.remainingStonesForElement(t) <= 0)
+                        error = true;
+                    else
+                        element = t;
+                } else if (TamaElement.containsElement(choice) && fightHandler.getUsedElements().contains(TamaElement.valueOf(choice))) {
+                    element = TamaElement.valueOf(choice);
+                } else
+                    error = true;
 
-                    contains = true;
-                    element = t;
-                    if (fightHandler.remainingStonesForElement(element) <= 0)
-                        element = null;
-                }
-            } while (((!TamaElement.containsElement(choice) || !fightHandler.getUsedElements().contains(TamaElement.valueOf(choice))) && !contains));
+            } while (element == null);
 
-            chosenStones.add(element == null ? TamaElement.valueOf(choice) : element);
+            chosenStones.add(element);
             fightHandler.decreaseStonesOfElement(element);
 
             golemStones--;

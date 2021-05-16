@@ -65,7 +65,7 @@ public class TamaGolem implements Cloneable {
     }
 
     /**
-     * @param damage
+     * @param damage inflicted
      * @return new life of golem
      */
     public int damageGolem(int damage) {

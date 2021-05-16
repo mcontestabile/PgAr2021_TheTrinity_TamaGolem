@@ -27,7 +27,6 @@ package it.unibs.fp.the_trinity.tamagolem;
 import it.unibs.fp.the_trinity.utilities.UsefulStrings;
 
 import java.util.ArrayDeque;
-import java.util.Queue;
 
 /**
  * @author Iannella Simone
