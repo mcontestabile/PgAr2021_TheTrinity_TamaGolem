@@ -36,10 +36,10 @@ public class DataInput {
 	private static final String FORMAT_ERROR = "Il dato inserito non e' nel formato corretto.";
 	private static final String MINIMUM_ERROR = "E' richiesto un valore maggiore a ";
 	private static final String EMPTY_STRING_ERROR = "Non hai inserito alcun carattere.";
-	private static final String MAXIMUM_ERROR = "E' richiesto un valore minore o uguale a ";
 	private static final String ALLOWED_CHARS = "I caratteri ammissibili sono: ";
 	private static final char YES = 'S';
 	private static final char NO = 'N';
+	private static final char DOT = '.';
 
 	public DataInput() {
 	}
@@ -101,7 +101,7 @@ public class DataInput {
 			if (allowed.indexOf(readValue) != -1) {
 				ended = true;
 			} else {
-				System.out.println(ALLOWED_CHARS + allowed + ".");
+				System.out.println(ALLOWED_CHARS + allowed + DOT);
 			}
 		} while(!ended);
 
@@ -146,7 +146,7 @@ public class DataInput {
 			if (readValue >= minimum) {
 				ended = true;
 			} else {
-				System.out.println(MINIMUM_ERROR + minimum + ".");
+				System.out.println(MINIMUM_ERROR + minimum + DOT);
 			}
 		} while(!ended);
 
@@ -202,7 +202,7 @@ public class DataInput {
 			if (readValue > minimum) {
 				ended = true;
 			} else {
-				System.out.println(MINIMUM_ERROR + minimum + ".");
+				System.out.println(MINIMUM_ERROR + minimum + DOT);
 			}
 		} while(!ended);
 
@@ -210,9 +210,9 @@ public class DataInput {
 	}
 
 	public static boolean yesOrNo(String message) {
-		String myMessage = message + "(" + 'S' + "/" + 'N' + ")";
-		char readValue = readUpperChar(myMessage, String.valueOf('S') + String.valueOf('N'));
-		return readValue == 'S';
+		String myMessage = message + "(" + YES + "/" + NO + ")";
+		char readValue = readUpperChar(myMessage, String.valueOf(YES) + String.valueOf(NO));
+		return readValue == YES;
 	}
 
 	private static void pause(int millisPause) {
