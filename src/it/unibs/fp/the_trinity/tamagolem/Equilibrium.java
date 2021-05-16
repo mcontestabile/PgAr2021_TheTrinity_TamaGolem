@@ -201,7 +201,7 @@ public class Equilibrium {
      *                          <li>{@link #IF_LOWER}</li>
      *                          <li>{@link #EACH_CASE}</li>
      *                          <li>{@link #IF_HIGHER}</li>
-     *                           </ul>
+     *                      </ul>
      */
     private void swapCells(int rowA, int colA, int rowB, int colB, final int CONDITION) {
         boolean swap = false;
@@ -263,7 +263,7 @@ public class Equilibrium {
     }
 
     // TODO create getDamage method
-    public int getDamage(TamaElement a, TamaElement b) {
+    public int calculateInteraction(TamaElement a, TamaElement b) {
         return matrix[a.ordinal()][b.getIndex()];
     }
 }

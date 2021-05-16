@@ -24,17 +24,75 @@
  */
 package it.unibs.fp.the_trinity.tamagolem;
 
+import it.unibs.fp.the_trinity.utilities.UsefulStrings;
+
 import java.util.*;
 
 public class FightHandler {
+    private int elements;
+    private int commonStones;
+    private int tamas;
+    private int golemStones;
+    private Player playerA;
+    private Player playerB;
+    private ArrayList<TamaElement> usedElements;
+    private HashMap<TamaElement, Integer> numberOfElementAndStones;
 
-    // TODO da eliminare
-    Menu menu = new Menu();
+    public FightHandler(int matchLevel, Player playerA, Player playerB) {
+        this.playerA = playerA;
+        this.playerA = playerB;
+        elements = FightUtils.howManyElements(matchLevel);
+        golemStones = FightUtils.howManyStones(elements);
+        tamas = FightUtils.howManyTamagolems(elements, golemStones);
+        commonStones = FightUtils.howManyCommonStones(tamas, elements, golemStones);
+        usedElements = FightUtils.generateRandomElements(elements);
+        numberOfElementAndStones = FightUtils.generateElementAndStonesMap(usedElements, FightUtils.howManyStonesForEachElement(tamas, elements, golemStones));
+        addTamaGolems();
+    }
 
-    public void LetThemFight (Stack<TamaGolem> tamaGolem1, Stack<TamaGolem> tamaGolem2, int stones, int commonStones, ArrayList<TamaElement> usedElements, Player player1, Player player2, HashMap<TamaElement, Integer> numberOfElementAndStones1, HashMap<TamaElement, Integer> numberOfElementAndStones2) {
-        //System.out.printf(UsefulStrings.START_FIGHT_MESSAGE, player1.getName(), player2.getName(), UsefulStrings.getEnergy(), menu.getTamaGolemsNumber(),UsefulStrings.getEnergy() );
-        //Ho messo .get(0) solo per silenziare, si prenderà il golem durante il match.
-        menu.chooseStones(player1, commonStones, numberOfElementAndStones1, usedElements, stones, tamaGolem1.get(0));
-        menu.chooseStones(player2, commonStones, numberOfElementAndStones2, usedElements, stones, tamaGolem2.get(0));
+    public void LetThemFight () {
+        // invoco la funzione equilibrio con gli active golem
+    }
+
+    private void addTamaGolems() {
+        for (int i = 0; i < tamas; i++) {
+            String tamaName = UsefulStrings.TAMAGOLEM_NAME + i;
+            TamaGolem t = new TamaGolem(FightUtils.ENERGY, golemStones, usedElements, tamaName);
+            t.setName(tamaName);
+            playerA.addTamaGolem(t);
+            playerA.addTamaGolem(t);
+        }
+    }
+
+    public int getElements() {
+        return elements;
+    }
+
+    public int getCommonStones() {
+        return commonStones;
+    }
+
+    public int getTamas() {
+        return tamas;
+    }
+
+    public int getGolemStones() {
+        return golemStones;
+    }
+
+    public Player getPlayerA() {
+        return playerA;
+    }
+
+    public Player getPlayerB() {
+        return playerB;
+    }
+
+    public ArrayList<TamaElement> getUsedElements() {
+        return usedElements;
+    }
+
+    public HashMap<TamaElement, Integer> getNumberOfElementAndStones() {
+        return numberOfElementAndStones;
     }
 }
