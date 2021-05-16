@@ -28,7 +28,6 @@ import it.unibs.fp.the_trinity.utilities.CircularList;
 import it.unibs.fp.the_trinity.utilities.DataInput;
 import it.unibs.fp.the_trinity.utilities.Time;
 import it.unibs.fp.the_trinity.utilities.UsefulStrings;
-import java.util.*;
 
 /**
  * The {@code Menu} class contains methods to ...
@@ -143,7 +142,7 @@ public class Menu {
 
         while (golemStones > 0) {
             // TODO migliora la stampa degli elementi
-            for (TamaElement e : fightHandler.getUsedElements())
+            for (TamaElement e : fightHandler.getNumberOfElementAndStones().keySet())
                 if (fightHandler.remainingStonesForElement(e) > 0)
                     System.out.println("-" + e.toString());
 
@@ -151,11 +150,15 @@ public class Menu {
             do {
                 choice = DataInput.readNotEmptyString(UsefulStrings.CHOOSE_ELEMENT_NAME).toUpperCase();
                 TamaElement t = TamaElement.getElementFromAbbreviation(fightHandler.getUsedElements(), choice);
+
                 if (t != null) {
+
                     contains = true;
                     element = t;
+                    if (fightHandler.remainingStonesForElement(element) <= 0)
+                        element = null;
                 }
-            } while (((!TamaElement.containsElement(choice) || !fightHandler.getUsedElements().contains(TamaElement.valueOf(choice)) || fightHandler.remainingStonesForElement(element) <= 0) && !contains));
+            } while (((!TamaElement.containsElement(choice) || !fightHandler.getUsedElements().contains(TamaElement.valueOf(choice))) && !contains));
 
             chosenStones.add(element == null ? TamaElement.valueOf(choice) : element);
             fightHandler.decreaseStonesOfElement(element);
